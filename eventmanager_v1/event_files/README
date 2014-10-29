@@ -1,0 +1,171 @@
+Notes concerning various simulations:
+========================================================================
+
+----------------------------------------------------------------------
+Summary
+----------------------------------------------------------------------
+
+  name               process               number of events     cross-section (pb)
+
+  diboson_incl       dibosons, inclusive   100000              100.1  +- 0.14
+  diboson_pthat200   dibosons, 200 GeV	   100000              1.237  +- 0.0019
+  dijets_pthat200    dijets, 200 GeV	   100000              598500 +- 97
+  dijets_pthat450    dijets, 450 GeV	   100000              1004   +- 1.6
+  ttbar_pthat200     ttbar, 200 GeV	   100000              68.09  +- 0.111
+  ttbar_pthat450     ttbar, 450 GeV	   100000              2.327  +- 0.003633
+  Z_incl             Z+jet		   1000000 (20 files)  820500 +- 36.76
+  Z_pthat200         Z+jet, 200 GeV	   1000000 (20 files)  60.158 +- 0.035
+  ZH_incl            ZH			   100000              0.6169 +- 0.001025
+  ZH_pthat200        ZH, 200 GeV	   100000              0.0320 +- 0.00005192
+  VBF_biboson_incl   VBF-diboson           400000 (4 files)
+  pileup             minbias               78M  (3900 files)
+  pileup_short       minbias               200000 (10 files) 
+
+
+------------------------------------------------------------------------
+dibosons   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputDib_0F.root  (VV->any, inclusive) 
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+dibosons, 200 GeV   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputDibBoost_0F.root  (VV->any, pthat=200)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+dijets, 200 GeV   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputJ4_0F.root  (jj, pthat=200)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+dijets, 450 GeV   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputJ5_0F.root  (jj, pthat=450)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+ttbar, 200 GeV   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputT5_0F.root  (ttbar->any, pthat=200)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+ttbar, 450 GeV   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputT4_0F.root  (ttbar->any, pthat=450)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+Z+jet   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files  /raid03/francav/LesHouches2013/code/bin/outputZBoost_0.root   (Z->any, inclusive)
+       /raid03/francav/LesHouches2013/code/bin/outputZBoost_1.root   (Z->any, inclusive)
+       ...							    
+       /raid03/francav/LesHouches2013/code/bin/outputZBoost_19.root  (Z->any, inclusive)
+
+nevts: 50000 per file
+
+tree: h76
+
+)Generator: Pythia8, tune 4C
+
+
+------------------------------------------------------------------------
+Z+jet, 200 files   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files  /raid03/francav/LesHouches2013/code/bin/outputZBoost_0.root   (Z->any, pthat=200)
+       /raid03/francav/LesHouches2013/code/bin/outputZBoost_1.root   (Z->any, pthat=200)
+       ...							    
+       /raid03/francav/LesHouches2013/code/bin/outputZBoost_19.root  (Z->any, pthat=200
+
+nevts: 50000 per file
+
+tree: h76
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+ZH   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputZH_0F.root  (ZH->any, inclusive)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+ZH, 200 GeV   [Paolo Francavilla <paolo.francavilla@cern.ch>]
+------------------------------------------------------------------------
+
+files: /raid03/lochp/LesHouches2013/mc/outputZHBoost_0F.root  (ZH->any, pthat=200)
+
+nevts: 100000
+
+tree: h76f
+
+Generator: Pythia8, tune 4C
+
+------------------------------------------------------------------------
+VBF-diboson  [Nicola Orlando <nicola.orlando@le.infn.it>]
+------------------------------------------------------------------------
+
+files: /afs/cern.ch/work/o/orlando/public/DibosonVBFsamples/vbf_ww.root     (WW->lnulnu, inclusive) 
+       /afs/cern.ch/work/o/orlando/public/DibosonVBFsamples/vbf_zw.root     (ZW->lljj,   inclusive)
+       /afs/cern.ch/work/o/orlando/public/DibosonVBFsamples/vbf_zz2l2j.root (ZZ->lljj,   inclusive)
+       /afs/cern.ch/work/o/orlando/public/DibosonVBFsamples/vbf_zz4l.root   (ZZ->llll,   inclusive) 
+
+nevts: 100000 per file
+
+tree: record
+
+Generator: Madgraph+Pythia 6.420 (not 8!).
+
+Notes: Charge info stored at parton level only.
+       These are not filtered to enhance the vbf contribution.
+       I don't expect I used the best Pythia set-up, just used the
+       default configuration which came with the installation, but
+       I'll have a look at this in next days.

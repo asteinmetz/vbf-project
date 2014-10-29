@@ -1,0 +1,487 @@
+
+#include "PrintDef.h"
+
+#include "Services.h"
+
+#include "Configuration.h"
+
+//#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+
+Configuration::ConfigData* Configuration::ConfigData::m_instance       = 0;
+
+std::string Configuration::ConfigData::m_invalidString  = "INVALID";
+std::string Configuration::ConfigData::m_defaultString  = "DEFAULT";
+std::string Configuration::ConfigData::m_nullString     = "NONE";
+
+std::string Configuration::ConfigData::muLineTag             = "mu";
+std::string Configuration::ConfigData::nEventsLineTag        = "nevts";
+std::string Configuration::ConfigData::pileupFileListLineTag = "pupflist";
+std::string Configuration::ConfigData::signalFileListLineTag = "sigflist";
+std::string Configuration::ConfigData::outputFileLineTag     = "outfile";
+std::string Configuration::ConfigData::useMuLineTag          = "useMu";
+std::string Configuration::ConfigData::helpLineTag           = "help";
+std::string Configuration::ConfigData::signalTreeNameLineTag = "signalTree";
+std::string Configuration::ConfigData::pileupTreeNameLineTag = "pileupTree";
+std::string Configuration::ConfigData::analysisLineTag       = "analysis";
+
+Configuration::ConfigData::map_t Configuration::ConfigData::m_configMap = 
+  Configuration::ConfigData::map_t();
+
+const Configuration::ConfigData::map_t& Configuration::ConfigData::configMap()
+{ return m_configMap; }
+
+Configuration::ConfigData::ConfigData() 
+  // configurations set by commandline switches
+  : isActive(true)
+  , mu(1)                        // single interaction
+  , nEvents(-1)                  // all events in input file
+  , mainName(m_invalidString)    // name of application
+  , pileupFileList(m_nullString) // pileup file list
+  , signalFileList(m_nullString) // signal file list
+  , outputFile(m_nullString)     // output file
+  , useMu(false)                 // use mu in output file name
+  , signalTreeName(m_nullString) // name of signal tree
+  , pileupTreeName("MB_Py8")     // name of pile-up tree
+  , analysisName("UserAnalysisBase") // name of pile-up tree
+  // internal control
+  , muTag(false)
+  , nEventsTag(false)
+  , mainNameTag(false)
+  , pileupFileListTag(false)
+  , signalFileListTag(false)
+  , outputFileTag(false)
+  , useMuTag(false)
+  , signalTreeNameTag(false)
+  , pileupTreeNameTag(false)
+  , isActiveTag(false)
+{
+  addConfig(muLineTag,"-1","[default] average number of interactions");
+  addConfig(nEventsLineTag,"-1","[default] requested number of events");
+  addConfig(pileupFileListLineTag,m_nullString,"[default] pile-up file list");
+  addConfig(signalFileListLineTag,m_nullString,"[default] signal file list");
+  addConfig(outputFileLineTag,m_nullString,"[default] output file");
+  addConfig(useMuLineTag,"false","[default] use mu in output file name");
+  addConfig(signalTreeNameLineTag,m_nullString,"[default] signal tree name");
+  addConfig(pileupTreeNameLineTag,"MB_Py8","[default] pile-up tree name");
+}
+
+Configuration::ConfigData::~ConfigData()
+{ } 
+
+bool Configuration::ConfigData::addConfig(const std::string& key,const std::string& data,
+			   const std::string& cmt)
+{
+  map_t::iterator fMap(m_configMap.find(key));
+  if ( fMap == m_configMap.end() )
+    { 
+      std::string skey;
+      size_t nctr(0);
+      for ( size_t ictr(0); ictr<key.length(); ++ictr )
+	{ if ( nctr < 2 && key.at(ictr) == '-' ) { ++nctr; } 
+	  else { skey += key.at(ictr); } }
+       m_configMap.insert(map_t::value_type(skey,data_t(data,cmt))); 
+    }
+  else
+    { 
+      PRINT_INFO("Configuration::addConfig(\042%s\042,\042%s\042)",
+		 "Overwriting old value \042%s\042 with \042%s\042\n",
+		 key.c_str(),data.c_str(),
+		 fMap->second.first.c_str(),
+		 data.c_str());
+      fMap->second.first = data;
+      fMap->second.second = cmt;
+    }
+  return true;
+}
+
+// bool Configuration::ConfigData::getConfigBool(const std::string& key,bool& data)
+// {
+//   std::string tStr;
+//   if ( !getConfig(key,tStr) ) return false;
+  
+//   if ( compareStrings(tStr,"true") )       { data = true; }
+//   else if ( compareStrings(tStr,"false") ) { data = false; }
+//   else
+//     {
+//       PRINT_ERROR("Configuration::getConfig(%s,...)",
+// 		  "Type <bool> is requested for key \042%2\042 but map data \042%s\042 does not match \042true\042 or \042false\042\n",
+// 		  key.c_str(),key.c_str(),tStr.c_str());
+//       return false;
+//     }
+//   return true;
+// }     
+
+
+bool Configuration::ConfigData::getConfigComment(const std::string& key,std::string& cmt)
+{
+  map_t::const_iterator fMap(configMap().find(key));
+  if ( fMap == configMap().end() ) return false;
+  cmt = fMap->second.second;
+  return true;
+}
+
+// template<>
+// bool ConfiggetConfig<int>(const std::string& key,int& data);
+//     template<>
+//     bool getConfig<long int>(const std::string& key,long int& data);
+//     template<>
+//     bool getConfig<long long int>(const std::string& key,long long int& data);
+//     template<>
+//     bool getConfig<double>(const std::string& key,double& data);
+//     template<>
+//     bool getConfig<float>(const std::string& key,float& data);
+
+
+template<>
+bool Configuration::extractTag<int>(const std::string& tagStr,int& value,
+				    const std::string& delimiter)
+{ 
+  std::string valStr; 
+  if ( extractTag(tagStr,valStr,delimiter) ) 
+    { value = atoi(valStr.c_str()); return true; }
+  else
+    { return false; }
+}
+
+template<>
+bool Configuration::extractTag<long int>(const std::string& tagStr,
+					 long int& value,
+					 const std::string& delimiter)
+{ 
+  std::string valStr; 
+  if ( extractTag(tagStr,valStr,delimiter) ) 
+    { value = atol(valStr.c_str()); return true; }
+  else
+    { return false; }
+}
+
+template<>
+bool Configuration::extractTag<long long int>(const std::string& tagStr,
+					      long long int& value,
+					      const std::string& delimiter)
+{ 
+  std::string valStr; 
+  if ( extractTag(tagStr,valStr,delimiter) ) 
+    { value = atoll(valStr.c_str()); return true; }
+  else
+    { return false; }
+}
+
+template<>
+bool Configuration::extractTag<unsigned int>(const std::string& tagStr,
+					     unsigned int& value,
+					     const std::string& delimiter)
+{
+  int ival(0);
+  if ( extractTag(tagStr,ival,delimiter) )
+    { value = (unsigned int)ival; return true; }
+  else 
+    { return false; }
+}
+
+template<>
+bool Configuration::extractTag<float>(const std::string& tagStr,float& value, 
+				      const std::string& delimiter)
+{
+  std::string valStr; 
+  if ( extractTag(tagStr,valStr,delimiter) )
+    { value = (float)atof(valStr.c_str()); return true; }
+  else { return false; }
+}
+
+template<>
+bool Configuration::extractTag<double>(const std::string& tagStr,double& value,
+				       const std::string& delimiter)
+{
+  std::string valStr;
+  if ( extractTag(tagStr,valStr,delimiter) )
+    { value = atof(valStr.c_str()); return true; }
+  else
+    { return false; }
+}
+
+void Configuration::interpretConfig(int argc,char** argv,ConfigData& config)
+{
+  // main name
+  std::string mn(argv[0]);
+  config.mainName    = mn.substr(mn.find_last_of("/")+1);
+  config.mainNameTag = true;
+
+  // unpack arguments into strings
+  std::vector<std::string> argList;
+  for ( int i=1;i<argc;++i ) { argList.push_back(std::string(argv[i])); }
+
+  // check arguments
+  std::vector<std::string>::iterator fStr(argList.begin());
+  std::vector<std::string>::iterator lStr(argList.end());
+  for ( ; fStr != lStr; ++fStr )
+    {
+      // print help
+      if ( fStr->find(config.helpLineTag) != std::string::npos )
+	{ 
+	  printHelp();
+	  config.isActive = false;
+	  config.isActiveTag = true;
+	  return; 
+	}
+      // number of interactions
+      else if ( fStr->find(config.muLineTag) != std::string::npos )
+	{
+	  int imu(0);
+	  if ( extractTag<int>(*fStr,imu) ) 
+	    { config.muTag = true; config.mu = imu;
+	      std::stringstream sstr; sstr << imu;
+	      config.addConfig(config.muLineTag,sstr.str(),
+			"average number of interactions"); }
+	}
+      // number of events
+      else if ( fStr->find(config.nEventsLineTag) != std::string::npos )
+	{
+	  int iev(0);
+	  if ( extractTag(*fStr,iev) )
+	    { config.nEventsTag = true; config.nEvents = iev;
+	      std::stringstream sstr; sstr << iev;
+	      config.addConfig(config.nEventsLineTag,sstr.str(),
+			"requested number of events"); }
+	}
+      // pileup file list 
+      else if ( fStr->find(config.pileupFileListLineTag) 
+		!= std::string::npos )
+	{ 
+	  std::string str;
+	  if ( extractTag(*fStr,str) )
+	    { config.pileupFileListTag = true; config.pileupFileList = str; 
+	      config.addConfig(config.pileupFileListLineTag,str,
+			       "pile-up file list"); }
+	}
+      // signal file list
+      else if ( fStr->find(config.signalFileListLineTag) 
+		!= std::string::npos )
+	{
+	  std::string str;
+	  if ( extractTag(*fStr,str) )
+	    { config.signalFileListTag = true; config.signalFileList = str;
+	      config.addConfig(config.signalFileListLineTag,str,
+			"signal file list"); }
+	}
+      // output file
+      else if ( fStr->find(config.outputFileLineTag) != std::string::npos )
+	{
+	  std::string str;
+	  if ( extractTag(*fStr,str) )
+	    { config.outputFileTag = true; config.outputFile = str; 
+	      config.addConfig(config.outputFileLineTag,str,
+			       "output file"); }
+	}
+      // use mu for output file name construction
+      else if ( fStr->find(config.useMuLineTag) != std::string::npos )
+	{ config.useMuTag = true; config.useMu = true; 
+	  config.addConfig(config.useMuLineTag,"true",
+			   "use mu in output file name"); }
+      // signal tree name
+      else if ( fStr->find(config.signalTreeNameLineTag) != std::string::npos )
+	{ 
+	  std::string str;
+	  if ( extractTag(*fStr,str) ) 
+	    { config.signalTreeNameTag = true; config.signalTreeName = str; 
+	      config.addConfig(config.signalTreeNameLineTag,str,
+			       "signal tree name"); }
+	}
+      // signal tree name
+      else if ( fStr->find(config.pileupTreeNameLineTag) != std::string::npos )
+	{ 
+	  std::string str;
+	  if ( extractTag(*fStr,str) ) 
+	    { config.pileupTreeNameTag = true; config.pileupTreeName = str; 
+	      config.addConfig(config.pileupTreeNameLineTag,str,
+			       "pile-up tree name"); }
+	}
+      // client defined options
+      else if ( fStr->find("--") != std::string::npos )
+	{ std::string data;
+	  extractTag(*fStr,data); // ignore return in this case!
+	  size_t ndel(fStr->find_first_of("="));
+	  if ( ndel == std::string::npos ) // no arguments- boolean
+	    { config.addConfig((*fStr),"true");
+	      printf("--------- OONFIG \042%s\042 VALUE <true>\n",(*fStr).c_str());
+	    }
+	  else
+	    { std::string cfgStr(fStr->substr(0,fStr->find_first_of("="))); 
+	      config.addConfig(cfgStr,data); 
+	      printf("--------- OONFIG \042%s\042 VALUE <%s>\n",(*fStr).c_str(),data.c_str());
+	    }
+	}
+      // invalid command line option
+      else 
+	{ printf("[%s->interpretConfig(%i,...)] - WARNING - unknown configuration \042%s\042\n",config.mainName.c_str(),argc,fStr->c_str()); }
+    }
+  // post-processing
+  if ( config.useMu ) 
+    {
+      size_t ipos(config.outputFile.find_last_of("."));
+      if ( ipos == std::string::npos )
+	{
+	  //	  PRINT_ERROR("%s::interpretConfig(%s,%i,...)",
+		      "output file name badly composed (missing \042.root\042 in \042%s\042\n",
+			//	     config.mainName.c_str(),argc,
+			//  config.outputFile.c_str());
+	  Services::Process::terminate("Invalid output file name");
+	}
+      else
+	{
+	  std::string prefix(config.outputFile.substr(0,ipos));
+	  std::string postfix(config.outputFile.substr(ipos));
+	  std::string origstr(config.outputFile);
+#ifndef _HAVE_NO_BOOST_
+	  config.outputFile = 
+	    prefix+boost::lexical_cast<std::string>(config.mu)+postfix;
+#else
+	  std::stringstream sstr;
+	  sstr << config.mu;
+	  config.outputFile = prefix+sstr.str()+postfix;
+#endif
+	  config.addConfig(config.outputFileLineTag,
+			   config.outputFile,"output file");
+// 	  PRINT_INFO("%s::interpretConfig(%i,...)"
+// 		     "changed output file name from \042%s\042 to \042%s\042\n", 
+// 		     config.mainName.c_str(),argc,origstr.c_str(),
+// 		     config.outFile.c_str());
+// 	  printf("[%s->interpretConfig(%i,...)] -INFO - changed output file name from \042%s\042 to \042%s\042\n",
+// 		 config.mainName.c_str(),argc,
+// 		 origstr.c_str(),config.outputFile.c_str());
+	} // ok to change output file name
+    } // output file name including mu requested
+}
+
+void Configuration::printConfig(const ConfigData& config)
+{
+  if ( !config.isActive ) return;
+  
+  // header
+  PRINT_INFO("%s::printConfig(...)","this configuration\n",
+	     config.mainName.c_str());
+
+  // scan map for max key word and comment length
+  size_t ll(0);
+  size_t kk(0);
+  std::vector<size_t> filldots;
+  const ConfigData::map_t& map = ConfigData::configMap();
+  ConfigData::map_t::const_iterator fMap(map.begin());
+  ConfigData::map_t::const_iterator lMap(map.end());
+  for ( ; fMap != lMap; ++fMap )
+    { 
+      if ( fMap->first.length() > ll ) ll = fMap->first.length();
+      filldots.push_back(fMap->second.second.length());
+      if ( filldots.back() > kk ) kk = filldots.back();
+    }
+
+  std::vector<size_t>::iterator fDots(filldots.begin());
+  std::vector<size_t>::iterator lDots(filldots.end());
+  for ( ; fDots != lDots; ++fDots ) 
+    { (*fDots) = (kk-*fDots)+2; }
+
+  // print map
+  std::stringstream str;
+  str << "     \033[1m%" << ll << "s\033[0m (%s) %s %s\n";
+  std::string fmt(str.str());
+  //  std::string tStr(kk+1,'.');
+  fMap = map.begin();
+  size_t ii(0);
+  for ( ; fMap != lMap; ++fMap, ++ii )
+    { 
+      std::string cStr(filldots.at(ii),'.');
+      printf(fmt.c_str(),fMap->first.c_str(),fMap->second.second.c_str(),
+	     cStr.c_str(),fMap->second.first.c_str());
+    }
+}
+
+void Configuration::printHelp()
+{
+  ConfigData* pConfig = ConfigData::instance();
+  std::string msg = "["+pConfig->mainName+"->printHelp()] - INFO - usage: \n";
+  printf("%s     \033[1m--%s\033[0m \033[1m--%s\033[0m \033[1m--%s\033[0m=<signalfilelist> \033[1m--%s\033[0m=<pileupfilelist> \033[1m--%s\033[0m=<outfile> \033[1m--%s\033[0m=<mu> \033[1m--%s\033[0m=<#events>  \033[1m--%s\033[0m\n",
+	 msg.c_str(),
+	 pConfig->mainName.c_str(),
+	 pConfig->helpLineTag.c_str(),
+	 pConfig->signalFileListLineTag.c_str(),
+	 pConfig->pileupFileListLineTag.c_str(),
+	 pConfig->outputFileLineTag.c_str(),
+	 pConfig->muLineTag.c_str(),
+	 pConfig->nEventsLineTag.c_str(),
+	 pConfig->useMuLineTag.c_str());
+  // determine max width
+  int nw = pConfig->helpLineTag.length();
+  if ( pConfig->pileupFileListLineTag.length() > nw ) 
+    nw = pConfig->pileupFileListLineTag.length();
+  if ( pConfig->signalFileListLineTag.length() > nw ) 
+    nw = pConfig->signalFileListLineTag.length();
+  if ( pConfig->outputFileLineTag.length() > nw ) 
+    nw = pConfig->outputFileLineTag.length();
+  if ( pConfig->muLineTag.length() > nw )
+    nw = pConfig->muLineTag.length();
+  if ( pConfig->nEventsLineTag.length() > nw )
+    nw = pConfig->nEventsLineTag.length();
+   if ( pConfig->useMuLineTag.length() > nw )
+    nw = pConfig->useMuLineTag.length();
+   if ( pConfig->signalTreeNameLineTag.length() > nw )
+    nw = pConfig->signalTreeNameLineTag.length();
+   if ( pConfig->pileupTreeNameLineTag.length() > nw )
+    nw = pConfig->pileupTreeNameLineTag.length();
+
+   printf("\n     \033[1m--%-*s\033[0m: display this help and exit",
+	  nw,pConfig->helpLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: name of file with list of signal input files",
+	  nw,pConfig->signalFileListLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: name of file with list of pile-up input files",
+	  nw,pConfig->pileupFileListLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: output file name (should have \042.root\042 extension!)",
+	  nw,pConfig->outputFileLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: number of (pile-up) interactions (>0 Poisson, <0 fixed)",
+	  nw,pConfig->muLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: number of (signal) events to be processed (-1 means all)",
+	  nw,pConfig->nEventsLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: name of ROOT tree for signal",
+	  nw,pConfig->signalTreeNameLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: name of ROOT tree for pile-up",
+	  nw,pConfig->pileupTreeNameLineTag.c_str());
+   printf("\n     \033[1m--%-*s\033[0m: use <mu> in output file name",
+	  nw,pConfig->useMuLineTag.c_str());
+
+   printf("\n");
+}
+
+bool Configuration::compareStrings(const std::string& str1,
+				   const std::string& str2,
+				   bool strong)
+{
+  size_t l1(str1.length());
+  size_t l2(str2.length());
+  if ( strong && ( l1 != l2 ) ) return false;
+
+  size_t ln = l1 < l2 ? l1 : l2;
+  size_t ii(0);
+  while ( ii < ln && ( toupper(str1[ii]) == toupper(str2[ii]) ) ) { ++ii; }
+  return ii == ln;
+}
+
+
+template<>
+bool 
+Configuration::Retrieve::any_type<bool>(const std::string& payload,bool& data)
+{
+  if ( compareStrings(payload,"true",true) )
+    { data = true; }
+  else if ( compareStrings(payload,"false",true) )
+    { data = false; }
+  else 
+    {
+      PRINT_WARN("Configuration::Retrieve::any_type(...)",
+		 "\042%s\042 is not \042true\042 or \042false\042!\n",
+		 payload.c_str());
+      return false;
+    }
+  return true;
+}
+

@@ -1,0 +1,177 @@
+\hypertarget{namespaceServices_1_1Histogramming}{
+\section{Services::Histogramming Namespace Reference}
+\label{namespaceServices_1_1Histogramming}\index{Services::Histogramming@{Services::Histogramming}}
+}
+Collection of functions to book and write histograms.  
+
+
+\subsection*{Write histograms to file}
+This group of functions requires the output {\tt ROOT} file to be opened before invocation. None of the functions takes any control on this file or its status.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em no\-Empties}]suppresses writing out empty histograms when set to {\tt true} (optional, default is {\tt true}) \item[\mbox{$\leftarrow$} {\em group}]reference to non-modifiable string containing the name of the histogram group to be written out. \item[\mbox{$\leftarrow$} {\em name}]reference to non-modifiable string containing the name of the histogram to be written out.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Number of histograms written to file. \end{Desc}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_4e8dabf41bf6806eed9a8641a1241815}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_4e8dabf41bf6806eed9a8641a1241815}{write\-Hist} (bool no\-Empties=true)}
+\label{namespaceServices_1_1Histogramming_4e8dabf41bf6806eed9a8641a1241815}
+
+\begin{CompactList}\small\item\em Write all histograms. \item\end{CompactList}\item 
+\hypertarget{namespaceServices_1_1Histogramming_c5d6b92f2c49e4ab66d25b3c44771b34}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_c5d6b92f2c49e4ab66d25b3c44771b34}{write\-Hist} (const std::string \&group, bool no\-Empties=true)}
+\label{namespaceServices_1_1Histogramming_c5d6b92f2c49e4ab66d25b3c44771b34}
+
+\begin{CompactList}\small\item\em Write all histograms of a given group. \item\end{CompactList}\item 
+\hypertarget{namespaceServices_1_1Histogramming_935176823486a59ec6356ef754564388}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_935176823486a59ec6356ef754564388}{write\-Hist} (const std::string \&group, const std::string \&name, bool no\-Entries=true)}
+\label{namespaceServices_1_1Histogramming_935176823486a59ec6356ef754564388}
+
+\begin{CompactList}\small\item\em Write single histogram with a given name in a given group. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Write histograms to specified file}
+This group of functions opens the output {\tt ROOT} file with name and options specfied in the argument list, and closes the file before return.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em file\-Name}]reference to non-modifiable string containing the file name \item[\mbox{$\leftarrow$} {\em file\-OPts}]options for the internally used {\tt TFile} object constructions (optional argument, default is \char`\"{}RECREATE\char`\"{}):\begin{itemize}
+\item \char`\"{}WRITE\char`\"{} $\ast$ Opens a new file for write access. $\ast$ Will fail if file already exists.\item \char`\"{}READ\char`\"{} $\ast$ Opens an existing file for read access. $\ast$ Not applicable in this context - write will fail\item \char`\"{}RECREATE\char`\"{} $\ast$ Opens a new file for write access if file not yet existing. $\ast$ Overwites the content of an existing file with the new histograms to be written.\item \char`\"{}APPEND\char`\"{} $\ast$ Opens an existing file and appends the histograms to be written. $\ast$ If specified file is not yet existing, creates a new one (TBC!) $\ast$ Histograms with the same name already in the file will not be overwritten, rather a new version is added. \end{itemize}
+\item[\mbox{$\leftarrow$} {\em no\-Empties}]suppresses writing out empty histograms when set to {\tt true} (optional, default is {\tt true}) \item[\mbox{$\leftarrow$} {\em group}]reference to non-modifiable string containing the name of the histogram group to be written out. \item[\mbox{$\leftarrow$} {\em name}]reference to non-modifiable string containing the name of the histogram to be written out.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Number of histograms written to file. \end{Desc}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_28e33620d16d7bfbd32267c113fbf874}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_28e33620d16d7bfbd32267c113fbf874}{write} (const std::string \&file\-Name, const std::string \&file\-Opt=\char`\"{}RECREATE\char`\"{}, bool no\-Empties=true)}
+\label{namespaceServices_1_1Histogramming_28e33620d16d7bfbd32267c113fbf874}
+
+\begin{CompactList}\small\item\em Write all histograms. \item\end{CompactList}\item 
+\hypertarget{namespaceServices_1_1Histogramming_378c2752e7ff91e0e1f2469e4c9eb06c}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_378c2752e7ff91e0e1f2469e4c9eb06c}{write} (const std::string \&file\-Name, const std::string \&group, const std::string \&file\-Opt=\char`\"{}RECREATE\char`\"{}, bool no\-Empties=true)}
+\label{namespaceServices_1_1Histogramming_378c2752e7ff91e0e1f2469e4c9eb06c}
+
+\begin{CompactList}\small\item\em Write all histograms of a given group. \item\end{CompactList}\item 
+\hypertarget{namespaceServices_1_1Histogramming_fc9ca7466afe5edb8c50a3e2068925c3}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_fc9ca7466afe5edb8c50a3e2068925c3}{write} (const std::string \&file\-Name, const std::string \&group, const std::string \&name, const std::string \&file\-Opt=\char`\"{}RECREATE\char`\"{}, bool no\-Empties=true)}
+\label{namespaceServices_1_1Histogramming_fc9ca7466afe5edb8c50a3e2068925c3}
+
+\begin{CompactList}\small\item\em Write single histogram with a given name in a given group. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Booking functions}
+1-dim histogram like `TH1D` and `TProfile`:
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em name}]histogram name \item[\mbox{$\leftarrow$} {\em title}]histogram title \item[\mbox{$\leftarrow$} {\em nbins}]number of bins (x axis) \item[\mbox{$\leftarrow$} {\em xmin}]lower boundary (x axis) \item[\mbox{$\leftarrow$} {\em xmax}]upper boundary (x axis) \item[\mbox{$\leftarrow$} {\em xtitle}]x-axis title (optional, default `\char`\"{}\char`\"{}`) \item[\mbox{$\leftarrow$} {\em ytitle}]y-axis title (optional, default `\char`\"{}\char`\"{}`)\end{description}
+\end{Desc}
+Additional arguments for 2-dimensional histograms like `TH2D` and `TProfile2D`:
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em mbins}]number of bins (y axis) \item[\mbox{$\leftarrow$} {\em ymin}]lower boundary (y axis) \item[\mbox{$\leftarrow$} {\em ymax}]upper boundary (y axis) \item[\mbox{$\leftarrow$} {\em ztitle}]z-axis title (optional, default `\char`\"{}\char`\"{}`)\end{description}
+\end{Desc}
+Additional arguments for 3-dimensional histograms like `TH3D`
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em lbins}]number of bins (z axis) \item[\mbox{$\leftarrow$} {\em zmin}]lower boundary (z axis) \item[\mbox{$\leftarrow$} {\em zmax}]upper boundary (z axis) \end{description}
+\end{Desc}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_c003bf918d088168467d06a38f12386d}{
+template$<$class H$>$ H $\ast$ \textbf{book} (const std::string \&name, const std::string \&title, int nbins, double xmin, double xmax, const std::string \&xtitle=\char`\"{}\char`\"{}, const std::string \&ytitle=\char`\"{}\char`\"{})}
+\label{namespaceServices_1_1Histogramming_c003bf918d088168467d06a38f12386d}
+
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_8a1d660c21b758e686ce2c0b966dbbfe}{
+template$<$class H$>$ H $\ast$ \textbf{book} (const std::string \&group, const std::string \&name, const std::string \&title, int nbins, double xmin, double xmax, const std::string \&xtitle=\char`\"{}\char`\"{}, const std::string \&ytitle=\char`\"{}\char`\"{})}
+\label{namespaceServices_1_1Histogramming_8a1d660c21b758e686ce2c0b966dbbfe}
+
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_3c147b4125f432224490fa052c26309c}{
+template$<$class H$>$ H $\ast$ \textbf{book} (const std::string \&name, const std::string \&title, int nbins, double xmin, double xmax, int mbins, double ymin, double ymax, const std::string \&xtitle=\char`\"{}\char`\"{}, const std::string \&ytitle=\char`\"{}\char`\"{}, const std::string \&ztitle=\char`\"{}\char`\"{})}
+\label{namespaceServices_1_1Histogramming_3c147b4125f432224490fa052c26309c}
+
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_8039512185d630acebb616b315bcd484}{
+template$<$class H$>$ H $\ast$ \textbf{book} (const std::string \&group, const std::string \&name, const std::string \&title, int nbins, double xmin, double xmax, int mbins, double ymin, double ymax, const std::string \&xtitle=\char`\"{}\char`\"{}, const std::string \&ytitle=\char`\"{}\char`\"{}, const std::string \&ztitle=\char`\"{}\char`\"{})}
+\label{namespaceServices_1_1Histogramming_8039512185d630acebb616b315bcd484}
+
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_e3d75ad478e0bcd748f005b50ee05c65}{
+template$<$class H$>$ H $\ast$ \textbf{book} (const std::string \&name, const std::string \&title, int nbins, double xmin, double xmax, int mbins, double ymin, double ymax, int lbins, double zmin, double zmax, const std::string \&xtitle=\char`\"{}\char`\"{}, const std::string \&ytitle=\char`\"{}\char`\"{}, const std::string \&ztitle=\char`\"{}\char`\"{})}
+\label{namespaceServices_1_1Histogramming_e3d75ad478e0bcd748f005b50ee05c65}
+
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_820f474ddba0749b33a9e17170e8234c}{
+template$<$class H$>$ H $\ast$ \textbf{book} (const std::string \&group, const std::string \&name, const std::string \&title, int nbins, double xmin, double xmax, int mbins, double ymin, double ymax, int lbins, double zmin, double zmax, const std::string \&xtitle=\char`\"{}\char`\"{}, const std::string \&ytitle=\char`\"{}\char`\"{}, const std::string \&ztitle=\char`\"{}\char`\"{})}
+\label{namespaceServices_1_1Histogramming_820f474ddba0749b33a9e17170e8234c}
+
+\end{CompactItemize}
+\subsection*{Number of registered histograms}
+\begin{Desc}
+\item[Returns:]Number of registered histograms \end{Desc}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_f24556ae612cc9283720d9e964265bd5}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_f24556ae612cc9283720d9e964265bd5}{number\-Reg\-Hist} ()}
+\label{namespaceServices_1_1Histogramming_f24556ae612cc9283720d9e964265bd5}
+
+\begin{CompactList}\small\item\em Count all histograms. \item\end{CompactList}\item 
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_4731840672ebd592faf176c87a187c72}{number\-Reg\-Hist} (const std::string \&group)
+\begin{CompactList}\small\item\em Count only histogrmas in a group. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceServices_1_1Histogramming_f24556ae612cc9283720d9e964265bd5}{
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_f24556ae612cc9283720d9e964265bd5}{number\-Reg\-Hist} ()}
+\label{namespaceServices_1_1Histogramming_f24556ae612cc9283720d9e964265bd5}
+
+\begin{CompactList}\small\item\em Count all histograms. \item\end{CompactList}\item 
+unsigned int \hyperlink{namespaceServices_1_1Histogramming_4731840672ebd592faf176c87a187c72}{number\-Reg\-Hist} (const std::string \&group)
+\begin{CompactList}\small\item\em Count only histogrmas in a group. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Collection of functions to book and write histograms. 
+
+Presently only `ROOT` based. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceServices_1_1Histogramming_4731840672ebd592faf176c87a187c72}{
+\index{Services::Histogramming@{Services::Histogramming}!numberRegHist@{numberRegHist}}
+\index{numberRegHist@{numberRegHist}!Services::Histogramming@{Services::Histogramming}}
+\subsubsection[numberRegHist]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Services::Histogramming::number\-Reg\-Hist (const std::string \& {\em group})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{namespaceServices_1_1Histogramming_4731840672ebd592faf176c87a187c72}
+
+
+Count only histogrmas in a group. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em group}]reference to non-modifiable string containing the name of the group \end{description}
+\end{Desc}
+\hypertarget{namespaceServices_1_1Histogramming_4731840672ebd592faf176c87a187c72}{
+\index{Services::Histogramming@{Services::Histogramming}!numberRegHist@{numberRegHist}}
+\index{numberRegHist@{numberRegHist}!Services::Histogramming@{Services::Histogramming}}
+\subsubsection[numberRegHist]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Services::Histogramming::number\-Reg\-Hist (const std::string \& {\em group})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{namespaceServices_1_1Histogramming_4731840672ebd592faf176c87a187c72}
+
+
+Count only histogrmas in a group. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em group}]reference to non-modifiable string containing the name of the group \end{description}
+\end{Desc}

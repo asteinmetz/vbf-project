@@ -1,0 +1,134 @@
+\hypertarget{structUtils}{
+\section{Utils Struct Reference}
+\label{structUtils}\index{Utils@{Utils}}
+}
+{\tt \#include $<$Event.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static void \hyperlink{structUtils_69035af71f5fb92ea00e07fa70c8c517}{set\-Order\-Context} (std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \&vertices, \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Vertex::Order\-Context} oc=Vertex::PTSUM2)
+\begin{CompactList}\small\item\em Setting the order context for a group of vertices. \item\end{CompactList}\item 
+static void \hyperlink{structUtils_85ca39cbe948e63a71b0f18d3860c218}{sort\-Vtx} (std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \&vertices, \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Vertex::Order\-Context} oc=Vertex::PTSUM2)
+\begin{CompactList}\small\item\em \hyperlink{classVertex}{Vertex} sorting. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Copying @c fastjet::Pseudo\-Jet}\par
+{\em The following function suite provides deep copies of {\tt fastjet::Pseudo\-Jet} objects, including an actual copy of {\tt Particle\-Info} (instead of a sharing this one between the original and the copy).
+
+Single object copy:
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em in\-Jet}]reference to non-modifiable {\tt fastjet::Pseudo\-Jet} to be copied \item[{\em inout\mbox{]}}]out\-Jet reference to modifiable {\tt fastjet::Pseudo\-Jet} object\end{description}
+\end{Desc}
+Multiple object copies:
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em in\-Jets}]reference to list of non-modifiable {\tt fastjet::Pseudo\-Jet} objects to be copied \item[{\em inout\mbox{]}}]out\-Jets reference to modifiable list of {\tt fastjet::Pseudo\-Jet} objects to be filled with copies\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Warning:]These implementations should be stripped of the deep copy feature, as sharing the {\tt Particle\-Info} should be ok anyway. This is mainly true because the {\tt Particle\-Info} object can not be modified after its instantiation anyway - meaning its data content can not be overwritten/changed. \end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{structUtils_19302c8fa98837d45ea37f5264d80f1e}{
+static void \hyperlink{structUtils_19302c8fa98837d45ea37f5264d80f1e}{copy\-PJ} (const fastjet::Pseudo\-Jet \&in\-Jet, fastjet::Pseudo\-Jet \&out\-Jet)}
+\label{structUtils_19302c8fa98837d45ea37f5264d80f1e}
+
+\begin{CompactList}\small\item\em Full copy of single {\tt fastjet::Pseudo\-Jet}. \item\end{CompactList}\item 
+\hypertarget{structUtils_874fbcbde1849dc6582968f058040106}{
+static void \hyperlink{structUtils_874fbcbde1849dc6582968f058040106}{copy\-PJ} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&in\-Jets, std::vector$<$ fastjet::Pseudo\-Jet $>$ \&out\-Jets)}
+\label{structUtils_874fbcbde1849dc6582968f058040106}
+
+\begin{CompactList}\small\item\em Full copy of list of {\tt fastjet::Pseudo\-Jet} objects. \item\end{CompactList}\item 
+static void \hyperlink{structUtils_e158c164f104a0d12bffcdb3b8c42674}{copy\-PJ} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&in\-Jets, std::vector$<$ fastjet::Pseudo\-Jet $>$ \&out\-Jets, bool charged)
+\begin{CompactList}\small\item\em Conditional copying: exclusively copy only charged or neutral particles from list of {\tt fastjet::Pseudo\-Jet} objects. \item\end{CompactList}\item 
+static void \hyperlink{structUtils_c14816a57d84011c08359d8afe04df99}{copy\-PJ} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&in\-Jets, std::vector$<$ fastjet::Pseudo\-Jet $>$ \&out\-Jets, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type)
+\begin{CompactList}\small\item\em Conditional copying: exclusively copy only particles from the same source from list of {\tt fastjet::Pseudo\-Jet} objects. \item\end{CompactList}\item 
+static void \hyperlink{structUtils_090c488d949a88d96e366d4cb78c10d9}{copy\-PJ} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&in\-Jets, std::vector$<$ fastjet::Pseudo\-Jet $>$ \&out\-Jets, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type, bool charged)
+\begin{CompactList}\small\item\em Conditional copying: exclusively copy only charged or neutral particles from the same source from list of {\tt fastjet::Pseudo\-Jet} objects. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Collection of useful functions supporting object copying and others. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structUtils_090c488d949a88d96e366d4cb78c10d9}{
+\index{Utils@{Utils}!copyPJ@{copyPJ}}
+\index{copyPJ@{copyPJ}!Utils@{Utils}}
+\subsubsection[copyPJ]{\setlength{\rightskip}{0pt plus 5cm}static void Utils::copy\-PJ (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em in\-Jets}, std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em out\-Jets}, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type}, bool {\em charged})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{structUtils_090c488d949a88d96e366d4cb78c10d9}
+
+
+Conditional copying: exclusively copy only charged or neutral particles from the same source from list of {\tt fastjet::Pseudo\-Jet} objects. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em type}]specification of requested source \item[\mbox{$\leftarrow$} {\em charged}]if {\tt true} only charged particles are copied, else only neutrals are copied. \end{description}
+\end{Desc}
+\hypertarget{structUtils_c14816a57d84011c08359d8afe04df99}{
+\index{Utils@{Utils}!copyPJ@{copyPJ}}
+\index{copyPJ@{copyPJ}!Utils@{Utils}}
+\subsubsection[copyPJ]{\setlength{\rightskip}{0pt plus 5cm}static void Utils::copy\-PJ (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em in\-Jets}, std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em out\-Jets}, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{structUtils_c14816a57d84011c08359d8afe04df99}
+
+
+Conditional copying: exclusively copy only particles from the same source from list of {\tt fastjet::Pseudo\-Jet} objects. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em type}]specification of requested source \end{description}
+\end{Desc}
+\hypertarget{structUtils_e158c164f104a0d12bffcdb3b8c42674}{
+\index{Utils@{Utils}!copyPJ@{copyPJ}}
+\index{copyPJ@{copyPJ}!Utils@{Utils}}
+\subsubsection[copyPJ]{\setlength{\rightskip}{0pt plus 5cm}static void Utils::copy\-PJ (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em in\-Jets}, std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em out\-Jets}, bool {\em charged})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{structUtils_e158c164f104a0d12bffcdb3b8c42674}
+
+
+Conditional copying: exclusively copy only charged or neutral particles from list of {\tt fastjet::Pseudo\-Jet} objects. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em charged}]if {\tt true} only charged particles are copied, else only neutrals are copied. \end{description}
+\end{Desc}
+\hypertarget{structUtils_69035af71f5fb92ea00e07fa70c8c517}{
+\index{Utils@{Utils}!setOrderContext@{setOrderContext}}
+\index{setOrderContext@{setOrderContext}!Utils@{Utils}}
+\subsubsection[setOrderContext]{\setlength{\rightskip}{0pt plus 5cm}static void Utils::set\-Order\-Context (std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \& {\em vertices}, \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Vertex::Order\-Context} {\em oc} = {\tt Vertex::PTSUM2})\hspace{0.3cm}{\tt  \mbox{[}inline, static\mbox{]}}}}
+\label{structUtils_69035af71f5fb92ea00e07fa70c8c517}
+
+
+Setting the order context for a group of vertices. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vertices}]reference to list of modifiable {\tt \hyperlink{classVertex}{Vertex}} objects \end{description}
+\end{Desc}
+\hypertarget{structUtils_85ca39cbe948e63a71b0f18d3860c218}{
+\index{Utils@{Utils}!sortVtx@{sortVtx}}
+\index{sortVtx@{sortVtx}!Utils@{Utils}}
+\subsubsection[sortVtx]{\setlength{\rightskip}{0pt plus 5cm}static void Utils::sort\-Vtx (std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \& {\em vertices}, \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Vertex::Order\-Context} {\em oc} = {\tt Vertex::PTSUM2})\hspace{0.3cm}{\tt  \mbox{[}inline, static\mbox{]}}}}
+\label{structUtils_85ca39cbe948e63a71b0f18d3860c218}
+
+
+\hyperlink{classVertex}{Vertex} sorting. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em inout\mbox{]}}]vertices reference to modifiable list of vertices containing the vertices to be ordered on input and returning the ordered vertices on output. \item[\mbox{$\leftarrow$} {\em oc}]order context (optional, default is {\tt Vertex::PTSUM2} (ordered descending in $\sum{p_{\rm T}^{2}}$) \end{description}
+\end{Desc}
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+Event.h\end{CompactItemize}

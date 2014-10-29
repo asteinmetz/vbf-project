@@ -1,0 +1,268 @@
+\hypertarget{classHZAnalysis}{
+\section{HZAnalysis Class Reference}
+\label{classHZAnalysis}\index{HZAnalysis@{HZAnalysis}}
+}
+{\tt \#include $<$HZAnalysis.h$>$}
+
+Inheritance diagram for HZAnalysis::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classHZAnalysis}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classHZAnalysis_9660d265c62a0c30f6cfdbf6ac8abcf3}{HZAnalysis} (const std::string \&name, Data\-Frame $\ast$signal\-Server, Data\-Frame $\ast$pileup\-Server)
+\item 
+\hypertarget{classHZAnalysis_3a15a36771f970c088687a70ed0304f0}{
+\hyperlink{classHZAnalysis_3a15a36771f970c088687a70ed0304f0}{$\sim$HZAnalysis} ()}
+\label{classHZAnalysis_3a15a36771f970c088687a70ed0304f0}
+
+\begin{CompactList}\small\item\em default dtor \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_b43d737c402fd85b3555e00af1db0965}{
+void \textbf{set\_\-jet\_\-R} (const double R=1.2)}
+\label{classHZAnalysis_b43d737c402fd85b3555e00af1db0965}
+
+\item 
+\hypertarget{classHZAnalysis_33dbcb6b5cb1e9dd227ad00cebeea1f8}{
+void \textbf{set\_\-jet\_\-ptmin} (const double jet\_\-ptmin=220.0)}
+\label{classHZAnalysis_33dbcb6b5cb1e9dd227ad00cebeea1f8}
+
+\item 
+\hypertarget{classHZAnalysis_f2b81e2d51cd3f3e3bb941f2765ee822}{
+void \textbf{set\_\-jet\_\-rapmax} (const double jet\_\-rapmax=4.0)}
+\label{classHZAnalysis_f2b81e2d51cd3f3e3bb941f2765ee822}
+
+\item 
+\hypertarget{classHZAnalysis_6be8f24f8aa47bb06a5593703bea93cd}{
+void \textbf{set\_\-emu\_\-ptmin} (const double emu\_\-ptmin=30.0)}
+\label{classHZAnalysis_6be8f24f8aa47bb06a5593703bea93cd}
+
+\item 
+\hypertarget{classHZAnalysis_f0bdbdb234b6109a8cf3aca6958b92f7}{
+void \textbf{set\_\-emu\_\-rapmax} (const double emu\_\-rapmax=2.5)}
+\label{classHZAnalysis_f0bdbdb234b6109a8cf3aca6958b92f7}
+
+\item 
+\hypertarget{classHZAnalysis_40752f6bcfc5dc80d321ee31884ca833}{
+void \textbf{set\_\-Z\_\-massrange} (const double Z\_\-massmin=80.0, const double Z\_\-massmax=100.0)}
+\label{classHZAnalysis_40752f6bcfc5dc80d321ee31884ca833}
+
+\item 
+virtual bool \hyperlink{classHZAnalysis_b2b6a462ad983ce4b847c7c010df6ec8}{book} ()
+\begin{CompactList}\small\item\em Booking. \item\end{CompactList}\item 
+virtual bool \hyperlink{classHZAnalysis_9ff7e307f88b5a063fc047b38814c36c}{analyze} (\hyperlink{classEvent}{Event} \&p\-Evt)
+\begin{CompactList}\small\item\em Analysis. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+bool \hyperlink{classHZAnalysis_2ca8d0f2ed538de275b62f7cd8f93178}{\_\-tag\-Z} (std::vector$<$ fastjet::Pseudo\-Jet $>$ \&leptons, fastjet::Selector \&\_\-sel\_\-Z)
+\item 
+bool \hyperlink{classHZAnalysis_9b58f6652dc4d1d03d513c4ab14450ee}{\_\-process\-Hadronic} (const fastjet::Cluster\-Sequence \&cs, const std::string \&name, bool do\_\-areas=false, bool do\_\-prefilter=false)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classHZAnalysis_bb92f8f241ae3a93aec6439e9e2b5c77}{
+double \hyperlink{classHZAnalysis_bb92f8f241ae3a93aec6439e9e2b5c77}{\_\-R}}
+\label{classHZAnalysis_bb92f8f241ae3a93aec6439e9e2b5c77}
+
+\begin{CompactList}\small\item\em we'll cluster with anti-kt(R) \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_9c9cb7a47718819a4441e3e37d22a37d}{
+double \hyperlink{classHZAnalysis_9c9cb7a47718819a4441e3e37d22a37d}{\_\-jet\_\-ptmin}}
+\label{classHZAnalysis_9c9cb7a47718819a4441e3e37d22a37d}
+
+\begin{CompactList}\small\item\em minimal pt for the jets \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_6b416813d5dd0d238511fd5214f2849d}{
+double \hyperlink{classHZAnalysis_6b416813d5dd0d238511fd5214f2849d}{\_\-jet\_\-rapmax}}
+\label{classHZAnalysis_6b416813d5dd0d238511fd5214f2849d}
+
+\begin{CompactList}\small\item\em maximal rapidity for the jets \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_1e51dc48a3c6631e186669f91a78e1f0}{
+double \hyperlink{classHZAnalysis_1e51dc48a3c6631e186669f91a78e1f0}{\_\-emu\_\-ptmin}}
+\label{classHZAnalysis_1e51dc48a3c6631e186669f91a78e1f0}
+
+\begin{CompactList}\small\item\em minimal pt for the jets \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_eeb8824968a9bc7d1e5bb684fad72eac}{
+double \hyperlink{classHZAnalysis_eeb8824968a9bc7d1e5bb684fad72eac}{\_\-emu\_\-rapmax}}
+\label{classHZAnalysis_eeb8824968a9bc7d1e5bb684fad72eac}
+
+\begin{CompactList}\small\item\em maximal rapidity for the jets \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_1e719e290318ecfcbee1f5e9cedd87a3}{
+bool \hyperlink{classHZAnalysis_1e719e290318ecfcbee1f5e9cedd87a3}{\_\-do\_\-btagging}}
+\label{classHZAnalysis_1e719e290318ecfcbee1f5e9cedd87a3}
+
+\begin{CompactList}\small\item\em impose to b tags on the MD prongs \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_3a159f663566b4fac96506240e3c88eb}{
+std::map$<$ std::string, TH1D $\ast$ $>$ \textbf{hists}}
+\label{classHZAnalysis_3a159f663566b4fac96506240e3c88eb}
+
+\item 
+\hypertarget{classHZAnalysis_1f01855bee3746ae1774aa5f46232fe7}{
+std::map$<$ std::string, TProfile $\ast$ $>$ \textbf{profiles}}
+\label{classHZAnalysis_1f01855bee3746ae1774aa5f46232fe7}
+
+\item 
+\hypertarget{classHZAnalysis_e8ade1d6521e254f510c3ffb27b7c679}{
+fastjet::Jet\-Definition \hyperlink{classHZAnalysis_e8ade1d6521e254f510c3ffb27b7c679}{\_\-jet\_\-def}}
+\label{classHZAnalysis_e8ade1d6521e254f510c3ffb27b7c679}
+
+\begin{CompactList}\small\item\em how jets are defined/clustered \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_213e202bcaf9849c3f5f85057be41c3d}{
+fastjet::Selector \hyperlink{classHZAnalysis_213e202bcaf9849c3f5f85057be41c3d}{\_\-sel\_\-visible}}
+\label{classHZAnalysis_213e202bcaf9849c3f5f85057be41c3d}
+
+\begin{CompactList}\small\item\em gets rid of neutrinos \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_bf6baa6be25cb9a33b12196d628b90f4}{
+fastjet::Selector \hyperlink{classHZAnalysis_bf6baa6be25cb9a33b12196d628b90f4}{\_\-sel\_\-emus}}
+\label{classHZAnalysis_bf6baa6be25cb9a33b12196d628b90f4}
+
+\begin{CompactList}\small\item\em cuts applied on the leptons \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_559360dcdc894819dc37b7e4ad01315c}{
+fastjet::Selector \hyperlink{classHZAnalysis_559360dcdc894819dc37b7e4ad01315c}{\_\-sel\_\-Zmass}}
+\label{classHZAnalysis_559360dcdc894819dc37b7e4ad01315c}
+
+\begin{CompactList}\small\item\em cuts applied on the Z mass \item\end{CompactList}\item 
+fastjet::Selector \hyperlink{classHZAnalysis_4ba1f2f659e07bda194f7eb8c6a2377c}{\_\-sel\_\-extra\_\-emus}
+\item 
+\hypertarget{classHZAnalysis_6f914560f0c0ebc04d5e5e7ed0312e00}{
+fastjet::Selector \hyperlink{classHZAnalysis_6f914560f0c0ebc04d5e5e7ed0312e00}{\_\-sel\_\-jets}}
+\label{classHZAnalysis_6f914560f0c0ebc04d5e5e7ed0312e00}
+
+\begin{CompactList}\small\item\em cuts applied on the jets \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_0eb24e81f3d7cafaaddeccad77b85629}{
+fastjet::Area\-Definition \hyperlink{classHZAnalysis_0eb24e81f3d7cafaaddeccad77b85629}{\_\-area\_\-def}}
+\label{classHZAnalysis_0eb24e81f3d7cafaaddeccad77b85629}
+
+\begin{CompactList}\small\item\em how jet area are ined \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_86a3493a6f5ca9f2a9448c34342a8a71}{
+fastjet::Jet\-Median\-Background\-Estimator $\ast$ \hyperlink{classHZAnalysis_86a3493a6f5ca9f2a9448c34342a8a71}{\_\-bge}}
+\label{classHZAnalysis_86a3493a6f5ca9f2a9448c34342a8a71}
+
+\begin{CompactList}\small\item\em tool to facilitate rho\&sigma estimation \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_e2176a845002e99ad6da4489efceff1f}{
+fastjet::Subtractor\-With\-Mass \hyperlink{classHZAnalysis_e2176a845002e99ad6da4489efceff1f}{\_\-subtractor}}
+\label{classHZAnalysis_e2176a845002e99ad6da4489efceff1f}
+
+\begin{CompactList}\small\item\em transformer to subtract PU from a jet \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_0587053cc0f7b9685df0f1763dae8347}{
+fastjet::Background\-Rescaling\-YPolynomial \hyperlink{classHZAnalysis_0587053cc0f7b9685df0f1763dae8347}{\_\-rescaling}}
+\label{classHZAnalysis_0587053cc0f7b9685df0f1763dae8347}
+
+\begin{CompactList}\small\item\em rapidity-dependent shape \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_c9b7b6215f2e1a4fc3b90bfbdc8ca3b8}{
+fastjet::MDTagger\-With\-Sub \hyperlink{classHZAnalysis_c9b7b6215f2e1a4fc3b90bfbdc8ca3b8}{\_\-tagger}}
+\label{classHZAnalysis_c9b7b6215f2e1a4fc3b90bfbdc8ca3b8}
+
+\begin{CompactList}\small\item\em the tagger \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_dbca3bb7e4598ea1aee28340575abbca}{
+fastjet::Filter \hyperlink{classHZAnalysis_dbca3bb7e4598ea1aee28340575abbca}{\_\-prefilter}}
+\label{classHZAnalysis_dbca3bb7e4598ea1aee28340575abbca}
+
+\begin{CompactList}\small\item\em an extra \char`\"{}prefiltering\char`\"{} step before BDRS \item\end{CompactList}\item 
+\hypertarget{classHZAnalysis_192b43fa66751f51a8d86106079a0b9f}{
+fastjet::Filter \hyperlink{classHZAnalysis_192b43fa66751f51a8d86106079a0b9f}{\_\-filter}}
+\label{classHZAnalysis_192b43fa66751f51a8d86106079a0b9f}
+
+\begin{CompactList}\small\item\em the \char`\"{}BDRS\char`\"{} filter (applied after tagging) \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+BDRS Boosted H analysis, here in association with a Z-$>$ll
+
+Analysis description: ---------------------
+
+1. get the leptons this includes e's \& mu's \mbox{[}with pt and $|$y$|$ cut\mbox{]}
+
+2. reconstruct a Z-$>$ll find the 2 opposite-sign, same-flavour leptons. Among all possible pairs, take the one closest to the Z mass. Require that the reconstructed Z has a mass between 80 and 100 Ge\-V
+
+3. impose no extra hard lepton above 30 Ge\-V with $|$y$|$$<$2.5
+
+4. check for a hard/fat jet neutrinos are excluded leptons are included (except the 2 leptons from the Z) require a hard/fat jet
+
+5. potentially apply a pre-filtering step \mbox{[}analysis run with and without that step\mbox{]}
+
+6. apply a mass drop tagger (default parameters)
+
+7. apply a filter
+
+Parameters (from command line) ------------------------------ jet\_\-R initial clustering (anti-kt) radius \mbox{[}1.2\mbox{]} jet\_\-ptmin pt cut on the jets \mbox{[}225 Ge\-V\mbox{]} jet\_\-rapmax rapidity cut on the jets \mbox{[}4\mbox{]} emu\_\-ptmin pt cut on the leptons \mbox{[}25 Ge\-V\mbox{]} emu\_\-rapmax rapidity cut on the leptons \mbox{[}2.5\mbox{]} 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classHZAnalysis_9660d265c62a0c30f6cfdbf6ac8abcf3}{
+\index{HZAnalysis@{HZAnalysis}!HZAnalysis@{HZAnalysis}}
+\index{HZAnalysis@{HZAnalysis}!HZAnalysis@{HZAnalysis}}
+\subsubsection[HZAnalysis]{\setlength{\rightskip}{0pt plus 5cm}HZAnalysis::HZAnalysis (const std::string \& {\em name}, Data\-Frame $\ast$ {\em signal\-Server}, Data\-Frame $\ast$ {\em pileup\-Server})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classHZAnalysis_9660d265c62a0c30f6cfdbf6ac8abcf3}
+
+
+default ctor note that we force a PU server 
+
+\subsection{Member Function Documentation}
+\hypertarget{classHZAnalysis_9b58f6652dc4d1d03d513c4ab14450ee}{
+\index{HZAnalysis@{HZAnalysis}!_processHadronic@{\_\-processHadronic}}
+\index{_processHadronic@{\_\-processHadronic}!HZAnalysis@{HZAnalysis}}
+\subsubsection[\_\-processHadronic]{\setlength{\rightskip}{0pt plus 5cm}bool HZAnalysis::\_\-process\-Hadronic (const fastjet::Cluster\-Sequence \& {\em cs}, const std::string \& {\em name}, bool {\em do\_\-areas} = {\tt false}, bool {\em do\_\-prefilter} = {\tt false})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classHZAnalysis_9b58f6652dc4d1d03d513c4ab14450ee}
+
+
+Given a set of hadrons and a cluster sequence, check for a fat jet. If there is one, apply a mass drop tagger and if this succeeds, filter the resulting tagged Pseudo\-Jet.
+
+cs the cluster sequence from which to get the jets (avoids multiple clusterings) do\_\-areas apply PU subtraction wherever it's applicable do\_\-prefilter before applying teh tagger, pre-filtere the jet
+
+Note that we do not impose the presence of no extra jet \hypertarget{classHZAnalysis_2ca8d0f2ed538de275b62f7cd8f93178}{
+\index{HZAnalysis@{HZAnalysis}!_tagZ@{\_\-tagZ}}
+\index{_tagZ@{\_\-tagZ}!HZAnalysis@{HZAnalysis}}
+\subsubsection[\_\-tagZ]{\setlength{\rightskip}{0pt plus 5cm}bool HZAnalysis::\_\-tag\-Z (std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em leptons}, fastjet::Selector \& {\em \_\-sel\_\-Z})\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classHZAnalysis_2ca8d0f2ed538de275b62f7cd8f93178}
+
+
+reconstruct the Z boson in the event from a given set of leptons
+
+We will follow the description in the BDRS paper: reconstruct a Z with 80$<$mass$<$100 Ge\-V and p\-T$>$200 Ge\-V \mbox{[}We'll use 225\mbox{]}.
+
+We further impose that there are no lepton left with pt$>$30 Ge\-V and $|$y$|$$<$2.5
+
+QUESTION: do we also impose the 30 Ge\-V cut on the original list of leptons or only after the reconstruction of the Z?? The paper seems to indicate the latter... so the latter it will be
+
+Note that this will be done on the full event only \hypertarget{classHZAnalysis_9ff7e307f88b5a063fc047b38814c36c}{
+\index{HZAnalysis@{HZAnalysis}!analyze@{analyze}}
+\index{analyze@{analyze}!HZAnalysis@{HZAnalysis}}
+\subsubsection[analyze]{\setlength{\rightskip}{0pt plus 5cm}bool HZAnalysis::analyze (\hyperlink{classEvent}{Event} \& {\em p\-Evt})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classHZAnalysis_9ff7e307f88b5a063fc047b38814c36c}
+
+
+Analysis. 
+
+This method should be implemented by the client. The default implementation fills the {\tt \hyperlink{classHistGroupEvent}{Hist\-Group\-Event}} groups of histograms are filled. 
+
+Reimplemented from \hyperlink{classUserAnalysisBase_015733b03dfc2596dfaf1841ca60a0b8}{User\-Analysis\-Base}.\hypertarget{classHZAnalysis_b2b6a462ad983ce4b847c7c010df6ec8}{
+\index{HZAnalysis@{HZAnalysis}!book@{book}}
+\index{book@{book}!HZAnalysis@{HZAnalysis}}
+\subsubsection[book]{\setlength{\rightskip}{0pt plus 5cm}bool HZAnalysis::book ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classHZAnalysis_b2b6a462ad983ce4b847c7c010df6ec8}
+
+
+Booking. 
+
+This method should be implemented by the client. By default, a set of histograms defined in {\tt \hyperlink{classHistGroupEvent}{Hist\-Group\-Event}} is booked for each available input stream and the merged event (if available) separately. 
+
+Reimplemented from \hyperlink{classUserAnalysisBase_4ed3754992929a1aeb1e938b31ec22af}{User\-Analysis\-Base}.
+
+\subsection{Member Data Documentation}
+\hypertarget{classHZAnalysis_4ba1f2f659e07bda194f7eb8c6a2377c}{
+\index{HZAnalysis@{HZAnalysis}!_sel_extra_emus@{\_\-sel\_\-extra\_\-emus}}
+\index{_sel_extra_emus@{\_\-sel\_\-extra\_\-emus}!HZAnalysis@{HZAnalysis}}
+\subsubsection[\_\-sel\_\-extra\_\-emus]{\setlength{\rightskip}{0pt plus 5cm}fastjet::Selector \hyperlink{classHZAnalysis_4ba1f2f659e07bda194f7eb8c6a2377c}{HZAnalysis::\_\-sel\_\-extra\_\-emus}\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classHZAnalysis_4ba1f2f659e07bda194f7eb8c6a2377c}
+
+
+cuts applied on the extra leptons (after Z reconstruction) 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+HZAnalysis.h\item 
+HZAnalysis.cxx\end{CompactItemize}

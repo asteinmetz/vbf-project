@@ -1,0 +1,75 @@
+\hypertarget{namespaceServices_1_1Print}{
+\section{Services::Print Namespace Reference}
+\label{namespaceServices_1_1Print}\index{Services::Print@{Services::Print}}
+}
+Collects print-to-terminal commands.  
+
+
+\subsection*{Specialized print commands}
+All special print commands have the following arguments
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em module}]name of printing module \item[\mbox{$\leftarrow$} {\em fmt}]`C` style formatting string \item[\mbox{$\leftarrow$} {\em ...}]variable argument list corresponding to `fmt`. \end{description}
+\end{Desc}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceServices_1_1Print_6967d6744e1e2798ee7ab0ed6e0a396d}{
+static void \hyperlink{namespaceServices_1_1Print_6967d6744e1e2798ee7ab0ed6e0a396d}{info} (const std::string \&module, const std::string \&fmt,...)}
+\label{namespaceServices_1_1Print_6967d6744e1e2798ee7ab0ed6e0a396d}
+
+\begin{CompactList}\small\item\em \hyperlink{namespaceServices_1_1Print}{Print} info message. \item\end{CompactList}\item 
+\hypertarget{namespaceServices_1_1Print_ac8e374dd4ad68695b8aeaccf4f21af6}{
+static void \textbf{warning} (const std::string \&module, const std::string \&fmt,...)}
+\label{namespaceServices_1_1Print_ac8e374dd4ad68695b8aeaccf4f21af6}
+
+\item 
+\hypertarget{namespaceServices_1_1Print_8abe8eea7986b4dcf29283093ca91b33}{
+static void \textbf{error} (const std::string \&module, const std::string \&fmt,...)}
+\label{namespaceServices_1_1Print_8abe8eea7986b4dcf29283093ca91b33}
+
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+static std::string \hyperlink{namespaceServices_1_1Print_951fe5b070948dba021542314f2b7581}{\_\-prefix\-Formatter} (const std::string \&module, const std::string \&level)
+\begin{CompactList}\small\item\em Prefix formatter. \item\end{CompactList}\item 
+static void \hyperlink{namespaceServices_1_1Print_2bfc723913ff7be28a3d64a11a973fd3}{message} (const std::string \&module, const std::string level, const std::string \&fmt,...)
+\begin{CompactList}\small\item\em General printer command. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Collects print-to-terminal commands. 
+
+\subsection{Function Documentation}
+\hypertarget{namespaceServices_1_1Print_951fe5b070948dba021542314f2b7581}{
+\index{Services::Print@{Services::Print}!_prefixFormatter@{\_\-prefixFormatter}}
+\index{_prefixFormatter@{\_\-prefixFormatter}!Services::Print@{Services::Print}}
+\subsubsection[\_\-prefixFormatter]{\setlength{\rightskip}{0pt plus 5cm}static std::string Services::Print::\_\-prefix\-Formatter (const std::string \& {\em module}, const std::string \& {\em level})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{namespaceServices_1_1Print_951fe5b070948dba021542314f2b7581}
+
+
+Prefix formatter. 
+
+\begin{Desc}
+\item[Returns:]Formatted string with module name and message level.\end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em module}]name of printing module \item[\mbox{$\leftarrow$} {\em level}]message level \end{description}
+\end{Desc}
+\hypertarget{namespaceServices_1_1Print_2bfc723913ff7be28a3d64a11a973fd3}{
+\index{Services::Print@{Services::Print}!message@{message}}
+\index{message@{message}!Services::Print@{Services::Print}}
+\subsubsection[message]{\setlength{\rightskip}{0pt plus 5cm}static void Services::Print::message (const std::string \& {\em module}, const std::string {\em level}, const std::string \& {\em fmt},  {\em ...})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{namespaceServices_1_1Print_2bfc723913ff7be28a3d64a11a973fd3}
+
+
+General printer command. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em module}]name of printing module \item[\mbox{$\leftarrow$} {\em level}]message level \item[\mbox{$\leftarrow$} {\em fmt}]`C` style formatting string \item[\mbox{$\leftarrow$} {\em ...}]variable argument list corresponding to `fmt` \end{description}
+\end{Desc}

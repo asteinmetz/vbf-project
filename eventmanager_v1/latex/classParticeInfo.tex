@@ -1,0 +1,27 @@
+\hypertarget{classParticeInfo}{
+\section{Partice\-Info Class Reference}
+\label{classParticeInfo}\index{ParticeInfo@{ParticeInfo}}
+}
+Container for particle parameters and characteristics not accommodated by {\tt fastjet::Pseudo\-Jet}.  
+
+
+{\tt \#include $<$Event.h$>$}
+
+
+
+\subsection{Detailed Description}
+Container for particle parameters and characteristics not accommodated by {\tt fastjet::Pseudo\-Jet}. 
+
+This object is intended to be attached to a {\tt fastjet::Pseudo\-Jet} object using the {\tt user\_\-info} features (requires {\tt Fastjet} version 3.X.X!)
+
+fastjet::Pseudo\-Jet p\-Jet(...); Particle\-Info$\ast$ p\-Info = new Particle\-Info(...); p\-Jet.set\_\-user\_\-info$<$Particle\-Info$>$(p\-Info);
+
+{\tt Particle\-Info} can be safely accessed by
+
+if ( p\-Jet.has\_\-user\_\-info$<$Particle\-Info$>$() ) \{ const Particle\-Info\& p\-Info = p\-Jet.user\_\-info(); ... \} 
+
+
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+Event.h\end{CompactItemize}

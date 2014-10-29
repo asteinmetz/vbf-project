@@ -1,0 +1,130 @@
+\hypertarget{classHistGroupEvent}{
+\section{Hist\-Group\-Event Class Reference}
+\label{classHistGroupEvent}\index{HistGroupEvent@{HistGroupEvent}}
+}
+{\tt \#include $<$Hist\-Group\-Event.h$>$}
+
+Inheritance diagram for Hist\-Group\-Event::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classHistGroupEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classHistGroupEvent_23868699c95a6abfa18b7b78e8291302}{
+\hyperlink{classHistGroupEvent_23868699c95a6abfa18b7b78e8291302}{Hist\-Group\-Event} (const std::string \&name=\char`\"{}Hist\-Group\-Event\char`\"{})}
+\label{classHistGroupEvent_23868699c95a6abfa18b7b78e8291302}
+
+\begin{CompactList}\small\item\em Standard constructor. \item\end{CompactList}\item 
+\hypertarget{classHistGroupEvent_509193806620f53d830505e962807e01}{
+virtual \hyperlink{classHistGroupEvent_509193806620f53d830505e962807e01}{$\sim$Hist\-Group\-Event} ()}
+\label{classHistGroupEvent_509193806620f53d830505e962807e01}
+
+\begin{CompactList}\small\item\em Baseclass destructor. \item\end{CompactList}\item 
+\hypertarget{classHistGroupEvent_39b41fc976e2361782852cc96ee22c65}{
+virtual void \hyperlink{classHistGroupEvent_39b41fc976e2361782852cc96ee22c65}{book} ()}
+\label{classHistGroupEvent_39b41fc976e2361782852cc96ee22c65}
+
+\begin{CompactList}\small\item\em Booking interface. \item\end{CompactList}\item 
+virtual void \hyperlink{classHistGroupEvent_78f86b37c41ad91e5d14cfd082e64658}{fill} (\hyperlink{classEvent}{Event} \&r\-Evt)
+\begin{CompactList}\small\item\em Fill from {\tt \hyperlink{classEvent}{Event}}. \item\end{CompactList}\item 
+virtual void \hyperlink{classHistGroupEvent_7cdf3dd95af609b72fa981a389a21070}{fill} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet)
+\begin{CompactList}\small\item\em Fill from particle and/or jet final state. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classHistGroupEvent_f2d4bb197510271d8d00bf3c676839e0}{
+bool \textbf{accumulate\-At\-Vtx} (std::vector$<$ int $>$ \&list, int vtx, int \&nvtx)}
+\label{classHistGroupEvent_f2d4bb197510271d8d00bf3c676839e0}
+
+\item 
+\hypertarget{classHistGroupEvent_54c4531e8a53b1c83fc1cc420dc5145d}{
+bool \textbf{accumulate\-At\-Vtx} (std::vector$<$ double $>$ \&list, int vtx, int \&nvtx, double val)}
+\label{classHistGroupEvent_54c4531e8a53b1c83fc1cc420dc5145d}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classHistGroupEvent_ff01523c9a6c0f05b77f312120287c19}{
+double \textbf{\_\-number\-Of\-Interactions}}
+\label{classHistGroupEvent_ff01523c9a6c0f05b77f312120287c19}
+
+\item 
+\hypertarget{classHistGroupEvent_33e7495b55c2933de6cba2e77ed422bf}{
+TH1D $\ast$ \hyperlink{classHistGroupEvent_33e7495b55c2933de6cba2e77ed422bf}{h\_\-mu}}
+\label{classHistGroupEvent_33e7495b55c2933de6cba2e77ed422bf}
+
+\begin{CompactList}\small\item\em Number of interactions. \item\end{CompactList}\item 
+\hypertarget{classHistGroupEvent_47459438b1fdab877499af52b5766ce0}{
+\_\-event \textbf{f\-Event}}
+\label{classHistGroupEvent_47459438b1fdab877499af52b5766ce0}
+
+\item 
+\hypertarget{classHistGroupEvent_a8de0874c2680ae678e1f9e2788c711a}{
+\hyperlink{structHistGroupEvent_1_1__particle}{\_\-particle} \textbf{f\-Particle}}
+\label{classHistGroupEvent_a8de0874c2680ae678e1f9e2788c711a}
+
+\item 
+\hypertarget{classHistGroupEvent_a2d2cc6e69e5165c791e2d564ca1b6cf}{
+\_\-accumulators \textbf{f\-Accu}}
+\label{classHistGroupEvent_a2d2cc6e69e5165c791e2d564ca1b6cf}
+
+\end{CompactItemize}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct \textbf{\_\-accumulators}
+\item 
+struct \textbf{\_\-event}
+\item 
+struct \hyperlink{structHistGroupEvent_1_1__particle}{\_\-particle}
+\begin{CompactList}\small\item\em Particle properties. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Manager and container for event level histograms. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classHistGroupEvent_7cdf3dd95af609b72fa981a389a21070}{
+\index{HistGroupEvent@{Hist\-Group\-Event}!fill@{fill}}
+\index{fill@{fill}!HistGroupEvent@{Hist\-Group\-Event}}
+\subsubsection[fill]{\setlength{\rightskip}{0pt plus 5cm}void Hist\-Group\-Event::fill (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em v\-Jet})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classHistGroupEvent_7cdf3dd95af609b72fa981a389a21070}
+
+
+Fill from particle and/or jet final state. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em v\-Jet}]reference to non-modifiable list of particles and/or jets represented by {\tt fastjet::Pseudo\-Jet} \end{description}
+\end{Desc}
+
+
+Reimplemented from \hyperlink{classHistGroupBase_ea81dcbe971622e6c6f4f8c5bea582d2}{Hist\-Group\-Base}.\hypertarget{classHistGroupEvent_78f86b37c41ad91e5d14cfd082e64658}{
+\index{HistGroupEvent@{Hist\-Group\-Event}!fill@{fill}}
+\index{fill@{fill}!HistGroupEvent@{Hist\-Group\-Event}}
+\subsubsection[fill]{\setlength{\rightskip}{0pt plus 5cm}void Hist\-Group\-Event::fill (\hyperlink{classEvent}{Event} \& {\em r\-Evt})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classHistGroupEvent_78f86b37c41ad91e5d14cfd082e64658}
+
+
+Fill from {\tt \hyperlink{classEvent}{Event}}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em r\-Evt}]reference to non-modifiable event data \end{description}
+\end{Desc}
+
+
+Reimplemented from \hyperlink{classHistGroupBase_746a5fc493cc64c27e8274757034ecec}{Hist\-Group\-Base}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Hist\-Group\-Event.h\item 
+Hist\-Group\-Event.cxx\end{CompactItemize}

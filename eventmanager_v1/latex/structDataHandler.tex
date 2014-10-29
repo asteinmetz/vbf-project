@@ -1,0 +1,82 @@
+\hypertarget{structDataHandler}{
+\section{Data\-Handler$<$ T $>$ Struct Template Reference}
+\label{structDataHandler}\index{DataHandler@{DataHandler}}
+}
+{\tt \#include $<$Event.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+bool \hyperlink{structDataHandler_be7affae244cf17f9ef93b2d1216ce6d}{fill\-Event} (T \&data\-Source, \hyperlink{classEvent}{Event} \&event, long long \&n\-Ptr, int mu, int vtx\-Offset=0, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type=Vertex::UNKNOWN)
+\begin{CompactList}\small\item\em Fill {\tt \hyperlink{classEvent}{Event}} structure from raw data. \item\end{CompactList}\item 
+int \hyperlink{structDataHandler_4efc749da9cab2099a6ad1ca60146246}{get\-Act\-Vtx} (int mu)
+\begin{CompactList}\small\item\em Actual number of collisions. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$ struct Data\-Handler$<$ T $>$}
+
+Collection of functions filling the {\tt \hyperlink{classEvent}{Event}} structure from the raw data. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structDataHandler_be7affae244cf17f9ef93b2d1216ce6d}{
+\index{DataHandler@{Data\-Handler}!fillEvent@{fillEvent}}
+\index{fillEvent@{fillEvent}!DataHandler@{Data\-Handler}}
+\subsubsection[fillEvent]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool \hyperlink{structDataHandler}{Data\-Handler}$<$ T $>$::fill\-Event (T \& {\em data\-Source}, \hyperlink{classEvent}{Event} \& {\em event}, long long \& {\em n\-Ptr}, int {\em mu}, int {\em vtx\-Offset} = {\tt 0}, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type} = {\tt Vertex::UNKNOWN})}}
+\label{structDataHandler_be7affae244cf17f9ef93b2d1216ce6d}
+
+
+Fill {\tt \hyperlink{classEvent}{Event}} structure from raw data. 
+
+This method fills the {\tt \hyperlink{classEvent}{Event}} structure from the raw {\tt ROOT} typle data. The assignment of the converted particles to vertices and vertex is controlled, and the number of collisions to be merged can be specified.
+
+\begin{Desc}
+\item[Returns:]{\tt true} if {\tt \hyperlink{classEvent}{Event}} is completely filled. If the input file stream is exhausted, {\tt false} is returned.\end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em data\-Source}]reference to raw data container \item[{\em inout\mbox{]}}]event reference to modifiable {\tt \hyperlink{classEvent}{Event}} to be filled from the data source \item[{\em inout\mbox{]}}]n\-Ptr raw data index of next event \item[\mbox{$\leftarrow$} {\em mu}](average) number of collisions to be collected \item[\mbox{$\leftarrow$} {\em vtx\-Offset}]integral offset of vertex id (optional, default 0) \item[\mbox{$\leftarrow$} {\em type}]collision type to be assigned to all particles in this event (optional, default is {\tt Vertex::UNKNOWN}). \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]{\bf n\-Ptr} should not be manipulated by the calling module, as it keeps track of the general I/O. The correct use is shown in the example below 
+
+\begin{Code}\begin{verbatim} {.cpp}
+       Event*     pEvt = new Event;       // get a new Event
+       long long  nPtr(0);                // initialize record counter
+       MyRawData* pRaw = new MyRawData(); //
+       ...
+       DataHandler<MyRawData> pHdlr = new DataHandler<MyRawData>();
+     
+       while ( !pHdlr->fill(*pRaw,*pEvt,nPtr,30,0,Vertex::PILEUP) )
+         {
+           .....            // your analysis
+           pEvt->reset();   // do not forget!!!  
+         }
+\end{verbatim}\end{Code}
+
+\end{Desc}
+The input file stream is exhausted once `n\-Ptr + n\-Evts $>$ n\-All\-Evts`, meaning when the index {\tt n\-Ptr} to the next raw data structure after the last complete event plus the number of single collision events to be loaded {\tt n\-Evts} (possibly sampled from a Poisson distribution around {\tt mu} ), is larger than the total number of events {\tt n\-All\-Evts} available in the input stream. \hypertarget{structDataHandler_4efc749da9cab2099a6ad1ca60146246}{
+\index{DataHandler@{Data\-Handler}!getActVtx@{getActVtx}}
+\index{getActVtx@{getActVtx}!DataHandler@{Data\-Handler}}
+\subsubsection[getActVtx]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ int \hyperlink{structDataHandler}{Data\-Handler}$<$ T $>$::get\-Act\-Vtx (int {\em mu})}}
+\label{structDataHandler_4efc749da9cab2099a6ad1ca60146246}
+
+
+Actual number of collisions. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em mu}](average) number of collisions\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]If `mu $<$ 0`, the absolute value {\tt $|$mu$|$} is returned. If `mu $>$ 0`, a number sampled from a Poisson distribution with an average of {\tt mu} is returned.\end{Desc}
+\begin{Desc}
+\item[Note:]This function is mostly useful for internal use in {\tt \hyperlink{structDataHandler_be7affae244cf17f9ef93b2d1216ce6d}{Data\-Handler::fill\-Event}} . \end{Desc}
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+Event.h\end{CompactItemize}

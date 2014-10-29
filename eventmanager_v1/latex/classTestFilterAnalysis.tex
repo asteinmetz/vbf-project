@@ -1,0 +1,155 @@
+\hypertarget{classTestFilterAnalysis}{
+\section{Test\-Filter\-Analysis Class Reference}
+\label{classTestFilterAnalysis}\index{TestFilterAnalysis@{TestFilterAnalysis}}
+}
+{\tt \#include $<$Test\-Filter\-Analysis.h$>$}
+
+Inheritance diagram for Test\-Filter\-Analysis::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classTestFilterAnalysis}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classTestFilterAnalysis_bb1cf1c6fbaf2180127d4470222f29a3}{Test\-Filter\-Analysis} (const std::string \&name, Data\-Frame $\ast$signal\-Server, Data\-Frame $\ast$pileup\-Server)
+\item 
+\hypertarget{classTestFilterAnalysis_b009783e263973c31fc2978446313d60}{
+\hyperlink{classTestFilterAnalysis_b009783e263973c31fc2978446313d60}{$\sim$Test\-Filter\-Analysis} ()}
+\label{classTestFilterAnalysis_b009783e263973c31fc2978446313d60}
+
+\begin{CompactList}\small\item\em default dtor \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_6df231616c53826df661537fef9f0da1}{
+void \textbf{set\_\-jet\_\-R} (const double \&R)}
+\label{classTestFilterAnalysis_6df231616c53826df661537fef9f0da1}
+
+\item 
+\hypertarget{classTestFilterAnalysis_a4a8feae5a120541b94aabecb700e6a4}{
+void \textbf{set\_\-jet\_\-ptmin} (const double \&jet\_\-ptmin)}
+\label{classTestFilterAnalysis_a4a8feae5a120541b94aabecb700e6a4}
+
+\item 
+\hypertarget{classTestFilterAnalysis_c7c5681b66a69d809f557816a533dddf}{
+void \textbf{set\_\-jet\_\-rapmax} (const double \&jet\_\-rapmax)}
+\label{classTestFilterAnalysis_c7c5681b66a69d809f557816a533dddf}
+
+\item 
+virtual bool \hyperlink{classTestFilterAnalysis_b277393b1e443de3c4f12e0c54a72694}{book} ()
+\begin{CompactList}\small\item\em Booking. \item\end{CompactList}\item 
+virtual bool \hyperlink{classTestFilterAnalysis_83c3094d993fde404e375cf272f4e5b1}{analyze} (\hyperlink{classEvent}{Event} \&p\-Evt)
+\begin{CompactList}\small\item\em Analysis. \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_eca7955b05511b7e1b63470bc1343f03}{
+virtual bool \textbf{write} ()}
+\label{classTestFilterAnalysis_eca7955b05511b7e1b63470bc1343f03}
+
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classTestFilterAnalysis_bb4660cbf394ce21f78a77cbd136fb72}{
+double \hyperlink{classTestFilterAnalysis_bb4660cbf394ce21f78a77cbd136fb72}{\_\-R}}
+\label{classTestFilterAnalysis_bb4660cbf394ce21f78a77cbd136fb72}
+
+\begin{CompactList}\small\item\em we'll cluster with anti-kt(R) \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_c5bcf1f08052dc6166f45c1b6cabd499}{
+double \hyperlink{classTestFilterAnalysis_c5bcf1f08052dc6166f45c1b6cabd499}{\_\-jet\_\-ptmin}}
+\label{classTestFilterAnalysis_c5bcf1f08052dc6166f45c1b6cabd499}
+
+\begin{CompactList}\small\item\em minimal pt for the jets \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_6ef499c7b3af50fee4fe76f740050270}{
+double \hyperlink{classTestFilterAnalysis_6ef499c7b3af50fee4fe76f740050270}{\_\-jet\_\-rapmax}}
+\label{classTestFilterAnalysis_6ef499c7b3af50fee4fe76f740050270}
+
+\begin{CompactList}\small\item\em maximal rapidity for the jets \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_a64b6fe183bac3ec7f7ae5abe55c98ed}{
+std::map$<$ std::string, TH1D $\ast$ $>$ \textbf{hists}}
+\label{classTestFilterAnalysis_a64b6fe183bac3ec7f7ae5abe55c98ed}
+
+\item 
+\hypertarget{classTestFilterAnalysis_98dfe3975ac2dded947799a3498bbd28}{
+std::map$<$ std::string, TProfile $\ast$ $>$ \textbf{profiles}}
+\label{classTestFilterAnalysis_98dfe3975ac2dded947799a3498bbd28}
+
+\item 
+\hypertarget{classTestFilterAnalysis_76f976b8179859c78abc94a903ed8e56}{
+fastjet::Jet\-Definition \hyperlink{classTestFilterAnalysis_76f976b8179859c78abc94a903ed8e56}{\_\-jet\_\-def}}
+\label{classTestFilterAnalysis_76f976b8179859c78abc94a903ed8e56}
+
+\begin{CompactList}\small\item\em how jets are defined/clustered \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_9758bb18f5fc5788c15b17fabc7506ad}{
+fastjet::Selector \hyperlink{classTestFilterAnalysis_9758bb18f5fc5788c15b17fabc7506ad}{\_\-sel\_\-jets}}
+\label{classTestFilterAnalysis_9758bb18f5fc5788c15b17fabc7506ad}
+
+\begin{CompactList}\small\item\em handy tool to apply cut on teh jets \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_2ccd4b28a27db35219278571fd4a2f2b}{
+fastjet::Area\-Definition \hyperlink{classTestFilterAnalysis_2ccd4b28a27db35219278571fd4a2f2b}{\_\-area\_\-def}}
+\label{classTestFilterAnalysis_2ccd4b28a27db35219278571fd4a2f2b}
+
+\begin{CompactList}\small\item\em how jet area are ined \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_9d6408d3978407cf7421e9b8118e24b2}{
+fastjet::Jet\-Median\-Background\-Estimator $\ast$ \hyperlink{classTestFilterAnalysis_9d6408d3978407cf7421e9b8118e24b2}{\_\-bge}}
+\label{classTestFilterAnalysis_9d6408d3978407cf7421e9b8118e24b2}
+
+\begin{CompactList}\small\item\em tool to facilitate rho\&sigma estimation \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_c8cffcbdc1f65601a79c5cd0fcd0d742}{
+fastjet::Subtractor\-With\-Mass \hyperlink{classTestFilterAnalysis_c8cffcbdc1f65601a79c5cd0fcd0d742}{\_\-subtractor}}
+\label{classTestFilterAnalysis_c8cffcbdc1f65601a79c5cd0fcd0d742}
+
+\begin{CompactList}\small\item\em transformer to subtract PU from a jet \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_30e0392e5bf394067394d5b01baf39d9}{
+fastjet::Background\-Rescaling\-YPolynomial \hyperlink{classTestFilterAnalysis_30e0392e5bf394067394d5b01baf39d9}{\_\-rescaling}}
+\label{classTestFilterAnalysis_30e0392e5bf394067394d5b01baf39d9}
+
+\begin{CompactList}\small\item\em rapidity-dependent shape \item\end{CompactList}\item 
+\hypertarget{classTestFilterAnalysis_8daf031f191a47ef4ead43366b49bdbc}{
+fastjet::Filter \hyperlink{classTestFilterAnalysis_8daf031f191a47ef4ead43366b49bdbc}{\_\-filter}}
+\label{classTestFilterAnalysis_8daf031f191a47ef4ead43366b49bdbc}
+
+\begin{CompactList}\small\item\em the one filter we'll test \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+illustration of how to put together all the \char`\"{}jet\char`\"{} tools 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTestFilterAnalysis_bb1cf1c6fbaf2180127d4470222f29a3}{
+\index{TestFilterAnalysis@{Test\-Filter\-Analysis}!TestFilterAnalysis@{TestFilterAnalysis}}
+\index{TestFilterAnalysis@{TestFilterAnalysis}!TestFilterAnalysis@{Test\-Filter\-Analysis}}
+\subsubsection[TestFilterAnalysis]{\setlength{\rightskip}{0pt plus 5cm}Test\-Filter\-Analysis::Test\-Filter\-Analysis (const std::string \& {\em name}, Data\-Frame $\ast$ {\em signal\-Server}, Data\-Frame $\ast$ {\em pileup\-Server})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classTestFilterAnalysis_bb1cf1c6fbaf2180127d4470222f29a3}
+
+
+default ctor note that we force a PU server 
+
+\subsection{Member Function Documentation}
+\hypertarget{classTestFilterAnalysis_83c3094d993fde404e375cf272f4e5b1}{
+\index{TestFilterAnalysis@{Test\-Filter\-Analysis}!analyze@{analyze}}
+\index{analyze@{analyze}!TestFilterAnalysis@{Test\-Filter\-Analysis}}
+\subsubsection[analyze]{\setlength{\rightskip}{0pt plus 5cm}bool Test\-Filter\-Analysis::analyze (\hyperlink{classEvent}{Event} \& {\em p\-Evt})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classTestFilterAnalysis_83c3094d993fde404e375cf272f4e5b1}
+
+
+Analysis. 
+
+This method should be implemented by the client. The default implementation fills the {\tt \hyperlink{classHistGroupEvent}{Hist\-Group\-Event}} groups of histograms are filled. 
+
+Reimplemented from \hyperlink{classUserAnalysisBase_015733b03dfc2596dfaf1841ca60a0b8}{User\-Analysis\-Base}.\hypertarget{classTestFilterAnalysis_b277393b1e443de3c4f12e0c54a72694}{
+\index{TestFilterAnalysis@{Test\-Filter\-Analysis}!book@{book}}
+\index{book@{book}!TestFilterAnalysis@{Test\-Filter\-Analysis}}
+\subsubsection[book]{\setlength{\rightskip}{0pt plus 5cm}bool Test\-Filter\-Analysis::book ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classTestFilterAnalysis_b277393b1e443de3c4f12e0c54a72694}
+
+
+Booking. 
+
+This method should be implemented by the client. By default, a set of histograms defined in {\tt \hyperlink{classHistGroupEvent}{Hist\-Group\-Event}} is booked for each available input stream and the merged event (if available) separately. 
+
+Reimplemented from \hyperlink{classUserAnalysisBase_4ed3754992929a1aeb1e938b31ec22af}{User\-Analysis\-Base}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Test\-Filter\-Analysis.h\item 
+Test\-Filter\-Analysis.cxx\end{CompactItemize}

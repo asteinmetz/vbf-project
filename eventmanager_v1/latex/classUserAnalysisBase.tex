@@ -1,0 +1,273 @@
+\hypertarget{classUserAnalysisBase}{
+\section{User\-Analysis\-Base Class Reference}
+\label{classUserAnalysisBase}\index{UserAnalysisBase@{UserAnalysisBase}}
+}
+User analysis template.  
+
+
+{\tt \#include $<$User\-Analysis\-Base.h$>$}
+
+Inheritance diagram for User\-Analysis\-Base::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classUserAnalysisBase}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classUserAnalysisBase_3cc225ef8241f14310873e72d9960078}{User\-Analysis\-Base} (const std::string \&name, Data\-Frame $\ast$data\-Server)
+\begin{CompactList}\small\item\em Single server constructor. \item\end{CompactList}\item 
+\hyperlink{classUserAnalysisBase_e1e2ecf9f0a86b33e6ce10e1323763dd}{User\-Analysis\-Base} (const std::string \&name, Data\-Frame $\ast$signal\-Server, Data\-Frame $\ast$pileup\-Server)
+\begin{CompactList}\small\item\em Dual server constructor. \item\end{CompactList}\item 
+virtual bool \hyperlink{classUserAnalysisBase_b854df840f749f7f9dd5bb2ca9447c25}{process} ()
+\begin{CompactList}\small\item\em Process loop. \item\end{CompactList}\item 
+virtual bool \hyperlink{classUserAnalysisBase_4ed3754992929a1aeb1e938b31ec22af}{book} ()
+\begin{CompactList}\small\item\em Booking. \item\end{CompactList}\item 
+virtual bool \hyperlink{classUserAnalysisBase_015733b03dfc2596dfaf1841ca60a0b8}{analyze} (\hyperlink{classEvent}{Event} \&p\-Evt)
+\begin{CompactList}\small\item\em Analysis. \item\end{CompactList}\item 
+\hypertarget{classUserAnalysisBase_bff532e71b9947d7d64776c80b211840}{
+virtual bool \textbf{write} ()}
+\label{classUserAnalysisBase_bff532e71b9947d7d64776c80b211840}
+
+\item 
+\hypertarget{classUserAnalysisBase_935a0f2057e8b1f8c742d4cf3bd9dbc8}{
+const std::string \& \hyperlink{classUserAnalysisBase_935a0f2057e8b1f8c742d4cf3bd9dbc8}{name} () const }
+\label{classUserAnalysisBase_935a0f2057e8b1f8c742d4cf3bd9dbc8}
+
+\begin{CompactList}\small\item\em Returns analysis name. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classUserAnalysisBase_2f0cd8cc51a5001ee7ebe60d17e5768f}{
+Data\-Frame \& \textbf{f\-Signal\-Server} ()}
+\label{classUserAnalysisBase_2f0cd8cc51a5001ee7ebe60d17e5768f}
+
+\item 
+\hypertarget{classUserAnalysisBase_1dc909ca28b818ce380ac61f88b3959d}{
+Data\-Frame \& \textbf{f\-Pileup\-Server} ()}
+\label{classUserAnalysisBase_1dc909ca28b818ce380ac61f88b3959d}
+
+\item 
+\hypertarget{classUserAnalysisBase_79f854dd0e6cf0c662c93df54707da6c}{
+\hyperlink{structDataHandler}{Data\-Handler}$<$ Data\-Frame $>$ \& \textbf{f\-Signal\-Handler} ()}
+\label{classUserAnalysisBase_79f854dd0e6cf0c662c93df54707da6c}
+
+\item 
+\hypertarget{classUserAnalysisBase_6aefe1fef892838afd71a7a7de4b7ca7}{
+\hyperlink{structDataHandler}{Data\-Handler}$<$ Data\-Frame $>$ \& \textbf{f\-Pileup\-Handler} ()}
+\label{classUserAnalysisBase_6aefe1fef892838afd71a7a7de4b7ca7}
+
+\item 
+\hypertarget{classUserAnalysisBase_09b07326b304bc2b9d3427de0d51bccd}{
+\hyperlink{classConfiguration_1_1ConfigData}{Configuration::Config\-Data} \& \textbf{f\-Config} ()}
+\label{classUserAnalysisBase_09b07326b304bc2b9d3427de0d51bccd}
+
+\item 
+\hypertarget{classUserAnalysisBase_d24e1cf2438ed953aa549ab7157a8709}{
+virtual \hyperlink{classHistGroupBase}{Hist\-Group\-Base} \& \textbf{f\-Event\-Plots} ()}
+\label{classUserAnalysisBase_d24e1cf2438ed953aa549ab7157a8709}
+
+\item 
+\hypertarget{classUserAnalysisBase_6b6262cfde06a542fd67c380558eb63c}{
+virtual \hyperlink{classHistGroupBase}{Hist\-Group\-Base} \& \textbf{f\-Pileup\-Plots} ()}
+\label{classUserAnalysisBase_6b6262cfde06a542fd67c380558eb63c}
+
+\item 
+\hypertarget{classUserAnalysisBase_01b769d0c33ce10ee700f8eb71ba23e5}{
+virtual \hyperlink{classHistGroupBase}{Hist\-Group\-Base} \& \textbf{f\-Signal\-Plots} ()}
+\label{classUserAnalysisBase_01b769d0c33ce10ee700f8eb71ba23e5}
+
+\item 
+\hypertarget{classUserAnalysisBase_51efc6f7809d7653b018910507667f3e}{
+virtual void \textbf{f\-Set\-Event\-Plots} (\hyperlink{classHistGroupBase}{Hist\-Group\-Base} $\ast$hgevt)}
+\label{classUserAnalysisBase_51efc6f7809d7653b018910507667f3e}
+
+\item 
+\hypertarget{classUserAnalysisBase_60248dda11b1cf1976f54ca95c666f69}{
+virtual void \textbf{f\-Set\-Pileup\-Plots} (\hyperlink{classHistGroupBase}{Hist\-Group\-Base} $\ast$hgevt)}
+\label{classUserAnalysisBase_60248dda11b1cf1976f54ca95c666f69}
+
+\item 
+\hypertarget{classUserAnalysisBase_d59a73ef732281d8b0bf1908f19e1b02}{
+virtual void \textbf{f\-Set\-Signal\-Plots} (\hyperlink{classHistGroupBase}{Hist\-Group\-Base} $\ast$hgevt)}
+\label{classUserAnalysisBase_d59a73ef732281d8b0bf1908f19e1b02}
+
+\item 
+\hypertarget{classUserAnalysisBase_9baca7c00d6302fa4af702c38e5b8453}{
+virtual bool \textbf{f\-Have\-Pileup} ()}
+\label{classUserAnalysisBase_9baca7c00d6302fa4af702c38e5b8453}
+
+\item 
+\hypertarget{classUserAnalysisBase_a55d3cdf2f2d2ac3611b9870e7db1008}{
+virtual bool \textbf{f\-Have\-Signal} ()}
+\label{classUserAnalysisBase_a55d3cdf2f2d2ac3611b9870e7db1008}
+
+\item 
+\hypertarget{classUserAnalysisBase_f7e8d40d31657bff1b9ab0c84f32799a}{
+virtual bool \textbf{f\-Have\-Merged\-Event} ()}
+\label{classUserAnalysisBase_f7e8d40d31657bff1b9ab0c84f32799a}
+
+\item 
+\hypertarget{classUserAnalysisBase_8dbd5bf590d3965042a4844957ee0811}{
+virtual bool \textbf{f\-Ticker} ()}
+\label{classUserAnalysisBase_8dbd5bf590d3965042a4844957ee0811}
+
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classUserAnalysisBase_4c0f8db7506f65e168e0950cc9bd0d60}{
+int \textbf{\_\-anal\-Evts}}
+\label{classUserAnalysisBase_4c0f8db7506f65e168e0950cc9bd0d60}
+
+\item 
+\hypertarget{classUserAnalysisBase_4268e1629f4c54ae675d118894d32909}{
+int \textbf{\_\-write\-Freq}}
+\label{classUserAnalysisBase_4268e1629f4c54ae675d118894d32909}
+
+\item 
+\hypertarget{classUserAnalysisBase_cdf916f686f68810dc198641fb068079}{
+bool \textbf{\_\-first\-Write}}
+\label{classUserAnalysisBase_cdf916f686f68810dc198641fb068079}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classUserAnalysisBase_934fd6c702d2c9cea4919180765e4338}{
+std::string \textbf{\_\-name}}
+\label{classUserAnalysisBase_934fd6c702d2c9cea4919180765e4338}
+
+\item 
+\hypertarget{classUserAnalysisBase_4f08dbcc65695fb43561f4061c277f44}{
+Data\-Frame $\ast$ \textbf{\_\-signal\-Server}}
+\label{classUserAnalysisBase_4f08dbcc65695fb43561f4061c277f44}
+
+\item 
+\hypertarget{classUserAnalysisBase_9378b2c995b0e908ccd9e5f54a9a9f6e}{
+Data\-Frame $\ast$ \textbf{\_\-pileup\-Server}}
+\label{classUserAnalysisBase_9378b2c995b0e908ccd9e5f54a9a9f6e}
+
+\item 
+\hypertarget{classUserAnalysisBase_aafb0fb402abcd60b2ca6c8ee25d6d0f}{
+\hyperlink{structDataHandler}{Data\-Handler}$<$ Data\-Frame $>$ \textbf{\_\-signal\-Handler}}
+\label{classUserAnalysisBase_aafb0fb402abcd60b2ca6c8ee25d6d0f}
+
+\item 
+\hypertarget{classUserAnalysisBase_efcf3644a6707780e4c5c871e7808389}{
+\hyperlink{structDataHandler}{Data\-Handler}$<$ Data\-Frame $>$ \textbf{\_\-pileup\-Handler}}
+\label{classUserAnalysisBase_efcf3644a6707780e4c5c871e7808389}
+
+\item 
+\hypertarget{classUserAnalysisBase_d627c6cdd2b763dc682c92414a0fd151}{
+\hyperlink{classConfiguration_1_1ConfigData}{Configuration::Config\-Data} $\ast$ \textbf{\_\-config}}
+\label{classUserAnalysisBase_d627c6cdd2b763dc682c92414a0fd151}
+
+\item 
+\hypertarget{classUserAnalysisBase_c02c1e39847f4815f49947becd7ae75d}{
+\hyperlink{classHistGroupBase}{Hist\-Group\-Base} $\ast$ \textbf{\_\-event\-Plots}}
+\label{classUserAnalysisBase_c02c1e39847f4815f49947becd7ae75d}
+
+\item 
+\hypertarget{classUserAnalysisBase_ad04a821a2ce1e1c780c6ffa5411fd83}{
+\hyperlink{classHistGroupBase}{Hist\-Group\-Base} $\ast$ \textbf{\_\-signal\-Plots}}
+\label{classUserAnalysisBase_ad04a821a2ce1e1c780c6ffa5411fd83}
+
+\item 
+\hypertarget{classUserAnalysisBase_1373a10f46c223e6672ac5f5372f4d43}{
+\hyperlink{classHistGroupBase}{Hist\-Group\-Base} $\ast$ \textbf{\_\-pileup\-Plots}}
+\label{classUserAnalysisBase_1373a10f46c223e6672ac5f5372f4d43}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+User analysis template. 
+
+This object merges signal and pile-up events and provide a user hooks for analysis 
+
+\begin{Code}\begin{verbatim} {.cpp}
+    UserAnalysisBase::book();                 // book histograms etc.
+    UserAnalysisBase::analyze(Event& pEvt);   // analysis
+    UserAnalysisBase::write()                 // write out histograms
+\end{verbatim}\end{Code}
+
+ 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classUserAnalysisBase_3cc225ef8241f14310873e72d9960078}{
+\index{UserAnalysisBase@{User\-Analysis\-Base}!UserAnalysisBase@{UserAnalysisBase}}
+\index{UserAnalysisBase@{UserAnalysisBase}!UserAnalysisBase@{User\-Analysis\-Base}}
+\subsubsection[UserAnalysisBase]{\setlength{\rightskip}{0pt plus 5cm}User\-Analysis\-Base::User\-Analysis\-Base (const std::string \& {\em name}, Data\-Frame $\ast$ {\em data\-Server})}}
+\label{classUserAnalysisBase_3cc225ef8241f14310873e72d9960078}
+
+
+Single server constructor. 
+
+This constructor is useful if only one input stream is used. In this case the default event type is {\tt Vertex::SIGNAL}. Collisions are merged according to the configured {\tt mu}.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em name}]name of analysis \item[\mbox{$\leftarrow$} {\em data\-Server}]pointer to data server \end{description}
+\end{Desc}
+\hypertarget{classUserAnalysisBase_e1e2ecf9f0a86b33e6ce10e1323763dd}{
+\index{UserAnalysisBase@{User\-Analysis\-Base}!UserAnalysisBase@{UserAnalysisBase}}
+\index{UserAnalysisBase@{UserAnalysisBase}!UserAnalysisBase@{User\-Analysis\-Base}}
+\subsubsection[UserAnalysisBase]{\setlength{\rightskip}{0pt plus 5cm}User\-Analysis\-Base::User\-Analysis\-Base (const std::string \& {\em name}, Data\-Frame $\ast$ {\em signal\-Server}, Data\-Frame $\ast$ {\em pileup\-Server})}}
+\label{classUserAnalysisBase_e1e2ecf9f0a86b33e6ce10e1323763dd}
+
+
+Dual server constructor. 
+
+This constructor can be used if two input streams are used. In this case the first data stream argument specifies the {\tt Vertex::SIGNAL} events, while the second argument specifies the {\tt Vertex::PILEUP} events. Note that the configured {\tt mu} only acts on the pile-up stream. The number of signal events per merged event is fixed to 1. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classUserAnalysisBase_015733b03dfc2596dfaf1841ca60a0b8}{
+\index{UserAnalysisBase@{User\-Analysis\-Base}!analyze@{analyze}}
+\index{analyze@{analyze}!UserAnalysisBase@{User\-Analysis\-Base}}
+\subsubsection[analyze]{\setlength{\rightskip}{0pt plus 5cm}bool User\-Analysis\-Base::analyze (\hyperlink{classEvent}{Event} \& {\em p\-Evt})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classUserAnalysisBase_015733b03dfc2596dfaf1841ca60a0b8}
+
+
+Analysis. 
+
+This method should be implemented by the client. The default implementation fills the {\tt \hyperlink{classHistGroupEvent}{Hist\-Group\-Event}} groups of histograms are filled. 
+
+Reimplemented in \hyperlink{classHZAnalysis_9ff7e307f88b5a063fc047b38814c36c}{HZAnalysis}, and \hyperlink{classTestFilterAnalysis_83c3094d993fde404e375cf272f4e5b1}{Test\-Filter\-Analysis}.\hypertarget{classUserAnalysisBase_4ed3754992929a1aeb1e938b31ec22af}{
+\index{UserAnalysisBase@{User\-Analysis\-Base}!book@{book}}
+\index{book@{book}!UserAnalysisBase@{User\-Analysis\-Base}}
+\subsubsection[book]{\setlength{\rightskip}{0pt plus 5cm}bool User\-Analysis\-Base::book ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classUserAnalysisBase_4ed3754992929a1aeb1e938b31ec22af}
+
+
+Booking. 
+
+This method should be implemented by the client. By default, a set of histograms defined in {\tt \hyperlink{classHistGroupEvent}{Hist\-Group\-Event}} is booked for each available input stream and the merged event (if available) separately. 
+
+Reimplemented in \hyperlink{classHZAnalysis_b2b6a462ad983ce4b847c7c010df6ec8}{HZAnalysis}, and \hyperlink{classTestFilterAnalysis_b277393b1e443de3c4f12e0c54a72694}{Test\-Filter\-Analysis}.\hypertarget{classUserAnalysisBase_b854df840f749f7f9dd5bb2ca9447c25}{
+\index{UserAnalysisBase@{User\-Analysis\-Base}!process@{process}}
+\index{process@{process}!UserAnalysisBase@{User\-Analysis\-Base}}
+\subsubsection[process]{\setlength{\rightskip}{0pt plus 5cm}bool User\-Analysis\-Base::process ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classUserAnalysisBase_b854df840f749f7f9dd5bb2ca9447c25}
+
+
+Process loop. 
+
+This method executes the principal process loop. While it can be overwritten by clients, it is highly recommended to only have this done by experts.
+
+This method loops on the input stream(s) according to the configuration specified at construction. For each completely converted input event, which features
+
+\begin{itemize}
+\item single  stream  input : {\tt mu} collisions per event;\item dual  stream  input : 1 signal collision + {\tt mu} pile-up collisions per event,\end{itemize}
+
+
+the {\tt User\-Analysis\-Base::analysis} method is invoked with a reference to the actual {\tt \hyperlink{classEvent}{Event}}. The {\tt \hyperlink{classEvent}{Event}} cache is cleared after that. In addition, the {\tt f\-Ticker} method is invoked for regular logging and/or output file updates. 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+User\-Analysis\-Base.h\item 
+User\-Analysis\-Base.cxx\end{CompactItemize}

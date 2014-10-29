@@ -1,0 +1,225 @@
+// -*- c++ -*-
+#include <iostream>
+template<class T>
+int DataHandler<T>::getActVtx(int nVtx)
+{
+  if ( nVtx > 0 )
+    { 
+      Random::RandomEngine* engine = Random::RandomEngine::instance();
+      return engine->ipoisson(nVtx); 
+    }
+  else
+    { return abs(nVtx); }
+}
+
+template<class T>
+bool DataHandler<T>::fillEvent(T& dataSource,Event& event,long long& nPtr,
+			       int nVtx,
+			       int vtxOffset,Vertex::InteractionType interactionType)
+{
+  //  std::cout << "Nptr ....... " << nPtr << std::endl;
+  // find number of vertices this event
+  long long nActVtx = (long long)getActVtx(nVtx);
+  //  std::cout << "NActVtx .... " << nActVtx << std::endl;
+  //
+  int iVtx = vtxOffset;
+  long long iEntry(0);
+  long long term(nPtr+nActVtx);
+  //  std::cout << "iVtx ....... " << iVtx << " -> ";
+  while ( nPtr<term && iEntry >= 0 )
+    {
+      iEntry = dataSource.loadTree(nPtr);
+      if ( iEntry >= 0 )
+	{
+	  // load entry
+	  dataSource.getEntry(nPtr);
+	  // get PseudoJets
+	  std::vector<fastjet::PseudoJet> vJet;
+	  Converters::convertToPJ(dataSource,
+				  dataSource.Npartons,
+				  dataSource.Nentry,
+				  iVtx,interactionType,vJet);
+	  if ( !vJet.empty() )
+	    { 	  
+	      // add to event
+	      event.add(vJet);
+	      ++iVtx;
+	      // std::cout << iVtx << " with " << vJet.size() << " particles" << std::endl;
+	    }
+	  else { ++term; }
+	}
+      ++nPtr;
+    }
+  return iEntry >= 0;
+}
+
+inline
+bool Features::nCharged(const std::vector<fastjet::PseudoJet>& vJet,int& nJets,
+			int vtx)
+{
+  nJets = 0;
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(vJet.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(vJet.end());
+  if ( vtx < 0 )
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{
+	  if ( fJet->has_user_info<ParticleInfo>() &&
+	       fJet->user_info<ParticleInfo>().charge() != 0. ) ++nJets;
+	}
+    }
+  else
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{
+	  if ( fJet->has_user_info<ParticleInfo>()               &&
+	       fJet->user_info<ParticleInfo>().vertexId() == vtx &&
+	       fJet->user_info<ParticleInfo>().charge() != 0. ) ++nJets;
+	       
+	}
+    }
+  return nJets > 0;
+}
+
+inline
+bool Features::nCharged(const std::vector<fastjet::PseudoJet>& vJet,int& nJets,
+			Vertex::InteractionType type)
+{
+  nJets = 0;
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(vJet.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(vJet.end());
+  for ( ; fJet != lJet; ++fJet )
+    { if ( hasInteractionType(*fJet,type) &&
+	   fJet->user_info<ParticleInfo>().charge() != 0. ) ++nJets; }
+  return nJets > 0;
+}
+
+inline
+bool Features::nNeutral(const std::vector<fastjet::PseudoJet>& vJet,int& nJets,
+			int vtx)
+{
+  nJets = 0;
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(vJet.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(vJet.end());
+  if ( vtx < 0 )
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{
+	  if ( fJet->has_user_info<ParticleInfo>() &&
+	       fJet->user_info<ParticleInfo>().charge() == 0. ) ++nJets;
+	}
+    }
+  else
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{
+	  if ( fJet->has_user_info<ParticleInfo>()               &&
+	       fJet->user_info<ParticleInfo>().vertexId() == vtx &&
+	       fJet->user_info<ParticleInfo>().charge() == 0. ) ++nJets;
+	       
+	}
+    }
+  return nJets > 0;
+}
+
+inline
+bool Features::nNeutral(const std::vector<fastjet::PseudoJet>& vJet,int& nJets,
+			Vertex::InteractionType type)
+{
+  nJets = 0;
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(vJet.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(vJet.end());
+  for ( ; fJet != lJet; ++fJet )
+    { if ( hasInteractionType(*fJet,type) &&
+	   fJet->user_info<ParticleInfo>().charge() == 0. ) ++nJets; }
+  return nJets > 0;
+}
+
+inline
+void Utils::copyPJ(const fastjet::PseudoJet& inJet,
+		     fastjet::PseudoJet& outJet)
+{
+  outJet = inJet;
+  if ( inJet.has_user_info<ParticleInfo>() )
+    { 
+      const ParticleInfo& pInfo = inJet.user_info<ParticleInfo>();
+      outJet.set_user_info(new ParticleInfo(pInfo));
+    }
+}
+
+inline
+void Utils::copyPJ(const std::vector<fastjet::PseudoJet>& inJets,
+		   std::vector<fastjet::PseudoJet>&       outJets)
+{
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(inJets.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(inJets.end());
+  for ( ; fJet != lJet; ++fJet )
+    { 
+      outJets.push_back(*fJet); 
+      if ( outJets.back().has_user_info<ParticleInfo>() )
+	{ outJets.back().set_user_info(new ParticleInfo(fJet->user_info<ParticleInfo>())); }
+    }
+}
+
+inline
+void Utils::copyPJ(const std::vector<fastjet::PseudoJet>& inJets,
+		   std::vector<fastjet::PseudoJet>&       outJets,
+		   bool charged)
+{
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(inJets.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(inJets.end());
+  if ( charged )
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{ if ( Features::isCharged(*fJet) )
+	    { outJets.push_back(*fJet); outJets.back().set_user_info(new ParticleInfo(fJet->user_info<ParticleInfo>())); }
+	}
+    }
+  else
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{ if ( !Features::isCharged(*fJet) )
+	    { outJets.push_back(*fJet); outJets.back().set_user_info(new ParticleInfo(fJet->user_info<ParticleInfo>())); }
+	}
+    }
+}
+
+inline
+void Utils::copyPJ(const std::vector<fastjet::PseudoJet>& inJets,
+		   std::vector<fastjet::PseudoJet>& outJets,
+		   Vertex::InteractionType type)
+{
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(inJets.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(inJets.end());
+  for ( ; fJet != lJet; ++fJet )
+    {
+      if ( Features::hasInteractionType(*fJet,type) )
+	{ outJets.push_back(*fJet); outJets.back().set_user_info(new ParticleInfo(fJet->user_info<ParticleInfo>())); }
+    }
+}
+
+inline
+void Utils::copyPJ(const std::vector<fastjet::PseudoJet>& inJets,
+		   std::vector<fastjet::PseudoJet>& outJets,
+		   Vertex::InteractionType type,
+		   bool charged)
+{
+  std::vector<fastjet::PseudoJet>::const_iterator fJet(inJets.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lJet(inJets.end());
+  if ( charged )
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{ if ( Features::isCharged(*fJet) && 
+	       Features::hasInteractionType(*fJet,type) )
+	    { outJets.push_back(*fJet); outJets.back().set_user_info(new ParticleInfo(fJet->user_info<ParticleInfo>())); }
+	}
+    }
+  else
+    {
+      for ( ; fJet != lJet; ++fJet )
+	{ if ( !Features::isCharged(*fJet) && 
+	       Features::hasInteractionType(*fJet,type) )
+	    { outJets.push_back(*fJet); outJets.back().set_user_info(new ParticleInfo(fJet->user_info<ParticleInfo>())); }
+	}
+    }
+}

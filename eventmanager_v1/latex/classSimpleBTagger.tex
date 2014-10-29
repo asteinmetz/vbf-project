@@ -1,0 +1,86 @@
+\hypertarget{classSimpleBTagger}{
+\section{Simple\-BTagger Class Reference}
+\label{classSimpleBTagger}\index{SimpleBTagger@{SimpleBTagger}}
+}
+little tool to count the net b contents from a PDGid  
+
+
+{\tt \#include $<$Simple\-BTagger.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classSimpleBTagger_0c20a732020b2235c5938af0c0a5b27a}{Simple\-BTagger} (double btag\_\-proba=1.0, double fake\_\-proba=0.0)
+\item 
+double \hyperlink{classSimpleBTagger_3874e44fae139f956eb80003c68b0d7b}{result} (const fastjet::Pseudo\-Jet \&jet) const 
+\item 
+\hypertarget{classSimpleBTagger_08acad2535b7717c10beae63735d6aad}{
+std::string \hyperlink{classSimpleBTagger_08acad2535b7717c10beae63735d6aad}{description} () const }
+\label{classSimpleBTagger_08acad2535b7717c10beae63735d6aad}
+
+\begin{CompactList}\small\item\em description of teh tagger \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classSimpleBTagger_6ac187be55e554860ce6dcd3a30b3054}{
+int \hyperlink{classSimpleBTagger_6ac187be55e554860ce6dcd3a30b3054}{\_\-b\_\-count\_\-from\_\-particle\_\-id} (int id) const }
+\label{classSimpleBTagger_6ac187be55e554860ce6dcd3a30b3054}
+
+\begin{CompactList}\small\item\em given a PDGid, return the net b count in that particle \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classSimpleBTagger_c53f89ce8ec2b2b48187b15f515e3963}{
+double \textbf{\_\-btag\_\-proba}}
+\label{classSimpleBTagger_c53f89ce8ec2b2b48187b15f515e3963}
+
+\item 
+\hypertarget{classSimpleBTagger_7a231a41dcba5eb3a67f8c5dd74e04dc}{
+double \textbf{\_\-fake\_\-proba}}
+\label{classSimpleBTagger_7a231a41dcba5eb3a67f8c5dd74e04dc}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+little tool to count the net b contents from a PDGid 
+
+simple class for b tagging
+
+this class only works if the B mesions/hadrons are left stable. It is constructed given a tag probability and a fake rate.
+
+For a given jet, it looks at the net b count in that jet and return a weight for it to be b-tagger. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSimpleBTagger_0c20a732020b2235c5938af0c0a5b27a}{
+\index{SimpleBTagger@{Simple\-BTagger}!SimpleBTagger@{SimpleBTagger}}
+\index{SimpleBTagger@{SimpleBTagger}!SimpleBTagger@{Simple\-BTagger}}
+\subsubsection[SimpleBTagger]{\setlength{\rightskip}{0pt plus 5cm}Simple\-BTagger::Simple\-BTagger (double {\em btag\_\-proba} = {\tt 1.0}, double {\em fake\_\-proba} = {\tt 0.0})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classSimpleBTagger_0c20a732020b2235c5938af0c0a5b27a}
+
+
+ctor with initialisation \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em btag\_\-proba}]the probability to tag a b-jet as such \item[{\em fake\_\-proba}]the probability to mistag a non-b jet (as a b jet) \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSimpleBTagger_3874e44fae139f956eb80003c68b0d7b}{
+\index{SimpleBTagger@{Simple\-BTagger}!result@{result}}
+\index{result@{result}!SimpleBTagger@{Simple\-BTagger}}
+\subsubsection[result]{\setlength{\rightskip}{0pt plus 5cm}double Simple\-BTagger::result (const fastjet::Pseudo\-Jet \& {\em jet}) const}}
+\label{classSimpleBTagger_3874e44fae139f956eb80003c68b0d7b}
+
+
+get the b-tag probability for a given jet
+
+Note that if the jet has no particle, we assume we have a single particle and aplpy the b-tagging to it. 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Simple\-BTagger.h\item 
+Simple\-BTagger.cxx\end{CompactItemize}

@@ -1,0 +1,371 @@
+\hypertarget{classVertex}{
+\section{Vertex Class Reference}
+\label{classVertex}\index{Vertex@{Vertex}}
+}
+Container for vertex variables.  
+
+
+{\tt \#include $<$Event.h$>$}
+
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_0d80a5c5ed3bd9be72a325aa448eca2591efdead99a528296866607ef71e381a}{
+\textbf{PILEUP} = 0x01}
+\label{classVertex_0d80a5c5ed3bd9be72a325aa448eca2591efdead99a528296866607ef71e381a}
+
+\item 
+\hypertarget{classVertex_0d80a5c5ed3bd9be72a325aa448eca25bf2b5581aadb28a4395b2fb07b593a2a}{
+\textbf{SIGNAL} = 0x02}
+\label{classVertex_0d80a5c5ed3bd9be72a325aa448eca25bf2b5581aadb28a4395b2fb07b593a2a}
+
+\item 
+\hypertarget{classVertex_0d80a5c5ed3bd9be72a325aa448eca25421d573c5503ef4f8059e028624a39bd}{
+\textbf{MIXED} = 0x03}
+\label{classVertex_0d80a5c5ed3bd9be72a325aa448eca25421d573c5503ef4f8059e028624a39bd}
+
+\item 
+\hypertarget{classVertex_0d80a5c5ed3bd9be72a325aa448eca253cdfabc16e7ced6ee3f45f623e8e97e2}{
+\textbf{UNKNOWN} = 0x00}
+\label{classVertex_0d80a5c5ed3bd9be72a325aa448eca253cdfabc16e7ced6ee3f45f623e8e97e2}
+
+\item 
+\hypertarget{classVertex_ca819079d9d940f86b1f6ea1469aed206f88d5ef761ccbf7e3d6da20f1955298}{
+\textbf{NEUTRAL} = 0}
+\label{classVertex_ca819079d9d940f86b1f6ea1469aed206f88d5ef761ccbf7e3d6da20f1955298}
+
+\item 
+\hypertarget{classVertex_ca819079d9d940f86b1f6ea1469aed2099d5b398bd82a88ab471313c95055c3f}{
+\textbf{CHARGED} = 1}
+\label{classVertex_ca819079d9d940f86b1f6ea1469aed2099d5b398bd82a88ab471313c95055c3f}
+
+\item 
+\hypertarget{classVertex_ca819079d9d940f86b1f6ea1469aed20406218fc13cebf8801b133f23a7cc58f}{
+\textbf{TOTAL} = 0}
+\label{classVertex_ca819079d9d940f86b1f6ea1469aed20406218fc13cebf8801b133f23a7cc58f}
+
+\item 
+\hypertarget{classVertex_40a06cc3fde98913c8259e3c11cd37ecf44a0620923747069afd4eaf837b60c7}{
+\textbf{PTSUM} = 0}
+\label{classVertex_40a06cc3fde98913c8259e3c11cd37ecf44a0620923747069afd4eaf837b60c7}
+
+\item 
+\hypertarget{classVertex_40a06cc3fde98913c8259e3c11cd37ec19c8fd4467a42356f966326123996add}{
+\textbf{PTSUM2} = 1}
+\label{classVertex_40a06cc3fde98913c8259e3c11cd37ec19c8fd4467a42356f966326123996add}
+
+\item 
+\hypertarget{classVertex_40a06cc3fde98913c8259e3c11cd37ec0fa68b6573179e5a27b98f32a5b61c04}{
+\textbf{PTSUMCHARGED} = 2}
+\label{classVertex_40a06cc3fde98913c8259e3c11cd37ec0fa68b6573179e5a27b98f32a5b61c04}
+
+\item 
+\hypertarget{classVertex_40a06cc3fde98913c8259e3c11cd37ecd5a11fff0585381e0e238387d9bffaff}{
+\textbf{PTSUM2CHARGED} = 3}
+\label{classVertex_40a06cc3fde98913c8259e3c11cd37ecd5a11fff0585381e0e238387d9bffaff}
+
+\item 
+\hypertarget{classVertex_40a06cc3fde98913c8259e3c11cd37ec0482cb51ceb0fe305a21005b1eb2b6e2}{
+\textbf{PTSUMNEUTRAL} = 4}
+\label{classVertex_40a06cc3fde98913c8259e3c11cd37ec0482cb51ceb0fe305a21005b1eb2b6e2}
+
+\item 
+\hypertarget{classVertex_40a06cc3fde98913c8259e3c11cd37ec23ff0f812ce05917616360005e0b98d8}{
+\textbf{PTSUM2NEUTRAL} = 5}
+\label{classVertex_40a06cc3fde98913c8259e3c11cd37ec23ff0f812ce05917616360005e0b98d8}
+
+\end{CompactItemize}
+\begin{Indent}{\bf Ennumerators for states and contexts}\par
+\begin{CompactItemize}
+\item 
+enum \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Interaction\-Type} \{ \textbf{PILEUP} =  0x01, 
+\textbf{SIGNAL} =  0x02, 
+\textbf{MIXED} =  0x03, 
+\textbf{UNKNOWN} =  0x00
+ \}
+\begin{CompactList}\small\item\em Interaction type. \item\end{CompactList}\item 
+enum \hyperlink{classVertex_ca819079d9d940f86b1f6ea1469aed20}{Type} \{ \textbf{NEUTRAL} =  0, 
+\textbf{CHARGED} =  1, 
+\textbf{TOTAL} =  0
+ \}
+\begin{CompactList}\small\item\em Particle charge indicator. \item\end{CompactList}\item 
+enum \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} \{ \par
+\textbf{PTSUM} =  0, 
+\textbf{PTSUM2} =  1, 
+\textbf{PTSUMCHARGED} =  2, 
+\textbf{PTSUM2CHARGED} =  3, 
+\par
+\textbf{PTSUMNEUTRAL} =  4, 
+\textbf{PTSUM2NEUTRAL} =  5
+ \}
+\begin{CompactList}\small\item\em \hyperlink{classVertex}{Vertex} ordering context. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classVertex_f0cf7fa1f632e6d3a17eda8f29795a08}{Vertex} (const \hyperlink{classVertex}{Vertex} \&vertex)
+\begin{CompactList}\small\item\em Copy constructor. \item\end{CompactList}\item 
+\hypertarget{classVertex_5bef863d5861285cbdbe9a1d72bc5ab6}{
+virtual \hyperlink{classVertex_5bef863d5861285cbdbe9a1d72bc5ab6}{$\sim$Vertex} ()}
+\label{classVertex_5bef863d5861285cbdbe9a1d72bc5ab6}
+
+\begin{CompactList}\small\item\em Destructor. \item\end{CompactList}\item 
+\hyperlink{classVertex}{Vertex} \& \hyperlink{classVertex_d02d78d2a640cdc2f7ef1eb95f36ef79}{operator=} (const \hyperlink{classVertex}{Vertex} \&vertex)
+\begin{CompactList}\small\item\em Assignment operator. \item\end{CompactList}\item 
+void \hyperlink{classVertex_074af7ae6f1948dbe9704516ed7575f4}{add\-Particle} (const fastjet::Pseudo\-Jet \&p\-Jet)
+\begin{CompactList}\small\item\em Add a particle or jet to the vertex. \item\end{CompactList}\item 
+\hypertarget{classVertex_a82222b2fc0be418e1ced34126520f1a}{
+int \hyperlink{classVertex_a82222b2fc0be418e1ced34126520f1a}{id} () const }
+\label{classVertex_a82222b2fc0be418e1ced34126520f1a}
+
+\begin{CompactList}\small\item\em \hyperlink{classVertex}{Vertex} id access. \item\end{CompactList}\item 
+\hypertarget{classVertex_4be1c8b4e631c4206d8ecbd2c1c9448f}{
+\hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} \hyperlink{classVertex_4be1c8b4e631c4206d8ecbd2c1c9448f}{order\-Context} () const }
+\label{classVertex_4be1c8b4e631c4206d8ecbd2c1c9448f}
+
+\begin{CompactList}\small\item\em Returns present order context. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Constructor}\par
+{\em \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em oc}]order context used in comparators. This context can be changed even for a {\tt const} {\tt \hyperlink{classVertex}{Vertex}} (optional, defaults to $\sum{p_{\rm T}^{2}}$ ordering).\item[\mbox{$\leftarrow$} {\em vtx}]client defined vertex identifier (number) \end{description}
+\end{Desc}
+}\begin{CompactItemize}
+\item 
+\hyperlink{classVertex_5faf15aab45361a72537f39050df6e52}{Vertex} (\hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} oc=PTSUM2)
+\item 
+\hyperlink{classVertex_52ba84694e25fdbc3ee22d461ed7edbd}{Vertex} (int vtx, \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} oc=PTSUM2)
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Vertex kinematics}\par
+{\em \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em vtype}]indicates all particles ({\tt Vertex::TOTAL}), charged ({\tt Vertex::CHARGED}) or neutral ({\tt Vertex::NEUTRAL}) particles. \end{description}
+\end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_36e443e74b0cdd1d07407c0dfef28b8d}{
+double \hyperlink{classVertex_36e443e74b0cdd1d07407c0dfef28b8d}{pt\-Sum} (\hyperlink{classVertex_ca819079d9d940f86b1f6ea1469aed20}{Type} vtype=TOTAL) const }
+\label{classVertex_36e443e74b0cdd1d07407c0dfef28b8d}
+
+\begin{CompactList}\small\item\em Sum of transverse momenta. \item\end{CompactList}\item 
+\hypertarget{classVertex_7a1e9c544ddc4a14854a7add382f75f9}{
+double \hyperlink{classVertex_7a1e9c544ddc4a14854a7add382f75f9}{pt\-Sum2} (\hyperlink{classVertex_ca819079d9d940f86b1f6ea1469aed20}{Type} vtype=TOTAL) const }
+\label{classVertex_7a1e9c544ddc4a14854a7add382f75f9}
+
+\begin{CompactList}\small\item\em Sum of squared tranverse momenta. \item\end{CompactList}\item 
+\hypertarget{classVertex_7e414546c67cf36095f211ed9b38b15a}{
+int \hyperlink{classVertex_7e414546c67cf36095f211ed9b38b15a}{multiplicity} (\hyperlink{classVertex_ca819079d9d940f86b1f6ea1469aed20}{Type} vtype=TOTAL) const }
+\label{classVertex_7e414546c67cf36095f211ed9b38b15a}
+
+\begin{CompactList}\small\item\em Particle multiplicity. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Set order context}\par
+{\em The order context is useful when applying comparators, or building ordered lists of vertices.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em oc}]requested order context (optional, default is {\tt Vertex::PTSUM2} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]The order context can be changed even for a {\tt const} reference to a {\tt \hyperlink{classVertex}{Vertex}}. This requires two methods, one with a {\tt const} qualifier. \end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_d9b9c2a255fcf0b04e403a208b4558a8}{
+void \textbf{set\-Order\-Context} (\hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} oc=PTSUM2)}
+\label{classVertex_d9b9c2a255fcf0b04e403a208b4558a8}
+
+\item 
+\hypertarget{classVertex_623767a184739bc941b8e7b55dd469bd}{
+void \textbf{set\-Order\-Context} (\hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} oc=PTSUM2) const }
+\label{classVertex_623767a184739bc941b8e7b55dd469bd}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Operators on @c Vertex}\par
+{\em Comparators are defined in an order context.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vtx}]reference to non-modifiable {\tt \hyperlink{classVertex}{Vertex}} to compare to.\end{description}
+\end{Desc}
+For example, if order context is {\tt Vertex::PTSUM2}, `vtx0 $<$ vtx1 == true` if `vtx0.pt\-Sum2() $<$ vtx1.pt\-Sum2()`.
+
+\begin{Desc}
+\item[Note:]If the order context of {\tt this} vertex is different from {\tt vtx}, the order context of {\tt vtx} is temporarily set to the one of {\tt this}. \end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_6d2e7e5f15d5c414d4059b774d51a833}{
+bool \textbf{operator==} (const \hyperlink{classVertex}{Vertex} \&vtx) const }
+\label{classVertex_6d2e7e5f15d5c414d4059b774d51a833}
+
+\item 
+\hypertarget{classVertex_23dff1a8b545d1db7ecd42a67bf37d85}{
+bool \textbf{operator!=} (const \hyperlink{classVertex}{Vertex} \&vtx) const }
+\label{classVertex_23dff1a8b545d1db7ecd42a67bf37d85}
+
+\item 
+\hypertarget{classVertex_4f83b693c07930515091355c3c1a71f4}{
+bool \textbf{operator$>$=} (const \hyperlink{classVertex}{Vertex} \&vtx) const }
+\label{classVertex_4f83b693c07930515091355c3c1a71f4}
+
+\item 
+\hypertarget{classVertex_b170c5c264e5a8e4ea9fcabc23e0db5e}{
+bool \textbf{operator$>$} (const \hyperlink{classVertex}{Vertex} \&vtx) const }
+\label{classVertex_b170c5c264e5a8e4ea9fcabc23e0db5e}
+
+\item 
+\hypertarget{classVertex_3a96d3ee87e8dd126f63fb43d9e68a27}{
+bool \textbf{operator$<$=} (const \hyperlink{classVertex}{Vertex} \&vtx) const }
+\label{classVertex_3a96d3ee87e8dd126f63fb43d9e68a27}
+
+\item 
+\hypertarget{classVertex_e597699a1d5a9e6fc51daf4d86286e11}{
+bool \textbf{operator$<$} (const \hyperlink{classVertex}{Vertex} \&vtx) const }
+\label{classVertex_e597699a1d5a9e6fc51daf4d86286e11}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_3585b1e28a229a6aefb68913e5333d8b}{
+int \hyperlink{classVertex_3585b1e28a229a6aefb68913e5333d8b}{m\_\-id}}
+\label{classVertex_3585b1e28a229a6aefb68913e5333d8b}
+
+\begin{CompactList}\small\item\em \hyperlink{classVertex}{Vertex} id. \item\end{CompactList}\item 
+\hypertarget{classVertex_de8320ac627d61a76204549cd0b12554}{
+\hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} \hyperlink{classVertex_de8320ac627d61a76204549cd0b12554}{m\_\-order\-Context}}
+\label{classVertex_de8320ac627d61a76204549cd0b12554}
+
+\begin{CompactList}\small\item\em Actual order context. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Kinematic properties}\par
+\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_dc61358e6e4e00f57ce67ab8f3769eb2}{
+double \hyperlink{classVertex_dc61358e6e4e00f57ce67ab8f3769eb2}{m\_\-pt\-Sum}}
+\label{classVertex_dc61358e6e4e00f57ce67ab8f3769eb2}
+
+\begin{CompactList}\small\item\em $ \sum{p_{\rm T}} $ of all particles assigned to vertex \item\end{CompactList}\item 
+\hypertarget{classVertex_6c463f49c3f48f6b34a38a9436770c56}{
+double \hyperlink{classVertex_6c463f49c3f48f6b34a38a9436770c56}{m\_\-pt\-Sum2}}
+\label{classVertex_6c463f49c3f48f6b34a38a9436770c56}
+
+\begin{CompactList}\small\item\em $ \sum{p_{\rm T}^{2}} $ of all particles assigned to vertex \item\end{CompactList}\item 
+\hypertarget{classVertex_7f08ec24f1d4340309565be2781b4da2}{
+double \hyperlink{classVertex_7f08ec24f1d4340309565be2781b4da2}{m\_\-pt\-Sum\-Charged}}
+\label{classVertex_7f08ec24f1d4340309565be2781b4da2}
+
+\begin{CompactList}\small\item\em $ \sum{p_{\rm T}} $ of charged particles assigned to vertex \item\end{CompactList}\item 
+\hypertarget{classVertex_1318130e63fc95daf80f1784be176fb4}{
+double \hyperlink{classVertex_1318130e63fc95daf80f1784be176fb4}{m\_\-pt\-Sum2Charged}}
+\label{classVertex_1318130e63fc95daf80f1784be176fb4}
+
+\begin{CompactList}\small\item\em $ \sum{p_{\rm T}^{2}} $ of charged particles assigned to vertex \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Multiplicities}\par
+\begin{CompactItemize}
+\item 
+\hypertarget{classVertex_8fbb44899dca4a7d65e03d2696e6012f}{
+unsigned int \hyperlink{classVertex_8fbb44899dca4a7d65e03d2696e6012f}{m\_\-n\-Part}}
+\label{classVertex_8fbb44899dca4a7d65e03d2696e6012f}
+
+\begin{CompactList}\small\item\em All assigned particles. \item\end{CompactList}\item 
+\hypertarget{classVertex_c49c15591f623bdb6a2c360519fb51c0}{
+unsigned int \hyperlink{classVertex_c49c15591f623bdb6a2c360519fb51c0}{m\_\-n\-Part\-Charged}}
+\label{classVertex_c49c15591f623bdb6a2c360519fb51c0}
+
+\begin{CompactList}\small\item\em Assigned charged particles. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Container for vertex variables. 
+
+This data object holds kinematic and multiplicity information for a given vertex, in addition to the identification (a number). The object features a {\tt \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Vertex::Order\-Context}} state, which allows to compare two objects with respect to kinematic ordering and equality with respect to a client chosen metric. Available choices are $\sum{p_{\rm T}}$ of all or charged particles assigned to the vertex, and $\sum{p_{\rm T}^{2}}$ with the same particle selections. 
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{
+\index{Vertex@{Vertex}!InteractionType@{InteractionType}}
+\index{InteractionType@{InteractionType}!Vertex@{Vertex}}
+\subsubsection[InteractionType]{\setlength{\rightskip}{0pt plus 5cm}enum \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type}}}
+\label{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}
+
+
+Interaction type. 
+
+Describes the source of a particle. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classVertex_5faf15aab45361a72537f39050df6e52}{
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\subsubsection[Vertex]{\setlength{\rightskip}{0pt plus 5cm}Vertex::Vertex (\hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} {\em oc} = {\tt PTSUM2})}}
+\label{classVertex_5faf15aab45361a72537f39050df6e52}
+
+
+\hyperlink{classVertex}{Vertex} identifier is {\tt 0} \hypertarget{classVertex_52ba84694e25fdbc3ee22d461ed7edbd}{
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\subsubsection[Vertex]{\setlength{\rightskip}{0pt plus 5cm}Vertex::Vertex (int {\em vtx}, \hyperlink{classVertex_40a06cc3fde98913c8259e3c11cd37ec}{Order\-Context} {\em oc} = {\tt PTSUM2})}}
+\label{classVertex_52ba84694e25fdbc3ee22d461ed7edbd}
+
+
+\hyperlink{classVertex}{Vertex} indentifier is client defined \hypertarget{classVertex_f0cf7fa1f632e6d3a17eda8f29795a08}{
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\subsubsection[Vertex]{\setlength{\rightskip}{0pt plus 5cm}Vertex::Vertex (const \hyperlink{classVertex}{Vertex} \& {\em vertex})}}
+\label{classVertex_f0cf7fa1f632e6d3a17eda8f29795a08}
+
+
+Copy constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vertex}]reference to non-modifiable {\tt \hyperlink{classVertex}{Vertex}} object \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classVertex_074af7ae6f1948dbe9704516ed7575f4}{
+\index{Vertex@{Vertex}!addParticle@{addParticle}}
+\index{addParticle@{addParticle}!Vertex@{Vertex}}
+\subsubsection[addParticle]{\setlength{\rightskip}{0pt plus 5cm}void Vertex::add\-Particle (const fastjet::Pseudo\-Jet \& {\em p\-Jet})}}
+\label{classVertex_074af7ae6f1948dbe9704516ed7575f4}
+
+
+Add a particle or jet to the vertex. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Jet}]reference to non-modifiable {\tt fastjet::Pseudo\-Jet} object\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]This method does not actually add a particle to a vertex, as {\tt \hyperlink{classVertex}{Vertex}} does not hold references to particles. Rather, particles hold referencest to vertices. Here the various vertex\end{Desc}
+characteristics are updated according to the {\tt Particle\-Info} object attached to the {\tt fastjet::Pseudo\-Jet}. \hypertarget{classVertex_d02d78d2a640cdc2f7ef1eb95f36ef79}{
+\index{Vertex@{Vertex}!operator=@{operator=}}
+\index{operator=@{operator=}!Vertex@{Vertex}}
+\subsubsection[operator=]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{classVertex}{Vertex} \& Vertex::operator= (const \hyperlink{classVertex}{Vertex} \& {\em vertex})}}
+\label{classVertex_d02d78d2a640cdc2f7ef1eb95f36ef79}
+
+
+Assignment operator. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vertex}]reference to non-modifiable {\tt \hyperlink{classVertex}{Vertex}} object \end{description}
+\end{Desc}
+
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Event.h\item 
+Event.cxx\end{CompactItemize}

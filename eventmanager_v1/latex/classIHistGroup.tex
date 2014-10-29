@@ -1,0 +1,101 @@
+\hypertarget{classIHistGroup}{
+\section{IHist\-Group Class Reference}
+\label{classIHistGroup}\index{IHistGroup@{IHistGroup}}
+}
+Interface for {\tt Hist\-Group}.  
+
+
+{\tt \#include $<$Hist\-Group.h$>$}
+
+Inheritance diagram for IHist\-Group::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{classIHistGroup}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classIHistGroup_875e5a98e6404d6070ea4a69038dc440}{
+virtual \hyperlink{classIHistGroup_875e5a98e6404d6070ea4a69038dc440}{$\sim$IHist\-Group} ()}
+\label{classIHistGroup_875e5a98e6404d6070ea4a69038dc440}
+
+\begin{CompactList}\small\item\em Pure abstract base class destructor. \item\end{CompactList}\item 
+\hypertarget{classIHistGroup_1bc43ad781f786fbcb5fa90df5937abb}{
+virtual const std::string \& \hyperlink{classIHistGroup_1bc43ad781f786fbcb5fa90df5937abb}{name} () const =0}
+\label{classIHistGroup_1bc43ad781f786fbcb5fa90df5937abb}
+
+\begin{CompactList}\small\item\em Interface to group name. \item\end{CompactList}\item 
+\hypertarget{classIHistGroup_6ce6d05d480b9335b0389f3621089bd0}{
+virtual void \hyperlink{classIHistGroup_6ce6d05d480b9335b0389f3621089bd0}{write} ()=0}
+\label{classIHistGroup_6ce6d05d480b9335b0389f3621089bd0}
+
+\begin{CompactList}\small\item\em Interface to write out histograms. \item\end{CompactList}\item 
+\hypertarget{classIHistGroup_b7d9ecf4e70cdea9fa8a9565134619dd}{
+virtual void \hyperlink{classIHistGroup_b7d9ecf4e70cdea9fa8a9565134619dd}{print} ()=0}
+\label{classIHistGroup_b7d9ecf4e70cdea9fa8a9565134619dd}
+
+\begin{CompactList}\small\item\em Interface to print out information concerning the {\tt Hist\-Group}. \item\end{CompactList}\item 
+\hypertarget{classIHistGroup_0df3bdf9480f69215a09631a9d005da2}{
+virtual void \hyperlink{classIHistGroup_0df3bdf9480f69215a09631a9d005da2}{book} ()=0}
+\label{classIHistGroup_0df3bdf9480f69215a09631a9d005da2}
+
+\begin{CompactList}\small\item\em Booking interface. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fill interfaces}\par
+\begin{CompactItemize}
+\item 
+\hypertarget{classIHistGroup_59cbdf8b57d118f99b5769a4e9730c1c}{
+virtual void \textbf{fill} ()=0}
+\label{classIHistGroup_59cbdf8b57d118f99b5769a4e9730c1c}
+
+\item 
+virtual void \hyperlink{classIHistGroup_72fe456887f185ecbd538bdda92a9f5a}{fill} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet)=0
+\begin{CompactList}\small\item\em Fill from particle and/or jet final state. \item\end{CompactList}\item 
+virtual void \hyperlink{classIHistGroup_5ccd836df9105ea290ef680b977a0e0c}{fill} (\hyperlink{classEvent}{Event} \&r\-Evt)=0
+\begin{CompactList}\small\item\em Fill from {\tt \hyperlink{classEvent}{Event}}. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Interface for {\tt Hist\-Group}. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIHistGroup_5ccd836df9105ea290ef680b977a0e0c}{
+\index{IHistGroup@{IHist\-Group}!fill@{fill}}
+\index{fill@{fill}!IHistGroup@{IHist\-Group}}
+\subsubsection[fill]{\setlength{\rightskip}{0pt plus 5cm}virtual void IHist\-Group::fill (\hyperlink{classEvent}{Event} \& {\em r\-Evt})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classIHistGroup_5ccd836df9105ea290ef680b977a0e0c}
+
+
+Fill from {\tt \hyperlink{classEvent}{Event}}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em r\-Evt}]reference to non-modifiable event data \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classHistGroupBase_746a5fc493cc64c27e8274757034ecec}{Hist\-Group\-Base}, and \hyperlink{classHistGroupEvent_78f86b37c41ad91e5d14cfd082e64658}{Hist\-Group\-Event}.\hypertarget{classIHistGroup_72fe456887f185ecbd538bdda92a9f5a}{
+\index{IHistGroup@{IHist\-Group}!fill@{fill}}
+\index{fill@{fill}!IHistGroup@{IHist\-Group}}
+\subsubsection[fill]{\setlength{\rightskip}{0pt plus 5cm}virtual void IHist\-Group::fill (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em v\-Jet})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classIHistGroup_72fe456887f185ecbd538bdda92a9f5a}
+
+
+Fill from particle and/or jet final state. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em v\-Jet}]reference to non-modifiable list of particles and/or jets represented by {\tt fastjet::Pseudo\-Jet} \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classHistGroupBase_ea81dcbe971622e6c6f4f8c5bea582d2}{Hist\-Group\-Base}, and \hyperlink{classHistGroupEvent_7cdf3dd95af609b72fa981a389a21070}{Hist\-Group\-Event}.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+Hist\-Group.h\end{CompactItemize}

@@ -1,0 +1,59 @@
+\hypertarget{classSW__AbsId}{
+\section{SW\_\-Abs\-Id Class Reference}
+\label{classSW__AbsId}\index{SW_AbsId@{SW\_\-AbsId}}
+}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classSW__AbsId_b3a21665aa16f81fa7a1020558917bfe}{SW\_\-Abs\-Id} (unsigned int id)
+\item 
+virtual bool \hyperlink{classSW__AbsId_07215949f2ea5311ce909443e5be8ee5}{pass} (const Pseudo\-Jet \&particle) const 
+\item 
+\hypertarget{classSW__AbsId_66935e7a91017bd2e4cf7a5364279b07}{
+virtual std::string \hyperlink{classSW__AbsId_66935e7a91017bd2e4cf7a5364279b07}{description} () const }
+\label{classSW__AbsId_66935e7a91017bd2e4cf7a5364279b07}
+
+\begin{CompactList}\small\item\em returns a description of the worker \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classSW__AbsId_44b01d940f71b7893945f536acdcf8ae}{
+unsigned int \textbf{\_\-id}}
+\label{classSW__AbsId_44b01d940f71b7893945f536acdcf8ae}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+the worker that really does the job in the shadow of the selector 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSW__AbsId_b3a21665aa16f81fa7a1020558917bfe}{
+\index{SW_AbsId@{SW\_\-Abs\-Id}!SW_AbsId@{SW\_\-AbsId}}
+\index{SW_AbsId@{SW\_\-AbsId}!SW_AbsId@{SW\_\-Abs\-Id}}
+\subsubsection[SW\_\-AbsId]{\setlength{\rightskip}{0pt plus 5cm}SW\_\-Abs\-Id::SW\_\-Abs\-Id (unsigned int {\em id})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classSW__AbsId_b3a21665aa16f81fa7a1020558917bfe}
+
+
+ctor with specification of \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em id}]the id we'll match \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSW__AbsId_07215949f2ea5311ce909443e5be8ee5}{
+\index{SW_AbsId@{SW\_\-Abs\-Id}!pass@{pass}}
+\index{pass@{pass}!SW_AbsId@{SW\_\-Abs\-Id}}
+\subsubsection[pass]{\setlength{\rightskip}{0pt plus 5cm}virtual bool SW\_\-Abs\-Id::pass (const Pseudo\-Jet \& {\em particle}) const\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classSW__AbsId_07215949f2ea5311ce909443e5be8ee5}
+
+
+return true if the jet carries a large enough fraction of the reference. Throw an error if the reference is not initialised. 
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+Extra\-Selectors.cxx\end{CompactItemize}

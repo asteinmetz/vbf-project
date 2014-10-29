@@ -1,0 +1,258 @@
+\hypertarget{namespaceConfiguration}{
+\section{Configuration Namespace Reference}
+\label{namespaceConfiguration}\index{Configuration@{Configuration}}
+}
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data}
+\begin{CompactList}\small\item\em \hyperlink{namespaceConfiguration}{Configuration} data container. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Extractor template and specializations}
+\begin{CompactItemize}
+\item 
+template$<$class T$>$ bool \hyperlink{namespaceConfiguration_1d121b798bbbd17f070deb2cbe29076f}{extract\-Tag} (const std::string \&tag\-Str, T \&value, const std::string \&delimiter=\char`\"{}=\char`\"{})
+\begin{CompactList}\small\item\em Basic generalization. \item\end{CompactList}\item 
+template$<$$>$ bool \hyperlink{namespaceConfiguration_76bd2eb20a53277e56bb0149ef306281}{extract\-Tag} (const std::string \&tag\-Str, int \&value, const std::string \&delimiter)
+\begin{CompactList}\small\item\em Specialization for type {\tt int}. \item\end{CompactList}\item 
+template$<$$>$ bool \hyperlink{namespaceConfiguration_98cb275ddb4af5ad9a8436ea7436d370}{extract\-Tag} (const std::string \&tag\-Str, long int \&value, const std::string \&delimiter)
+\begin{CompactList}\small\item\em Specialization for type `long int`. \item\end{CompactList}\item 
+template$<$$>$ bool \hyperlink{namespaceConfiguration_e1178315ef9eec7f06ba80c1ef2acb5f}{extract\-Tag} (const std::string \&tag\-Str, long long int \&value, const std::string \&delimiter)
+\begin{CompactList}\small\item\em Specialization for type `long long int`. \item\end{CompactList}\item 
+template$<$$>$ bool \hyperlink{namespaceConfiguration_2ccfdb18a3633ba97cd30f7d5ff1b198}{extract\-Tag} (const std::string \&tag\-Str, unsigned int \&value, const std::string \&delimiter)
+\begin{CompactList}\small\item\em Specialization for type `unsigned int`. \item\end{CompactList}\item 
+template$<$$>$ bool \hyperlink{namespaceConfiguration_bdc6610189d8622499b18cf9dd955e01}{extract\-Tag} (const std::string \&tag\-Str, float \&value, const std::string \&delimiter)
+\begin{CompactList}\small\item\em Specialization for type `float`. \item\end{CompactList}\item 
+template$<$$>$ bool \hyperlink{namespaceConfiguration_39f1934324f5782301ac4372c970bbd7}{extract\-Tag} (const std::string \&tag\-Str, double \&value, const std::string \&delimiter)
+\begin{CompactList}\small\item\em Specialization for type `double`. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Client configuration data management}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceConfiguration_98b61fda0256fa043e2223c21c9cc363}{
+bool \textbf{add\-Config} (const std::string \&key, const std::string \&data, const std::string \&cmt=\char`\"{}client data\char`\"{})}
+\label{namespaceConfiguration_98b61fda0256fa043e2223c21c9cc363}
+
+\item 
+\hypertarget{namespaceConfiguration_474c462cac1b9fc3dfede75058ee88db}{
+bool \textbf{get\-Config\-Comment} (const std::string \&key, std::string \&cmt)}
+\label{namespaceConfiguration_474c462cac1b9fc3dfede75058ee88db}
+
+\item 
+\hypertarget{namespaceConfiguration_3983f50cada1abb506444079e9f6c568}{
+template$<$class C$>$ bool \textbf{get\-Config} (const std::string \&key, C \&data)}
+\label{namespaceConfiguration_3983f50cada1abb506444079e9f6c568}
+
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceConfiguration_34903f1cb53117431c95c68e85ae19d3}{
+\hyperlink{classUserAnalysisBase}{User\-Analysis\-Base} \& \hyperlink{namespaceConfiguration_34903f1cb53117431c95c68e85ae19d3}{get\-Analysis} (Data\-Frame $\ast$signal\-Server, Data\-Frame $\ast$pileup\-Server)}
+\label{namespaceConfiguration_34903f1cb53117431c95c68e85ae19d3}
+
+\begin{CompactList}\small\item\em return a reference to the analysis specified on the command line \item\end{CompactList}\item 
+void \hyperlink{namespaceConfiguration_abb30e1934601532c3fee5dc06c9e2f8}{interpret\-Config} (int argc, char $\ast$$\ast$argv, \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data} \&config)
+\begin{CompactList}\small\item\em Interpret configuration from command line arguments. \item\end{CompactList}\item 
+void \hyperlink{namespaceConfiguration_c58339bca4863c15eee2d3bfc7f2a563}{print\-Config} (const \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data} \&config)
+\begin{CompactList}\small\item\em Print configuration. \item\end{CompactList}\item 
+\hypertarget{namespaceConfiguration_6f1c4d1fd0cc68691740aa1e58293997}{
+void \hyperlink{namespaceConfiguration_6f1c4d1fd0cc68691740aa1e58293997}{print\-Help} ()}
+\label{namespaceConfiguration_6f1c4d1fd0cc68691740aa1e58293997}
+
+\begin{CompactList}\small\item\em Command line help. \item\end{CompactList}\item 
+bool \hyperlink{namespaceConfiguration_0106b3f61292a595d6c4cc92c8c4812e}{compare\-Strings} (const std::string \&str1, const std::string \&str2, bool strong=true)
+\begin{CompactList}\small\item\em Case insensitive string comparator. \item\end{CompactList}\item 
+\hypertarget{namespaceConfiguration_f95098a185dfb00ed8c6728b127e11e9}{
+bool \textbf{add\-Config} (const std::string \&key, const std::string \&data, const std::string \&cmt)}
+\label{namespaceConfiguration_f95098a185dfb00ed8c6728b127e11e9}
+
+\item 
+\hypertarget{namespaceConfiguration_474c462cac1b9fc3dfede75058ee88db}{
+bool \textbf{get\-Config\-Comment} (const std::string \&key, std::string \&cmt)}
+\label{namespaceConfiguration_474c462cac1b9fc3dfede75058ee88db}
+
+\item 
+\hypertarget{namespaceConfiguration_54720a0510074ea2252586b41c5932d8}{
+bool \textbf{get\-Filter} (fastjet::Filter \&filter, double Rjet, fastjet::Background\-Estimator\-Base $\ast$bge=0, const std::string name=\char`\"{}filter\char`\"{})}
+\label{namespaceConfiguration_54720a0510074ea2252586b41c5932d8}
+
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\hypertarget{namespaceConfiguration_66185a2e6698bc6277255f4513de564b}{
+fastjet::Shared\-Ptr$<$ \hyperlink{classUserAnalysisBase}{User\-Analysis\-Base} $>$ \textbf{config\-Analysis\-Ptr}}
+\label{namespaceConfiguration_66185a2e6698bc6277255f4513de564b}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Collects data structures and functions configuring the analysis job. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceConfiguration_abb30e1934601532c3fee5dc06c9e2f8}{
+\index{Configuration@{Configuration}!interpretConfig@{interpretConfig}}
+\index{interpretConfig@{interpretConfig}!Configuration@{Configuration}}
+\subsubsection[interpretConfig]{\setlength{\rightskip}{0pt plus 5cm}void Configuration::interpret\-Config (int {\em argc}, char $\ast$$\ast$ {\em argv}, Config\-Data \& {\em config})}}
+\label{namespaceConfiguration_abb30e1934601532c3fee5dc06c9e2f8}
+
+
+Interpret configuration from command line arguments. 
+
+Extracted command line arguments are stored in {\tt \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data}} object.
+
+\begin{Desc}
+\item[Note:]Only syntax supported right now `--argname=$<$argument$>$` - no spaces allowed around \char`\"{}=\char`\"{}.\end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em argc}]number of command line words \item[\mbox{$\leftarrow$} {\em argv}]list of command line words/arguments \item[\mbox{$\rightarrow$} {\em config}]reference to modifiable {\tt \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data}} object \end{description}
+\end{Desc}
+\hypertarget{namespaceConfiguration_c58339bca4863c15eee2d3bfc7f2a563}{
+\index{Configuration@{Configuration}!printConfig@{printConfig}}
+\index{printConfig@{printConfig}!Configuration@{Configuration}}
+\subsubsection[printConfig]{\setlength{\rightskip}{0pt plus 5cm}void Configuration::print\-Config (const Config\-Data \& {\em config})}}
+\label{namespaceConfiguration_c58339bca4863c15eee2d3bfc7f2a563}
+
+
+Print configuration. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em config}]reference to non-modifiable {\tt \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data}} object \end{description}
+\end{Desc}
+\hypertarget{namespaceConfiguration_0106b3f61292a595d6c4cc92c8c4812e}{
+\index{Configuration@{Configuration}!compareStrings@{compareStrings}}
+\index{compareStrings@{compareStrings}!Configuration@{Configuration}}
+\subsubsection[compareStrings]{\setlength{\rightskip}{0pt plus 5cm}bool Configuration::compare\-Strings (const std::string \& {\em str1}, const std::string \& {\em str2}, bool {\em strong} = {\tt true})}}
+\label{namespaceConfiguration_0106b3f61292a595d6c4cc92c8c4812e}
+
+
+Case insensitive string comparator. 
+
+This function compares two strings without sensitivity to the case of the characters in them. It has two modes. The $\ast$strong$\ast$ comparison is successful if all characters are identical (except case) and the number of characters in each string is identical, too. The weak comparison is successful if the the first {\tt n} characters of a string are identical (except case). Here {\tt n} is defined as the number of characters in the shorter string.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em str1}]first string \item[\mbox{$\leftarrow$} {\em str2}]second string \item[\mbox{$\leftarrow$} {\em strong}]optional, default {\tt true} means strong comparison \end{description}
+\end{Desc}
+\hypertarget{namespaceConfiguration_1d121b798bbbd17f070deb2cbe29076f}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ bool Configuration::extract\-Tag (const std::string \& {\em tag\-Str}, T \& {\em value}, const std::string \& {\em delimiter} = {\tt \char`\"{}=\char`\"{}})}}
+\label{namespaceConfiguration_1d121b798bbbd17f070deb2cbe29076f}
+
+
+Basic generalization. 
+
+Works for all types which can be constructed from a {\tt std::string}.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}
+\hypertarget{namespaceConfiguration_76bd2eb20a53277e56bb0149ef306281}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$$>$ bool Configuration::extract\-Tag$<$ int $>$ (const std::string \& {\em tag\-Str}, int \& {\em value}, const std::string \& {\em delimiter})}}
+\label{namespaceConfiguration_76bd2eb20a53277e56bb0149ef306281}
+
+
+Specialization for type {\tt int}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}
+\hypertarget{namespaceConfiguration_98cb275ddb4af5ad9a8436ea7436d370}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$$>$ bool Configuration::extract\-Tag$<$ long int $>$ (const std::string \& {\em tag\-Str}, long int \& {\em value}, const std::string \& {\em delimiter})}}
+\label{namespaceConfiguration_98cb275ddb4af5ad9a8436ea7436d370}
+
+
+Specialization for type `long int`. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}
+\hypertarget{namespaceConfiguration_e1178315ef9eec7f06ba80c1ef2acb5f}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$$>$ bool Configuration::extract\-Tag$<$ long long int $>$ (const std::string \& {\em tag\-Str}, long long int \& {\em value}, const std::string \& {\em delimiter})}}
+\label{namespaceConfiguration_e1178315ef9eec7f06ba80c1ef2acb5f}
+
+
+Specialization for type `long long int`. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}
+\hypertarget{namespaceConfiguration_2ccfdb18a3633ba97cd30f7d5ff1b198}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$$>$ bool Configuration::extract\-Tag$<$ unsigned int $>$ (const std::string \& {\em tag\-Str}, unsigned int \& {\em value}, const std::string \& {\em delimiter})}}
+\label{namespaceConfiguration_2ccfdb18a3633ba97cd30f7d5ff1b198}
+
+
+Specialization for type `unsigned int`. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}
+\hypertarget{namespaceConfiguration_bdc6610189d8622499b18cf9dd955e01}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$$>$ bool Configuration::extract\-Tag$<$ float $>$ (const std::string \& {\em tag\-Str}, float \& {\em value}, const std::string \& {\em delimiter})}}
+\label{namespaceConfiguration_bdc6610189d8622499b18cf9dd955e01}
+
+
+Specialization for type `float`. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}
+\hypertarget{namespaceConfiguration_39f1934324f5782301ac4372c970bbd7}{
+\index{Configuration@{Configuration}!extractTag@{extractTag}}
+\index{extractTag@{extractTag}!Configuration@{Configuration}}
+\subsubsection[extractTag]{\setlength{\rightskip}{0pt plus 5cm}template$<$$>$ bool Configuration::extract\-Tag$<$ double $>$ (const std::string \& {\em tag\-Str}, double \& {\em value}, const std::string \& {\em delimiter})}}
+\label{namespaceConfiguration_39f1934324f5782301ac4372c970bbd7}
+
+
+Specialization for type `double`. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em tag\-Str}]string to be inspected \item[\mbox{$\rightarrow$} {\em value}]value to be extracted from string \item[\mbox{$\leftarrow$} {\em delimiter}]character before value (optional, default \char`\"{}=\char`\"{})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if value extraction worked. \end{Desc}

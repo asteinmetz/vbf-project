@@ -1,0 +1,477 @@
+\hypertarget{classConfiguration_1_1ConfigData}{
+\section{Configuration::Config\-Data Class Reference}
+\label{classConfiguration_1_1ConfigData}\index{Configuration::ConfigData@{Configuration::ConfigData}}
+}
+\hyperlink{namespaceConfiguration}{Configuration} data container.  
+
+
+{\tt \#include $<$Configuration.h$>$}
+
+\subsection*{Map of client defined configurations}
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_49fc83e7658c150eea1398002ba840b8}{
+static const map\_\-t \& \textbf{config\-Map} ()}
+\label{classConfiguration_1_1ConfigData_49fc83e7658c150eea1398002ba840b8}
+
+\item 
+static map\_\-t \textbf{m\_\-config\-Map}
+\end{CompactItemize}
+\subsection*{Public Types}
+\begin{Indent}{\bf Internal types}\par
+{\em Only published for helpers. Don't use! }\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_3702633f7eca5f4f349aba426c0e08c7}{
+typedef std::string \textbf{key\_\-t}}
+\label{classConfiguration_1_1ConfigData_3702633f7eca5f4f349aba426c0e08c7}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_8761ca8629c84e47bb075d11eeef42c7}{
+typedef std::pair$<$ std::string, std::string $>$ \textbf{data\_\-t}}
+\label{classConfiguration_1_1ConfigData_8761ca8629c84e47bb075d11eeef42c7}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_03ab639404bb9cc2e187bf7e64b3413f}{
+typedef std::map$<$ key\_\-t, data\_\-t $>$ \textbf{map\_\-t}}
+\label{classConfiguration_1_1ConfigData_03ab639404bb9cc2e187bf7e64b3413f}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_2ecc5cc843312e6f724f412d9b894971}{
+\hyperlink{classConfiguration_1_1ConfigData_2ecc5cc843312e6f724f412d9b894971}{$\sim$Config\-Data} ()}
+\label{classConfiguration_1_1ConfigData_2ecc5cc843312e6f724f412d9b894971}
+
+\begin{CompactList}\small\item\em Destructor. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Query client-defined configurations}\par
+\begin{CompactItemize}
+\item 
+template$<$class C$>$ bool \hyperlink{classConfiguration_1_1ConfigData_6d0a1579cc1c75a659a43b1644977b57}{get\-Config} (const std::string \&key, C \&data)
+\begin{CompactList}\small\item\em General data look-up. \item\end{CompactList}\item 
+bool \hyperlink{classConfiguration_1_1ConfigData_02a4f9464ec6ef54ecb0d5ab622510d5}{add\-Config} (const std::string \&key, const std::string \&data, const std::string \&cmt=\char`\"{}client configuraton\char`\"{})
+\begin{CompactList}\small\item\em Add configuration data with a given key. \item\end{CompactList}\item 
+bool \hyperlink{classConfiguration_1_1ConfigData_bd01c225b3645f43d42a743128ef8a44}{get\-Config\-Comment} (const std::string \&key, std::string \&cmt)
+\begin{CompactList}\small\item\em Get comment associated with configuration. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Message/string content tests}\par
+{\em All functions in this group test a given string for qualifiers indicating \char`\"{}invalid\char`\"{}, \char`\"{}default\char`\"{}, or \char`\"{}empty\char`\"{}.
+
+\begin{Desc}
+\item[Returns:]{\tt true} if string contains respective qualifier.\end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em str}]reference to non-modifiable string to be tested \end{description}
+\end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_077fe69f8e4730023b16bb046f167100}{
+bool \hyperlink{classConfiguration_1_1ConfigData_077fe69f8e4730023b16bb046f167100}{is\-Invalid} (const std::string \&str)}
+\label{classConfiguration_1_1ConfigData_077fe69f8e4730023b16bb046f167100}
+
+\begin{CompactList}\small\item\em Invalid string if {\tt true}. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_e80f5feecd07a36fc833e432311db5f6}{
+bool \hyperlink{classConfiguration_1_1ConfigData_e80f5feecd07a36fc833e432311db5f6}{is\-Default} (const std::string \&str)}
+\label{classConfiguration_1_1ConfigData_e80f5feecd07a36fc833e432311db5f6}
+
+\begin{CompactList}\small\item\em Default string if {\tt true}. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_895ac06ef5341187550d5341987c0eff}{
+bool \hyperlink{classConfiguration_1_1ConfigData_895ac06ef5341187550d5341987c0eff}{is\-Empty} (const std::string \&str)}
+\label{classConfiguration_1_1ConfigData_895ac06ef5341187550d5341987c0eff}
+
+\begin{CompactList}\small\item\em Empty string if {\tt true}. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Access to qualifier notation}\par
+{\em All functions in this group return a reference to a non-modifiable string containg the respective qualifier used to tag string contents. }\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_7570701c6c75028a72b3f8bf1fec3868}{
+const std::string \& \hyperlink{classConfiguration_1_1ConfigData_7570701c6c75028a72b3f8bf1fec3868}{string\-Tag\-Invalid} () const }
+\label{classConfiguration_1_1ConfigData_7570701c6c75028a72b3f8bf1fec3868}
+
+\begin{CompactList}\small\item\em String \char`\"{}invalid\char`\"{} qualification. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_4e9a827722b897310fa67d04ecb40b04}{
+const std::string \& \hyperlink{classConfiguration_1_1ConfigData_4e9a827722b897310fa67d04ecb40b04}{string\-Tag\-Default} () const }
+\label{classConfiguration_1_1ConfigData_4e9a827722b897310fa67d04ecb40b04}
+
+\begin{CompactList}\small\item\em String \char`\"{}default\char`\"{} qualification. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_066a671d437458cdbaafe686314d604e}{
+const std::string \& \hyperlink{classConfiguration_1_1ConfigData_066a671d437458cdbaafe686314d604e}{string\-Tag\-Empty} () const }
+\label{classConfiguration_1_1ConfigData_066a671d437458cdbaafe686314d604e}
+
+\begin{CompactList}\small\item\em String \char`\"{}empty\char`\"{} qualification. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_359737a1691b374e353c2a037cdda597}{
+static \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data} $\ast$ \hyperlink{classConfiguration_1_1ConfigData_359737a1691b374e353c2a037cdda597}{instance} ()}
+\label{classConfiguration_1_1ConfigData_359737a1691b374e353c2a037cdda597}
+
+\begin{CompactList}\small\item\em Picking up pointer to singleton instance. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_662e9cb502da27792e201f2a75de1a32}{
+bool \hyperlink{classConfiguration_1_1ConfigData_662e9cb502da27792e201f2a75de1a32}{is\-Active}}
+\label{classConfiguration_1_1ConfigData_662e9cb502da27792e201f2a75de1a32}
+
+\begin{CompactList}\small\item\em Status flag. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_f8ae35f3d307fe427416f50d0f9d8295}{
+int \hyperlink{classConfiguration_1_1ConfigData_f8ae35f3d307fe427416f50d0f9d8295}{mu}}
+\label{classConfiguration_1_1ConfigData_f8ae35f3d307fe427416f50d0f9d8295}
+
+\begin{CompactList}\small\item\em Number of interactions. \item\end{CompactList}\item 
+int \hyperlink{classConfiguration_1_1ConfigData_6b90b096ac0ef76c732cfb9ac3b59a1c}{n\-Events}
+\begin{CompactList}\small\item\em Number of requested signal events. \item\end{CompactList}\item 
+std::string \hyperlink{classConfiguration_1_1ConfigData_c85dc7aae623ecb7e728e582756d920f}{main\-Name}
+\begin{CompactList}\small\item\em Application name. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_f5c60eaba1d3bd239d1d306f9eeefbe9}{
+std::string \hyperlink{classConfiguration_1_1ConfigData_f5c60eaba1d3bd239d1d306f9eeefbe9}{pileup\-File\-List}}
+\label{classConfiguration_1_1ConfigData_f5c60eaba1d3bd239d1d306f9eeefbe9}
+
+\begin{CompactList}\small\item\em Name of file containing list of files with pile-up events. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_2b263dd4b7d13109e5103d240465f826}{
+std::string \hyperlink{classConfiguration_1_1ConfigData_2b263dd4b7d13109e5103d240465f826}{signal\-File\-List}}
+\label{classConfiguration_1_1ConfigData_2b263dd4b7d13109e5103d240465f826}
+
+\begin{CompactList}\small\item\em Name of file containing list of files with signal events. \item\end{CompactList}\item 
+std::string \hyperlink{classConfiguration_1_1ConfigData_e750c9a99a34765d813ab55871ea3512}{output\-File}
+\begin{CompactList}\small\item\em Output file name. \item\end{CompactList}\item 
+bool \hyperlink{classConfiguration_1_1ConfigData_7428762deac046b18b0fdf5abd895696}{use\-Mu}
+\begin{CompactList}\small\item\em Flags use of automatic output file name creation. \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_9179f4b0160625351fc932744652cc0f}{
+std::string \hyperlink{classConfiguration_1_1ConfigData_9179f4b0160625351fc932744652cc0f}{signal\-Tree\-Name}}
+\label{classConfiguration_1_1ConfigData_9179f4b0160625351fc932744652cc0f}
+
+\begin{CompactList}\small\item\em {\tt ROOT} tree/chain name for signal events \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_96d3db63c3fd9c00f66defd37263c7df}{
+std::string \hyperlink{classConfiguration_1_1ConfigData_96d3db63c3fd9c00f66defd37263c7df}{pileup\-Tree\-Name}}
+\label{classConfiguration_1_1ConfigData_96d3db63c3fd9c00f66defd37263c7df}
+
+\begin{CompactList}\small\item\em {\tt ROOT} tree/chain name for pile-up events \item\end{CompactList}\item 
+\hypertarget{classConfiguration_1_1ConfigData_4994f8c5250fb546e51d8604ceb0a108}{
+std::string \hyperlink{classConfiguration_1_1ConfigData_4994f8c5250fb546e51d8604ceb0a108}{analysis\-Name}}
+\label{classConfiguration_1_1ConfigData_4994f8c5250fb546e51d8604ceb0a108}
+
+\begin{CompactList}\small\item\em {\tt Name} of the analysis we'll use \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Internal state control}\par
+{\em Flags controlling the configuration state of individual variables and the configuration itself
+
+The variables are publicly accessible but of limited use for clients. Typically, a value of {\tt false} indicates a default setting for the corresponding data. }\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_e57edbd37ba17dd082f2627cb08f2874}{
+bool \textbf{mu\-Tag}}
+\label{classConfiguration_1_1ConfigData_e57edbd37ba17dd082f2627cb08f2874}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_1e7b0e92998c5765c305160ff28dfb0d}{
+bool \textbf{n\-Events\-Tag}}
+\label{classConfiguration_1_1ConfigData_1e7b0e92998c5765c305160ff28dfb0d}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_ef61f23f740b4a11764a4ddaff8b15f3}{
+bool \textbf{main\-Name\-Tag}}
+\label{classConfiguration_1_1ConfigData_ef61f23f740b4a11764a4ddaff8b15f3}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_b05fd7162fd73c45468693cb03f45957}{
+bool \textbf{pileup\-File\-List\-Tag}}
+\label{classConfiguration_1_1ConfigData_b05fd7162fd73c45468693cb03f45957}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_f878529b4dc16bc6ce87c11b46e1da2d}{
+bool \textbf{signal\-File\-List\-Tag}}
+\label{classConfiguration_1_1ConfigData_f878529b4dc16bc6ce87c11b46e1da2d}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_03980d9073936a5a9c75a5ea73b83d46}{
+bool \textbf{output\-File\-Tag}}
+\label{classConfiguration_1_1ConfigData_03980d9073936a5a9c75a5ea73b83d46}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_62fde1c835a7ae553b8ca0392a1bacb1}{
+bool \textbf{use\-Mu\-Tag}}
+\label{classConfiguration_1_1ConfigData_62fde1c835a7ae553b8ca0392a1bacb1}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_70aa880a39f0cb6512cde3265e76a29e}{
+bool \textbf{signal\-Tree\-Name\-Tag}}
+\label{classConfiguration_1_1ConfigData_70aa880a39f0cb6512cde3265e76a29e}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_37655017a16da3e5f5b8422bf43efbbf}{
+bool \textbf{pileup\-Tree\-Name\-Tag}}
+\label{classConfiguration_1_1ConfigData_37655017a16da3e5f5b8422bf43efbbf}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_44e86b9a946448eaef76cce8d1b458f4}{
+bool \textbf{analysis\-Name\-Tag}}
+\label{classConfiguration_1_1ConfigData_44e86b9a946448eaef76cce8d1b458f4}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_fb47c0bf85d360112fd9eacb78786b68}{
+bool \textbf{is\-Active\-Tag}}
+\label{classConfiguration_1_1ConfigData_fb47c0bf85d360112fd9eacb78786b68}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Static Public Attributes}
+\begin{Indent}{\bf Keywords for command line tags}\par
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_ff0bc02c74ec7b2eea06e41181d214d4}{
+static std::string \textbf{mu\-Line\-Tag} = \char`\"{}mu\char`\"{}}
+\label{classConfiguration_1_1ConfigData_ff0bc02c74ec7b2eea06e41181d214d4}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_f68fcd1e57c8013a44b8033580bdce96}{
+static std::string \textbf{n\-Events\-Line\-Tag} = \char`\"{}nevts\char`\"{}}
+\label{classConfiguration_1_1ConfigData_f68fcd1e57c8013a44b8033580bdce96}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_c848cb9d20038c1880650b58b82ef028}{
+static std::string \textbf{pileup\-File\-List\-Line\-Tag} = \char`\"{}pupflist\char`\"{}}
+\label{classConfiguration_1_1ConfigData_c848cb9d20038c1880650b58b82ef028}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_540c3d56b94426ec46c20eaa6230f669}{
+static std::string \textbf{signal\-File\-List\-Line\-Tag} = \char`\"{}sigflist\char`\"{}}
+\label{classConfiguration_1_1ConfigData_540c3d56b94426ec46c20eaa6230f669}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_fdd9daabe505ca16b029f7ab9202b5ce}{
+static std::string \textbf{output\-File\-Line\-Tag} = \char`\"{}outfile\char`\"{}}
+\label{classConfiguration_1_1ConfigData_fdd9daabe505ca16b029f7ab9202b5ce}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_0c05454387854ec1965de76002a7e19b}{
+static std::string \textbf{use\-Mu\-Line\-Tag} = \char`\"{}use\-Mu\char`\"{}}
+\label{classConfiguration_1_1ConfigData_0c05454387854ec1965de76002a7e19b}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_92e700ceda1a36688a7cdd648cb6e1d6}{
+static std::string \textbf{help\-Line\-Tag} = \char`\"{}help\char`\"{}}
+\label{classConfiguration_1_1ConfigData_92e700ceda1a36688a7cdd648cb6e1d6}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_ce4b5c8b1d19bfa5bcc83bb9632de0d0}{
+static std::string \textbf{signal\-Tree\-Name\-Line\-Tag} = \char`\"{}signal\-Tree\char`\"{}}
+\label{classConfiguration_1_1ConfigData_ce4b5c8b1d19bfa5bcc83bb9632de0d0}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_01fd9cc5e04573e667a302d092ec0d9c}{
+static std::string \textbf{pileup\-Tree\-Name\-Line\-Tag} = \char`\"{}pileup\-Tree\char`\"{}}
+\label{classConfiguration_1_1ConfigData_01fd9cc5e04573e667a302d092ec0d9c}
+
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_72fb8dc529382bdc2b5530083f99b8f0}{
+static std::string \textbf{analysis\-Line\-Tag} = \char`\"{}analysis\char`\"{}}
+\label{classConfiguration_1_1ConfigData_72fb8dc529382bdc2b5530083f99b8f0}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_906d1b1a75f5bbe05ba4bf099b5548c2}{
+\hyperlink{classConfiguration_1_1ConfigData_906d1b1a75f5bbe05ba4bf099b5548c2}{Config\-Data} ()}
+\label{classConfiguration_1_1ConfigData_906d1b1a75f5bbe05ba4bf099b5548c2}
+
+\begin{CompactList}\small\item\em Singleton instance constructor. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classConfiguration_1_1ConfigData_0b8a04cd0b688e7498f15b6cfaed6427}{
+static \hyperlink{classConfiguration_1_1ConfigData}{Config\-Data} $\ast$ \hyperlink{classConfiguration_1_1ConfigData_0b8a04cd0b688e7498f15b6cfaed6427}{m\_\-instance} = 0}
+\label{classConfiguration_1_1ConfigData_0b8a04cd0b688e7498f15b6cfaed6427}
+
+\begin{CompactList}\small\item\em Pointer to only instance. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Default strings}\par
+{\em Internally used for invalid, default, and empty string tests. }\begin{CompactItemize}
+\item 
+static std::string \hyperlink{classConfiguration_1_1ConfigData_71636ef903c56dca29298a03a987978a}{m\_\-invalid\-String} = \char`\"{}INVALID\char`\"{}
+\item 
+static std::string \hyperlink{classConfiguration_1_1ConfigData_2444b2697d81af2d1120f04c34d77857}{m\_\-default\-String} = \char`\"{}DEFAULT\char`\"{}
+\item 
+static std::string \hyperlink{classConfiguration_1_1ConfigData_dd898944bb87347fd5ebf9697d42dc7a}{m\_\-null\-String} = \char`\"{}NONE\char`\"{}
+\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\hyperlink{namespaceConfiguration}{Configuration} data container. 
+
+Singleton instance shares configuration data across all modules.This container maintains a keyed store of configuration keys and the associated data (usually given in the command line and/or an input file). The interpreter can only recognize fairly simple syntax of the form 
+
+\begin{Code}\begin{verbatim} {.cpp} 
+ --<key>=<value>
+ --<key>
+\end{verbatim}\end{Code}
+
+
+
+No spaces are allowed between the {\tt --} sign and the keyword {\tt } $<$key$>$, and around the assignment symbol (if any). Also, any quotes or double quotes around the {\tt value} are likely removed. The option without {\tt value} indicates a boolean switch, with the interpretation that the associated data word is {\tt true} of the switch is set. Full control on boolean switches can also be achieved by 
+
+\begin{Code}\begin{verbatim} {.cpp}
+ --<key>=true
+ --<key>=false
+\end{verbatim}\end{Code}
+
+ Note that in this case the test on the {\tt true} or  strings is case insensitive, meaning {\tt --$<$key$>$=True} yields the same result as {\tt --$<$key$>$=true}.
+
+Keywords need to be sufficiently different. E.g., 
+
+\begin{Code}\begin{verbatim} {.cpp}
+ --outputFile=test.root
+ --outoutFileOpts=recreate
+\end{verbatim}\end{Code}
+
+ will not work, as the system will overwrite the {\tt output\-File} when encountering {\tt output\-File\-Opts}. This should probably be fixed soon.
+
+The data is internally stored as {\tt std::string}, there is no particular attempt made to guess the data value type. On the fly conversion in the query to retrieve the data associated with a {\tt key} is available for simple data types like {\tt int}, `long int`, `long long int`, {\tt float}, {\tt double}, and {\tt bool}. In addition to these POD types the stored value can always be accessed in its internal representation {\tt std::string}.
+
+In addition, client defined configuration data can be stored. The data has to be provided with same syntax as discussed above, with a client chosen keyword and, if appropriate, value. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classConfiguration_1_1ConfigData_02a4f9464ec6ef54ecb0d5ab622510d5}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!addConfig@{addConfig}}
+\index{addConfig@{addConfig}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[addConfig]{\setlength{\rightskip}{0pt plus 5cm}bool Configuration::Config\-Data::add\-Config (const std::string \& {\em key}, const std::string \& {\em data}, const std::string \& {\em cmt} = {\tt \char`\"{}client~configuraton\char`\"{}})}}
+\label{classConfiguration_1_1ConfigData_02a4f9464ec6ef54ecb0d5ab622510d5}
+
+
+Add configuration data with a given key. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em key}]key for data \item[\mbox{$\leftarrow$} {\em data}]string representing data word \item[\mbox{$\leftarrow$} {\em cmt}]optional comment for configuration\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if everything went well (no real error mode anyway).\end{Desc}
+\begin{Desc}
+\item[Note:]If data already exists for a given key, it is overwritten. \end{Desc}
+\hypertarget{classConfiguration_1_1ConfigData_6d0a1579cc1c75a659a43b1644977b57}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!getConfig@{getConfig}}
+\index{getConfig@{getConfig}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[getConfig]{\setlength{\rightskip}{0pt plus 5cm}template$<$class C$>$ bool Configuration::Config\-Data::get\-Config (const std::string \& {\em key}, C \& {\em data})}}
+\label{classConfiguration_1_1ConfigData_6d0a1579cc1c75a659a43b1644977b57}
+
+
+General data look-up. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em key}]key for data \item[\mbox{$\leftarrow$} {\em data}]reference to modifiable data word containing data found in look-up table on return\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if {\tt key} exists in map. If {\tt key} does not exist in map, {\tt false} is returned and the content of {\tt data} is unchanged. \end{Desc}
+\hypertarget{classConfiguration_1_1ConfigData_bd01c225b3645f43d42a743128ef8a44}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!getConfigComment@{getConfigComment}}
+\index{getConfigComment@{getConfigComment}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[getConfigComment]{\setlength{\rightskip}{0pt plus 5cm}bool Configuration::Config\-Data::get\-Config\-Comment (const std::string \& {\em key}, std::string \& {\em cmt})}}
+\label{classConfiguration_1_1ConfigData_bd01c225b3645f43d42a743128ef8a44}
+
+
+Get comment associated with configuration. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em key}]key for comment (same as for data) \item[{\em inout\mbox{]}}]cmt comment string filled on output\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if comment string is available. \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classConfiguration_1_1ConfigData_2280210c3f390f612f2ff9e30bbec594}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!m_configMap@{m\_\-configMap}}
+\index{m_configMap@{m\_\-configMap}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[m\_\-configMap]{\setlength{\rightskip}{0pt plus 5cm}Configuration::Config\-Data::map\_\-t Configuration::Config\-Data::m\_\-config\-Map\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classConfiguration_1_1ConfigData_2280210c3f390f612f2ff9e30bbec594}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} 
+  Configuration::ConfigData::map_t()
+\end{verbatim}\end{Code}
+\hypertarget{classConfiguration_1_1ConfigData_2444b2697d81af2d1120f04c34d77857}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!m_defaultString@{m\_\-defaultString}}
+\index{m_defaultString@{m\_\-defaultString}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[m\_\-defaultString]{\setlength{\rightskip}{0pt plus 5cm}std::string \hyperlink{classConfiguration_1_1ConfigData_2444b2697d81af2d1120f04c34d77857}{Configuration::Config\-Data::m\_\-default\-String} = \char`\"{}DEFAULT\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classConfiguration_1_1ConfigData_2444b2697d81af2d1120f04c34d77857}
+
+
+Default string tag \hypertarget{classConfiguration_1_1ConfigData_71636ef903c56dca29298a03a987978a}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!m_invalidString@{m\_\-invalidString}}
+\index{m_invalidString@{m\_\-invalidString}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[m\_\-invalidString]{\setlength{\rightskip}{0pt plus 5cm}std::string \hyperlink{classConfiguration_1_1ConfigData_71636ef903c56dca29298a03a987978a}{Configuration::Config\-Data::m\_\-invalid\-String} = \char`\"{}INVALID\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classConfiguration_1_1ConfigData_71636ef903c56dca29298a03a987978a}
+
+
+Invalid string tag \hypertarget{classConfiguration_1_1ConfigData_dd898944bb87347fd5ebf9697d42dc7a}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!m_nullString@{m\_\-nullString}}
+\index{m_nullString@{m\_\-nullString}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[m\_\-nullString]{\setlength{\rightskip}{0pt plus 5cm}std::string \hyperlink{classConfiguration_1_1ConfigData_dd898944bb87347fd5ebf9697d42dc7a}{Configuration::Config\-Data::m\_\-null\-String} = \char`\"{}NONE\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classConfiguration_1_1ConfigData_dd898944bb87347fd5ebf9697d42dc7a}
+
+
+Empty string tag \hypertarget{classConfiguration_1_1ConfigData_c85dc7aae623ecb7e728e582756d920f}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!mainName@{mainName}}
+\index{mainName@{mainName}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[mainName]{\setlength{\rightskip}{0pt plus 5cm}std::string \hyperlink{classConfiguration_1_1ConfigData_c85dc7aae623ecb7e728e582756d920f}{Configuration::Config\-Data::main\-Name}}}
+\label{classConfiguration_1_1ConfigData_c85dc7aae623ecb7e728e582756d920f}
+
+
+Application name. 
+
+Constructed automatically from {\tt argv}\mbox{[}0\mbox{]} for command line. Can be set in steering file using the keyword \char`\"{}main\-Name\char`\"{} (not yet implemented). \hypertarget{classConfiguration_1_1ConfigData_6b90b096ac0ef76c732cfb9ac3b59a1c}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!nEvents@{nEvents}}
+\index{nEvents@{nEvents}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[nEvents]{\setlength{\rightskip}{0pt plus 5cm}int \hyperlink{classConfiguration_1_1ConfigData_6b90b096ac0ef76c732cfb9ac3b59a1c}{Configuration::Config\-Data::n\-Events}}}
+\label{classConfiguration_1_1ConfigData_6b90b096ac0ef76c732cfb9ac3b59a1c}
+
+
+Number of requested signal events. 
+
+Total number of interactions per event is {\tt n\-Events} {\tt $\ast$} {\tt mu} .
+
+\begin{Desc}
+\item[Note:]This the number of requested events. The number of analyzed events is controlled by the number of events avaliable for signal events and pile-up events in the inout stream(s) such that the total number of analyzed events is equal to, or lower than, {\tt n\-Events} . \end{Desc}
+\hypertarget{classConfiguration_1_1ConfigData_e750c9a99a34765d813ab55871ea3512}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!outputFile@{outputFile}}
+\index{outputFile@{outputFile}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[outputFile]{\setlength{\rightskip}{0pt plus 5cm}std::string \hyperlink{classConfiguration_1_1ConfigData_e750c9a99a34765d813ab55871ea3512}{Configuration::Config\-Data::output\-File}}}
+\label{classConfiguration_1_1ConfigData_e750c9a99a34765d813ab55871ea3512}
+
+
+Output file name. 
+
+This can be the complete name in case of {\tt use\-Mu=true} . Else, this variable is used as a template for form the output file name, e.g., 
+
+\begin{Code}\begin{verbatim}   ConfigData::mu = 20;
+   ConfigData::outputFile = "test.root";  
+\end{verbatim}\end{Code}
+
+ on input creates file name {\tt output\-File=\char`\"{}test20}.root\char`\"{} . \hypertarget{classConfiguration_1_1ConfigData_7428762deac046b18b0fdf5abd895696}{
+\index{Configuration::ConfigData@{Configuration::Config\-Data}!useMu@{useMu}}
+\index{useMu@{useMu}!Configuration::ConfigData@{Configuration::Config\-Data}}
+\subsubsection[useMu]{\setlength{\rightskip}{0pt plus 5cm}bool \hyperlink{classConfiguration_1_1ConfigData_7428762deac046b18b0fdf5abd895696}{Configuration::Config\-Data::use\-Mu}}}
+\label{classConfiguration_1_1ConfigData_7428762deac046b18b0fdf5abd895696}
+
+
+Flags use of automatic output file name creation. 
+
+{\tt use\-Mu=true} generates outout file name explicitely containing the {\tt mu} value. 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Configuration.h\item 
+Configuration.cxx\end{CompactItemize}

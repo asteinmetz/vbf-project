@@ -1,0 +1,450 @@
+\hypertarget{classEvent}{
+\section{Event Class Reference}
+\label{classEvent}\index{Event@{Event}}
+}
+{\tt \#include $<$Event.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classEvent_cf4f8ae50e55e8f5a270e5029c0eb58d}{Event} (IFinal\-State\-Selector $\ast$p\-Sel=0)
+\begin{CompactList}\small\item\em Standard constructor. \item\end{CompactList}\item 
+\hypertarget{classEvent_0d9a5821a74edd8e0cf21e84744bac83}{
+\textbf{Event} (\hyperlink{classEvent}{Event} $\ast$parent, IFinal\-State\-Selector $\ast$p\-Sel=0)}
+\label{classEvent_0d9a5821a74edd8e0cf21e84744bac83}
+
+\item 
+\hypertarget{classEvent_881b105052e43714848f85bf5439fdb8}{
+virtual \hyperlink{classEvent_881b105052e43714848f85bf5439fdb8}{$\sim$Event} ()}
+\label{classEvent_881b105052e43714848f85bf5439fdb8}
+
+\begin{CompactList}\small\item\em Base class destructor. \item\end{CompactList}\item 
+\hypertarget{classEvent_f708ec288ea908a24c6da64ba2b1b4d1}{
+void \hyperlink{classEvent_f708ec288ea908a24c6da64ba2b1b4d1}{set\-Parent} (\hyperlink{classEvent}{Event} $\ast$p\-Evt)}
+\label{classEvent_f708ec288ea908a24c6da64ba2b1b4d1}
+
+\begin{CompactList}\small\item\em Set parent. \item\end{CompactList}\item 
+\hypertarget{classEvent_ee92420fb0d540eb40390ab6d9b70788}{
+\hyperlink{classEvent}{Event} $\ast$ \textbf{parent} ()}
+\label{classEvent_ee92420fb0d540eb40390ab6d9b70788}
+
+\item 
+virtual void \hyperlink{classEvent_d038b2da9c6d712e704e7c07ff3bf580}{reset} ()
+\begin{CompactList}\small\item\em Reset all {\tt \hyperlink{classEvent}{Event}} caches. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Add particle(s)}\par
+{\em All methods in this group return {\tt true} if adding the particle was successful. }\begin{CompactItemize}
+\item 
+virtual bool \hyperlink{classEvent_bed4fa66809b95131871c0e8040d6b2c}{add} (int ID, double charge, double px, double py, double pz, double m, int vtx=0, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type=Vertex::UNKNOWN)
+\begin{CompactList}\small\item\em Add particle using a set of variables. \item\end{CompactList}\item 
+virtual bool \hyperlink{classEvent_f14e917b52b542b5d3bcbc62524d3eda}{add} (const fastjet::Pseudo\-Jet \&p\-Jet)
+\begin{CompactList}\small\item\em Add a particle represented by a {\tt fastjet::Pseudo\-Jet}. \item\end{CompactList}\item 
+virtual bool \hyperlink{classEvent_4e9ebea3ebf37625b7dfc89c4839354a}{add} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet)
+\begin{CompactList}\small\item\em Add a list of particles represented by {\tt fastjet::Pseudo\-Jet}. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Check event content}\par
+\begin{CompactItemize}
+\item 
+\hypertarget{classEvent_82d35321ab3cfb184d96fc51414478c9}{
+virtual bool \hyperlink{classEvent_82d35321ab3cfb184d96fc51414478c9}{have\-Particle\-Event} ()}
+\label{classEvent_82d35321ab3cfb184d96fc51414478c9}
+
+\begin{CompactList}\small\item\em returns {\tt true} if stable particles in event \item\end{CompactList}\item 
+\hypertarget{classEvent_80f0f86ec7583375acb8276fe3dfa1e7}{
+virtual bool \hyperlink{classEvent_80f0f86ec7583375acb8276fe3dfa1e7}{have\-Partonic\-Event} ()}
+\label{classEvent_80f0f86ec7583375acb8276fe3dfa1e7}
+
+\begin{CompactList}\small\item\em returns {\tt true} if partons in event \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Event content access}\par
+{\em All methods in this group return a list of {\tt fastjet::Pseudo\-Jet} objects representing the requested part of the (particle/hadron level) event.
+
+\begin{Desc}
+\item[Note:]Particles may be subjected to general filters (final state selectors) if the {\tt \hyperlink{classEvent}{Event}} object receives a valid pointer to one of those at its construction.\end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000002}{Todo}]Access to partonic information not yet implemented. \end{Desc}
+}\begin{CompactItemize}
+\item 
+virtual std::vector$<$ fastjet::Pseudo\-Jet $>$ \hyperlink{classEvent_d2dbb1309f93d3ebc6279ce5022afe1f}{pseudo\-Jets} (int vtx=-1)
+\begin{CompactList}\small\item\em Retrieve all particles. \item\end{CompactList}\item 
+virtual std::vector$<$ fastjet::Pseudo\-Jet $>$ \hyperlink{classEvent_dc48cfe91cb7b2a10b83ba65584dbd41}{pseudo\-Jets} (bool charged, int vtx=-1)
+\begin{CompactList}\small\item\em Retrieve all charged/neutral particles. \item\end{CompactList}\item 
+virtual std::vector$<$ fastjet::Pseudo\-Jet $>$ \hyperlink{classEvent_387e8007b9b02f09cdc6bcbdfae839dd}{pseudo\-Jets} (\hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type)
+\begin{CompactList}\small\item\em Retrieve all particles from a given source. \item\end{CompactList}\item 
+virtual std::vector$<$ fastjet::Pseudo\-Jet $>$ \hyperlink{classEvent_2b3dad2b39e8832a106796f6f9e35a3b}{pseudo\-Jets} (bool charged, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type)
+\begin{CompactList}\small\item\em Retrieve all charged/neutral particles from a given source. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Event specifications}\par
+\begin{CompactItemize}
+\item 
+virtual bool \hyperlink{classEvent_91389b1bfa6a0d3647dd0e012be486a4}{empty} (int vtx\-Id=-1) const 
+\begin{CompactList}\small\item\em Check if event is empty. \item\end{CompactList}\item 
+virtual int \hyperlink{classEvent_b998d1732ade0fc0759d15819ca6ae08}{size} (int vtx\-Id=-1) const 
+\begin{CompactList}\small\item\em Access number of particles. \item\end{CompactList}\item 
+virtual int \hyperlink{classEvent_6cd988d4ea5b6312de8fd904de09517d}{n\-Particles} (int vtx\-Id=-1) const 
+\begin{CompactList}\small\item\em Return number of particles. \item\end{CompactList}\item 
+virtual int \hyperlink{classEvent_96a2728447b5b15b31e9ca132f8f4eab}{n\-Partons} (int vtx\-Id=-1) const 
+\begin{CompactList}\small\item\em Return number of partons. \item\end{CompactList}\item 
+virtual int \hyperlink{classEvent_c2f3b1843699e28c867a616194130dda}{n\-Vertices} () const 
+\begin{CompactList}\small\item\em Access number of vertices. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Vertex retrieval}\par
+\begin{CompactItemize}
+\item 
+virtual const \hyperlink{classVertex}{Vertex} \& \hyperlink{classEvent_70086b70f2ace2dc6e04f48dd7f6eb0a}{vertex} (int vtx\-Id=-1) const 
+\begin{CompactList}\small\item\em Retrieve specific vertex. \item\end{CompactList}\item 
+virtual const std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \& \hyperlink{classEvent_ec6d4e1ebf6de2650abd8058674a621c}{vertices} () const 
+\begin{CompactList}\small\item\em Retrieve all vertices. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classEvent_e6ea46c141347bb254bc1b7e374bd889}{
+bool \hyperlink{classEvent_e6ea46c141347bb254bc1b7e374bd889}{update\-Cache} (const fastjet::Pseudo\-Jet \&p\-Jet)}
+\label{classEvent_e6ea46c141347bb254bc1b7e374bd889}
+
+\begin{CompactList}\small\item\em Internal cache update. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classEvent_b66d3957aee39832e7d50a9f4a8cc456}{
+static const \hyperlink{classVertex}{Vertex} \& \hyperlink{classEvent_b66d3957aee39832e7d50a9f4a8cc456}{dummy\-Vtx} ()}
+\label{classEvent_b66d3957aee39832e7d50a9f4a8cc456}
+
+\begin{CompactList}\small\item\em Internal vertex list update Internal function adding a particle to a vertex Reference to dummy vertex for failed function returns. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+\hypertarget{classEvent_85cd9f4de17dc94fb34df30020d3046e}{
+bool \textbf{vtx\-Index} (int vtx\-Id, size\_\-t \&idx) const }
+\label{classEvent_85cd9f4de17dc94fb34df30020d3046e}
+
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classEvent_51f6cb17b388bf6bd2dec4a8dba654a0}{
+IFinal\-State\-Selector $\ast$ \hyperlink{classEvent_51f6cb17b388bf6bd2dec4a8dba654a0}{m\_\-fs\-Sel}}
+\label{classEvent_51f6cb17b388bf6bd2dec4a8dba654a0}
+
+\begin{CompactList}\small\item\em Reference to final state selector. \item\end{CompactList}\item 
+std::vector$<$ std::vector$<$ fastjet::Pseudo\-Jet $>$ $>$ \hyperlink{classEvent_9d70f2f173bbb01fbd90e15860697a18}{m\_\-particles}
+\begin{CompactList}\small\item\em Cache for particles in event. \item\end{CompactList}\item 
+std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \hyperlink{classEvent_9698c3f6d91d9571686295626049ac9c}{m\_\-vertices}
+\begin{CompactList}\small\item\em Cache for vertices. \item\end{CompactList}\item 
+std::vector$<$ std::vector$<$ fastjet::Pseudo\-Jet $>$ $>$ \hyperlink{classEvent_154cfb0e8a14e418e1eae7ccdf99245d}{m\_\-partons}
+\begin{CompactList}\small\item\em Cache for partons in event. \item\end{CompactList}\item 
+\hypertarget{classEvent_dad4b1de65fd86908385a53b37d35d43}{
+\hyperlink{classEvent}{Event} $\ast$ \textbf{m\_\-parent}}
+\label{classEvent_dad4b1de65fd86908385a53b37d35d43}
+
+\end{CompactItemize}
+\subsection*{Static Private Attributes}
+\begin{CompactItemize}
+\item 
+\hypertarget{classEvent_d00f1f7a5e9b6ad652c85f28dbd08be0}{
+static \hyperlink{classVertex}{Vertex} \textbf{\_\-dummy\-Vertex}}
+\label{classEvent_d00f1f7a5e9b6ad652c85f28dbd08be0}
+
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Basic event container provides access to the full (signal+pile-up), the signal,and the pile-up final state of a given event - if available. It accommodates simple filters on all particles.
+
+\begin{Desc}
+\item[Note:]While it is recommend to use only same {\tt \hyperlink{classEvent}{Event}} object for all full events to be analyzed, clients have to clear the cache in this object before loading a full new event! \end{Desc}
+
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classEvent_cf4f8ae50e55e8f5a270e5029c0eb58d}{
+\index{Event@{Event}!Event@{Event}}
+\index{Event@{Event}!Event@{Event}}
+\subsubsection[Event]{\setlength{\rightskip}{0pt plus 5cm}Event::Event (IFinal\-State\-Selector $\ast$ {\em p\-Sel} = {\tt 0})}}
+\label{classEvent_cf4f8ae50e55e8f5a270e5029c0eb58d}
+
+
+Standard constructor. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Sel}]pointer to final state selector (optional, default {\tt NULL} - no selection) \end{description}
+\end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classEvent_4e9ebea3ebf37625b7dfc89c4839354a}{
+\index{Event@{Event}!add@{add}}
+\index{add@{add}!Event@{Event}}
+\subsubsection[add]{\setlength{\rightskip}{0pt plus 5cm}bool Event::add (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \& {\em v\-Jet})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_4e9ebea3ebf37625b7dfc89c4839354a}
+
+
+Add a list of particles represented by {\tt fastjet::Pseudo\-Jet}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em reference}]to non-modifiable list of {\tt fastjet::Pseudo\-Jet} objects\end{description}
+\end{Desc}
+It is expected that each {\tt fastjet::Pseudo\-Jet} has a {\tt Particle\-Info} objects attached, otherwise the vertex allocation will fail. \hypertarget{classEvent_f14e917b52b542b5d3bcbc62524d3eda}{
+\index{Event@{Event}!add@{add}}
+\index{add@{add}!Event@{Event}}
+\subsubsection[add]{\setlength{\rightskip}{0pt plus 5cm}bool Event::add (const fastjet::Pseudo\-Jet \& {\em p\-Jet})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_f14e917b52b542b5d3bcbc62524d3eda}
+
+
+Add a particle represented by a {\tt fastjet::Pseudo\-Jet}. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Jet}]reference to non-modifiable {\tt fastjet::Pseudo\-Jet} \end{description}
+\end{Desc}
+It is expected that the {\tt fastjet::Pseudo\-Jet} has a {\tt Particle\-Info} objects attached, otherwise the vertex allocation will fail. \hypertarget{classEvent_bed4fa66809b95131871c0e8040d6b2c}{
+\index{Event@{Event}!add@{add}}
+\index{add@{add}!Event@{Event}}
+\subsubsection[add]{\setlength{\rightskip}{0pt plus 5cm}bool Event::add (int {\em ID}, double {\em charge}, double {\em px}, double {\em py}, double {\em pz}, double {\em m}, int {\em vtx} = {\tt 0}, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type} = {\tt Vertex::UNKNOWN})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_bed4fa66809b95131871c0e8040d6b2c}
+
+
+Add particle using a set of variables. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em ID}]particle id (PDG code) \item[\mbox{$\leftarrow$} {\em charge}]particle charge \item[\mbox{$\leftarrow$} {\em px}]particle momentum component $p_{x}$ \item[\mbox{$\leftarrow$} {\em py}]particle momentum component $p_{y}$ \item[\mbox{$\leftarrow$} {\em pz}]particle momentum component $p_{z}$ \item[\mbox{$\leftarrow$} {\em m}]particle mass $m$ \item[\mbox{$\leftarrow$} {\em vtx}]associated vertex id (optional, default 0) \item[\mbox{$\leftarrow$} {\em type}]associated vertex type (optional, default {\tt Vertex::UNKNOWN})\end{description}
+\end{Desc}
+Internally creates a {\tt fastjet::Pseudo\-Jet} object and invokes `Eventadd(const fastjet::Pseudo\-Jet\& p\-Jet)`. \hypertarget{classEvent_91389b1bfa6a0d3647dd0e012be486a4}{
+\index{Event@{Event}!empty@{empty}}
+\index{empty@{empty}!Event@{Event}}
+\subsubsection[empty]{\setlength{\rightskip}{0pt plus 5cm}bool Event::empty (int {\em vtx\-Id} = {\tt -1}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_91389b1bfa6a0d3647dd0e012be486a4}
+
+
+Check if event is empty. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vtx\-Id}]checks only specific vertex (optional, default {\tt -1} checks all vertices)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if any particles in event \end{Desc}
+\hypertarget{classEvent_6cd988d4ea5b6312de8fd904de09517d}{
+\index{Event@{Event}!nParticles@{nParticles}}
+\index{nParticles@{nParticles}!Event@{Event}}
+\subsubsection[nParticles]{\setlength{\rightskip}{0pt plus 5cm}int Event::n\-Particles (int {\em vtx\-Id} = {\tt -1}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_6cd988d4ea5b6312de8fd904de09517d}
+
+
+Return number of particles. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vtx\-Id}]return number of particles from given vertex (optional, default {\tt -1} means sum particles from all vertices) \end{description}
+\end{Desc}
+\hypertarget{classEvent_96a2728447b5b15b31e9ca132f8f4eab}{
+\index{Event@{Event}!nPartons@{nPartons}}
+\index{nPartons@{nPartons}!Event@{Event}}
+\subsubsection[nPartons]{\setlength{\rightskip}{0pt plus 5cm}int Event::n\-Partons (int {\em vtx\-Id} = {\tt -1}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_96a2728447b5b15b31e9ca132f8f4eab}
+
+
+Return number of partons. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vtx}]return number of partons from given vertex (optional, default {\tt -1} means sum partons from all vertices)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Warning:]Not yet implemented! \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000003}{Todo}]Provide missing implementation of parton access! \end{Desc}
+\hypertarget{classEvent_c2f3b1843699e28c867a616194130dda}{
+\index{Event@{Event}!nVertices@{nVertices}}
+\index{nVertices@{nVertices}!Event@{Event}}
+\subsubsection[nVertices]{\setlength{\rightskip}{0pt plus 5cm}int Event::n\-Vertices () const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_c2f3b1843699e28c867a616194130dda}
+
+
+Access number of vertices. 
+
+\begin{Desc}
+\item[Returns:]Number of vertices in event. In case of a merged signal and pile-up event, this number is given by the number of pile-up collisions {\tt mu} merged with the signal, meaning this method returns `mu + 1`. \end{Desc}
+\hypertarget{classEvent_2b3dad2b39e8832a106796f6f9e35a3b}{
+\index{Event@{Event}!pseudoJets@{pseudoJets}}
+\index{pseudoJets@{pseudoJets}!Event@{Event}}
+\subsubsection[pseudoJets]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ fastjet::Pseudo\-Jet $>$ Event::pseudo\-Jets (bool {\em charged}, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_2b3dad2b39e8832a106796f6f9e35a3b}
+
+
+Retrieve all charged/neutral particles from a given source. 
+
+Identical to {\tt \hyperlink{classEvent_387e8007b9b02f09cdc6bcbdfae839dd}{Event::pseudo\-Jets(Vertex::Interaction\-Type type)}} , with an additional charge (or neutral) filter
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em charged}]retrieve charged particles if {\tt true}, else neutrals. \item[\mbox{$\leftarrow$} {\em type}]particle source specification \end{description}
+\end{Desc}
+\hypertarget{classEvent_387e8007b9b02f09cdc6bcbdfae839dd}{
+\index{Event@{Event}!pseudoJets@{pseudoJets}}
+\index{pseudoJets@{pseudoJets}!Event@{Event}}
+\subsubsection[pseudoJets]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ fastjet::Pseudo\-Jet $>$ Event::pseudo\-Jets (\hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_387e8007b9b02f09cdc6bcbdfae839dd}
+
+
+Retrieve all particles from a given source. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em type}]particle source specification\end{description}
+\end{Desc}
+An example: 
+
+\begin{Code}\begin{verbatim} {.cpp}
+     Event*       pEvt = new Event;            // get a new Event
+     long long    nPtrPU(0);                   // initialize record counter
+     long long    nPtrS(0);                    // initialize record counter
+     MyRawPUData* pPURaw = new MyRawPUData();  // pile-up stream
+     MyRawSData*  pSRaw  = new MyRawSData();   // signal stream
+     ...
+     DataHandler<MyRawPUData> puHdlr = new DataHandler<MyRawPUData>();
+     DataHandler<MyRawSData>  psHdlr = new DataHandler<MyRawSData>();
+     
+     while ( !psHdlr->fill(*pSRaw,*pEvt,nPtrS,-1,0,Vertex::SIGNAL) &&
+             !puHdlr->fill(*pPURaw,*pEvt,nPtrPU,30,1,Vertex::PILEUP) )
+       {
+         // get the full particle level event
+         std::vector<fastjet::PseudoJet> fullEvt = pEvt->pseudoJets();
+         // get the particle level pile-up
+         std::vector<fastjet::PseudoJet> puEvt = pEvt->pseudoJets(Vertex::PILEUP);
+         // get the particle level signal 
+         std::vector<fastjet::PseudoJet> sigEvt = pEvt->pseudoJets(Vertex::SIGNAL);
+         .....            // your analysis
+         pEvt->reset();   // do not forget!!!  
+       }
+\end{verbatim}\end{Code}
+
+ \hypertarget{classEvent_dc48cfe91cb7b2a10b83ba65584dbd41}{
+\index{Event@{Event}!pseudoJets@{pseudoJets}}
+\index{pseudoJets@{pseudoJets}!Event@{Event}}
+\subsubsection[pseudoJets]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ fastjet::Pseudo\-Jet $>$ Event::pseudo\-Jets (bool {\em charged}, int {\em vtx} = {\tt -1})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_dc48cfe91cb7b2a10b83ba65584dbd41}
+
+
+Retrieve all charged/neutral particles. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em charged}]retrieve charged particles if {\tt true}, else neutrals. \item[\mbox{$\leftarrow$} {\em vtx}]specifies vertex id if only particles from a specific vertex are to be retrieved (optional, default {\tt -1} means all particles from all vertices). \end{description}
+\end{Desc}
+\hypertarget{classEvent_d2dbb1309f93d3ebc6279ce5022afe1f}{
+\index{Event@{Event}!pseudoJets@{pseudoJets}}
+\index{pseudoJets@{pseudoJets}!Event@{Event}}
+\subsubsection[pseudoJets]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ fastjet::Pseudo\-Jet $>$ Event::pseudo\-Jets (int {\em vtx} = {\tt -1})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_d2dbb1309f93d3ebc6279ce5022afe1f}
+
+
+Retrieve all particles. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vtx}]specifies vertex id if only particles from a specific vertex are to be retrieved (optional, default {\tt -1} means all particles from all vertices). \end{description}
+\end{Desc}
+\hypertarget{classEvent_d038b2da9c6d712e704e7c07ff3bf580}{
+\index{Event@{Event}!reset@{reset}}
+\index{reset@{reset}!Event@{Event}}
+\subsubsection[reset]{\setlength{\rightskip}{0pt plus 5cm}void Event::reset ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_d038b2da9c6d712e704e7c07ff3bf580}
+
+
+Reset all {\tt \hyperlink{classEvent}{Event}} caches. 
+
+This method need to be invoked by the client before building a new event. \hypertarget{classEvent_b998d1732ade0fc0759d15819ca6ae08}{
+\index{Event@{Event}!size@{size}}
+\index{size@{size}!Event@{Event}}
+\subsubsection[size]{\setlength{\rightskip}{0pt plus 5cm}int Event::size (int {\em vtx\-Id} = {\tt -1}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_b998d1732ade0fc0759d15819ca6ae08}
+
+
+Access number of particles. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em vtx\-Id}]return number of particles from given vertex (optional, default {\tt -1} means sum particles from all vertices) \end{description}
+\end{Desc}
+\hypertarget{classEvent_70086b70f2ace2dc6e04f48dd7f6eb0a}{
+\index{Event@{Event}!vertex@{vertex}}
+\index{vertex@{vertex}!Event@{Event}}
+\subsubsection[vertex]{\setlength{\rightskip}{0pt plus 5cm}const \hyperlink{classVertex}{Vertex} \& Event::vertex (int {\em vtx\-Id} = {\tt -1}) const\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classEvent_70086b70f2ace2dc6e04f48dd7f6eb0a}
+
+
+Retrieve specific vertex. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em 0\mbox{]}}]vtx id of vertex to be retrieved (optional, default is first vertex in list, specified by `vtx\-Id = -1`)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]The list of vertices in the {\tt \hyperlink{classEvent}{Event}} is not ordered per se. The first vertex has only special meaning if in case of a signal event merged with pile-up, the vertex id offset was chosen such that e.g. `vtx\-Id = -1` means signal vertex. This is strongly relying on a notation controlled by the client. \end{Desc}
+\hypertarget{classEvent_ec6d4e1ebf6de2650abd8058674a621c}{
+\index{Event@{Event}!vertices@{vertices}}
+\index{vertices@{vertices}!Event@{Event}}
+\subsubsection[vertices]{\setlength{\rightskip}{0pt plus 5cm}const std::vector$<$ \hyperlink{classVertex}{Vertex} $>$ \& Event::vertices () const\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classEvent_ec6d4e1ebf6de2650abd8058674a621c}
+
+
+Retrieve all vertices. 
+
+\begin{Desc}
+\item[Returns:]Reference to non-modifiable list of vertices in {\tt \hyperlink{classEvent}{Event}}. \end{Desc}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classEvent_9d70f2f173bbb01fbd90e15860697a18}{
+\index{Event@{Event}!m_particles@{m\_\-particles}}
+\index{m_particles@{m\_\-particles}!Event@{Event}}
+\subsubsection[m\_\-particles]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$std::vector$<$fastjet::Pseudo\-Jet$>$ $>$ \hyperlink{classEvent_9d70f2f173bbb01fbd90e15860697a18}{Event::m\_\-particles}\hspace{0.3cm}{\tt  \mbox{[}mutable, private\mbox{]}}}}
+\label{classEvent_9d70f2f173bbb01fbd90e15860697a18}
+
+
+Cache for particles in event. 
+
+The external container is indexed by vertex id ($>$= 0). This means the cache cannot accommodate invalid vertices with id $<$ 0.
+
+For each vertex, a list of particles is attached. \hypertarget{classEvent_154cfb0e8a14e418e1eae7ccdf99245d}{
+\index{Event@{Event}!m_partons@{m\_\-partons}}
+\index{m_partons@{m\_\-partons}!Event@{Event}}
+\subsubsection[m\_\-partons]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$std::vector$<$fastjet::Pseudo\-Jet$>$ $>$ \hyperlink{classEvent_154cfb0e8a14e418e1eae7ccdf99245d}{Event::m\_\-partons}\hspace{0.3cm}{\tt  \mbox{[}mutable, private\mbox{]}}}}
+\label{classEvent_154cfb0e8a14e418e1eae7ccdf99245d}
+
+
+Cache for partons in event. 
+
+Has the same structure as {\tt \hyperlink{classEvent_9d70f2f173bbb01fbd90e15860697a18}{Event::m\_\-particles}} but is presently not filled. \hypertarget{classEvent_9698c3f6d91d9571686295626049ac9c}{
+\index{Event@{Event}!m_vertices@{m\_\-vertices}}
+\index{m_vertices@{m\_\-vertices}!Event@{Event}}
+\subsubsection[m\_\-vertices]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$\hyperlink{classVertex}{Vertex}$>$ \hyperlink{classEvent_9698c3f6d91d9571686295626049ac9c}{Event::m\_\-vertices}\hspace{0.3cm}{\tt  \mbox{[}mutable, private\mbox{]}}}}
+\label{classEvent_9698c3f6d91d9571686295626049ac9c}
+
+
+Cache for vertices. 
+
+This cache is index parallel to {\tt \hyperlink{classEvent_9d70f2f173bbb01fbd90e15860697a18}{Event::m\_\-particles}}. It contains the full specification for each vertex, as provided by the {\tt \hyperlink{classVertex}{Vertex}} object. 
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+Event.h\item 
+Event.cxx\end{CompactItemize}

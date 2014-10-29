@@ -1,0 +1,83 @@
+\form#0:$p_x$
+\form#1:$p_y$
+\form#2:$p_z$
+\form#3:$p$
+\form#4:$m$
+\form#5:$p_{\rm T}$
+\form#6:$y$
+\form#7:$\phi$
+\form#8:$\eta$
+\form#9:$\sum{p_{\rm T}}$
+\form#10:$\sum{p_{\rm T}^{2}}$
+\form#11:$ \sum{p_{\rm T}} $
+\form#12:$ \sum{p_{\rm T}^{2}} $
+\form#13:$0\ldots N_{\rm vtx}$
+\form#14:$p_{x}$
+\form#15:$p_{y}$
+\form#16:$p_{z}$
+\form#17:$\pi$
+\form#18:$2 \pi$
+\form#19:$\Delta\phi$
+\form#20:$\Delta y$
+\form#21:$\Delta\eta$
+\form#22:$y_{\rm min}$
+\form#23:$y_{\rm max}$
+\form#24:$\eta_{\rm min}$
+\form#25:$\eta_{\rm max}$
+\form#26:$N_{\rm bin}(\eta)$
+\form#27:$N_{\rm bin}(y)$
+\form#28:$N_{\rm bin}(\phi)$
+\form#29:$\phi_{\rm min}$
+\form#30:$\phi_{\rm max}$
+\form#31:$N_{\rm bin}(p_{\rm T}) $
+\form#32:$p_{\rm T,min}$
+\form#33:$p_{\rm T,max}$
+\form#34:$N_{\rm bin}(p_{\rm T}^{\rm jet})$
+\form#35:$p_{\rm T,min}^{\rm jet}$
+\form#36:$p_{\rm T,max}^{\rm jet}$
+\form#37:$p_{\rm T}^{\rm jet}$
+\form#38:$N_{\rm bin}(\mu)$
+\form#39:$\mu_{min}$
+\form#40:$\mu_{max}$
+\form#41:$\mu$
+\form#42:$N_{\rm bin}(N_{\rm vtx})$
+\form#43:$N_{\rm vtx,min}$
+\form#44:$N_{\rm vtx,max}$
+\form#45:$N_{\rm vtx}$
+\form#46:$N_{\rm bin}(N_{\rm part}^{\rm evt})$
+\form#47:$N_{\rm part,min}^{\rm evt}$
+\form#48:$N_{\rm part,max}^{\rm evt}$
+\form#49:$N_{\rm part}^{\rm evt}$
+\form#50:$N_{\rm bin}(N_{\rm part}^{\rm vtx})$
+\form#51:$N_{\rm part,min}^{\rm vtx}$
+\form#52:$N_{\rm part,max}^{\rm vtx}$
+\form#53:$N_{\rm part}^{\rm vtx}$
+\form#54:$N_{\rm bin}(E_{\rm T}^{\rm miss})$
+\form#55:$E_{\rm T,min}^{\rm miss}$
+\form#56:$E_{\rm T,max}^{\rm miss}$
+\form#57:$E_{\rm T}^{\rm miss}$
+\form#58:$N_{\rm bin}(\sigma E_{\rm T}^)$
+\form#59:$\sigma E_{\rm T,min}$
+\form#60:$\sigma E_{\rm T,max}$
+\form#61:$\sigma E_{\rm T}$
+\form#62:$N_{\rm bin}(f_{\rm vtx}}$
+\form#63:$f_{\rm vtx} = \frac{N_{\rm vtx}}{\mu}$
+\form#64:$f_{\rm vtx,min}$
+\form#65:$f_{\rm vtx,max}$
+\form#66:$f_{\rm vtx}$
+\form#67:$N_{\rm bin}({\rm JVF})$
+\form#68:${\rm JVF}_{\rm min}$
+\form#69:${\rm JVF}_{\rm max}$
+\form#70:$N_{\rm bin}(\Psi)$
+\form#71:$\Psi = E_{\rm jet}(R<R_{\rm core})/E_{\rm jet}$
+\form#72:$\Psi_{\rm min}$
+\form#73:$\Psi_{\rm max}$
+\form#74:$N_{\rm bins}(R)$
+\form#75:$R$
+\form#76:$R\in [0,1]$
+\form#77:$R_{min}$
+\form#78:$R_{max}$
+\form#79:$N_{\rm vtx}/\mu$
+\form#80:$p_{\rm T}(y)$
+\form#81:$\langle N\rangle_{\rm part}(y)$
+\form#82:$\langle p_{\rm T}\rangle(y,\phi)$

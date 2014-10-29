@@ -1,0 +1,128 @@
+\hypertarget{structFeatures}{
+\section{Features Struct Reference}
+\label{structFeatures}\index{Features@{Features}}
+}
+{\tt \#include $<$Event.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static bool \hyperlink{structFeatures_10d51fec5501f0cd12bcfaf48ce2530b}{has\-Interaction\-Type} (const fastjet::Pseudo\-Jet \&p\-Jet, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type)
+\begin{CompactList}\small\item\em Checks on interaction type. \item\end{CompactList}\item 
+static int \hyperlink{structFeatures_0c8e4fd93e1b6d00c75294f79689294a}{vertex\-Id} (const fastjet::Pseudo\-Jet \&p\-Jet)
+\begin{CompactList}\small\item\em Checks on vertex id. \item\end{CompactList}\item 
+static int \hyperlink{structFeatures_21401211e5f82aaf43d838be4996f819}{particle\-Id} (const fastjet::Pseudo\-Jet \&p\-Jet)
+\begin{CompactList}\small\item\em Get particle id. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Check on particle charge}\par
+{\em \begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Jet}]reference to non-modifiable {\tt fastjet::Pseudo\-Jet} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]{\tt true} if the corresponding particle is charged, {\tt false} if it is neutral or has no {\tt Particle\-Info} object attached.\end{Desc}
+\begin{Desc}
+\item[Note:]`!is\-Charged(p\-Jet) == is\-Neutral(p\-Jet)` only if {\tt p\-Jet} is a {\tt fastjet::Pseudo\-Jet} with a {\tt Particle\-Info} object attached. \end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{structFeatures_824b2ec4d467709843f066eaf619f15b}{
+static bool \textbf{is\-Charged} (const fastjet::Pseudo\-Jet \&p\-Jet)}
+\label{structFeatures_824b2ec4d467709843f066eaf619f15b}
+
+\item 
+\hypertarget{structFeatures_57dabc7c719c8b67ea982063b571debd}{
+static bool \textbf{is\-Neutral} (const fastjet::Pseudo\-Jet \&p\-Jet)}
+\label{structFeatures_57dabc7c719c8b67ea982063b571debd}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Number of charged particles}\par
+{\em Calculates the number of charged/neutral particles in a list, optionally restricted to a given vertex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em v\-Jet}]reference to non-modifiable list of particles \item[{\em inout\mbox{]}}]n\-Jets number of charged/neutral particles found \item[\mbox{$\leftarrow$} {\em vtx}]consider only particles at vertex with this id (optional, default -1 means all vertices) \item[\mbox{$\leftarrow$} {\em type}]consider only particles from this collision type \end{description}
+\end{Desc}
+}\begin{CompactItemize}
+\item 
+\hypertarget{structFeatures_7ef99add146e2c9afb51d2f2cddc4b5c}{
+static bool \textbf{n\-Charged} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet, int \&n\-Jets, int vtx=-1)}
+\label{structFeatures_7ef99add146e2c9afb51d2f2cddc4b5c}
+
+\item 
+\hypertarget{structFeatures_1c818c2ca46ab74deb0448e4a9641702}{
+static bool \textbf{n\-Charged} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet, int \&n\-Jets, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type)}
+\label{structFeatures_1c818c2ca46ab74deb0448e4a9641702}
+
+\item 
+\hypertarget{structFeatures_e5171fda475b20fd37f57cbfb346194f}{
+static bool \textbf{n\-Neutral} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet, int \&n\-Jets, int vtx=-1)}
+\label{structFeatures_e5171fda475b20fd37f57cbfb346194f}
+
+\item 
+\hypertarget{structFeatures_4f381507457251208252ff15e2754be4}{
+static bool \textbf{n\-Neutral} (const std::vector$<$ fastjet::Pseudo\-Jet $>$ \&v\-Jet, int \&n\-Jets, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} type)}
+\label{structFeatures_4f381507457251208252ff15e2754be4}
+
+\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Collection of helper functions to determine features of the particle or jet represented by a {\tt fastjet::Pseudo\-Jet} with an attached {\tt Particle\-Info} object. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structFeatures_10d51fec5501f0cd12bcfaf48ce2530b}{
+\index{Features@{Features}!hasInteractionType@{hasInteractionType}}
+\index{hasInteractionType@{hasInteractionType}!Features@{Features}}
+\subsubsection[hasInteractionType]{\setlength{\rightskip}{0pt plus 5cm}bool Features::has\-Interaction\-Type (const fastjet::Pseudo\-Jet \& {\em p\-Jet}, \hyperlink{classVertex_0d80a5c5ed3bd9be72a325aa448eca25}{Vertex::Interaction\-Type} {\em type})\hspace{0.3cm}{\tt  \mbox{[}inline, static\mbox{]}}}}
+\label{structFeatures_10d51fec5501f0cd12bcfaf48ce2530b}
+
+
+Checks on interaction type. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Jet}]reference to non-modifiable particle \item[\mbox{$\leftarrow$} {\em type}]requested collision type (particle source) \end{description}
+\end{Desc}
+\hypertarget{structFeatures_21401211e5f82aaf43d838be4996f819}{
+\index{Features@{Features}!particleId@{particleId}}
+\index{particleId@{particleId}!Features@{Features}}
+\subsubsection[particleId]{\setlength{\rightskip}{0pt plus 5cm}int Features::particle\-Id (const fastjet::Pseudo\-Jet \& {\em p\-Jet})\hspace{0.3cm}{\tt  \mbox{[}inline, static\mbox{]}}}}
+\label{structFeatures_21401211e5f82aaf43d838be4996f819}
+
+
+Get particle id. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Jet}]reference to non-modifiable particle\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]PDG code (or whatever was stored in the raw data), 0 if problem. \end{Desc}
+\hypertarget{structFeatures_0c8e4fd93e1b6d00c75294f79689294a}{
+\index{Features@{Features}!vertexId@{vertexId}}
+\index{vertexId@{vertexId}!Features@{Features}}
+\subsubsection[vertexId]{\setlength{\rightskip}{0pt plus 5cm}int Features::vertex\-Id (const fastjet::Pseudo\-Jet \& {\em p\-Jet})\hspace{0.3cm}{\tt  \mbox{[}inline, static\mbox{]}}}}
+\label{structFeatures_0c8e4fd93e1b6d00c75294f79689294a}
+
+
+Checks on vertex id. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[\mbox{$\leftarrow$} {\em p\-Jet}]reference to non-modifiable particle\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]Valid vertex id $0\ldots N_{\rm vtx}$ or -1 if failure. \end{Desc}
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+Event.h\end{CompactItemize}

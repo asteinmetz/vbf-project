@@ -1,0 +1,285 @@
+// -*- c++ -*-
+#define TTF0_( _x_ ) 							     \
+  H* pHist = new H(getHistName( _x_ ).c_str(),                               \
+		   title.c_str(),nbins,xmin,xmax);               \
+  if ( !xtitle.empty() && xtitle != "" )                                     \
+    { pHist->GetXaxis()->SetTitle(xtitle.c_str()); }                         \
+  this->registerHist(pHist);                                                 \
+  return pHist;
+
+#define TTF1_( _x_ , _y_ )             				\
+  H* pHist = new H(getHistName( _x_ , _y_ ).c_str(),title.c_str(),nbins,xmin, \
+		   xmax);					\
+  if ( !xtitle.empty() && xtitle != "" )                                     \
+    { pHist->GetXaxis()->SetTitle(xtitle.c_str()); }                         \
+  this->registerHist( _x_ , pHist);	  				     \
+  return pHist;
+
+#define TDF0_( _x_ ) 							     \
+  H* pHist = new H(getHistName( _x_ ).c_str(),title.c_str(),                  \
+                   nbins,xmin,xmax,mbins,ymin,ymax);	\
+  if ( !xtitle.empty() && xtitle != "" )                                     \
+    { pHist->GetXaxis()->SetTitle(xtitle.c_str()); }                         \
+  if ( !ytitle.empty() && ytitle != "" )                                     \
+    { pHist->GetYaxis()->SetTitle(ytitle.c_str()); }                         \
+  if ( !ztitle.empty() && ztitle != "" )                                     \
+    { pHist->GetZaxis()->SetTitle(ztitle.c_str()); }                         \
+  this->registerHist(pHist);                                                 \
+  return pHist;
+
+#define TDF1_( _x_ , _y_ ) 						     \
+  H* pHist = new H(getHistName( _x_ , _y_ ).c_str(),title.c_str(),            \
+                   nbins,xmin,xmax,mbins,ymin,ymax);	\
+  if ( !xtitle.empty() && xtitle != "" )                                     \
+    { pHist->GetXaxis()->SetTitle(xtitle.c_str()); }                         \
+  if ( !ytitle.empty() && ytitle != "" )                                     \
+    { pHist->GetYaxis()->SetTitle(ytitle.c_str()); }                         \
+  if ( !ztitle.empty() && ztitle != "" )                                     \
+    { pHist->GetZaxis()->SetTitle(ztitle.c_str()); }                         \
+  this->registerHist( _x_ , pHist);	  				     \
+  return pHist;
+
+#define TZF0_( _x_ ) 							     \
+  H* pHist = new H(getHistName( _x_ ).c_str(),title.c_str(),                  \
+                   nbins,xmin,xmax,mbins,ymin,ymax,lbins,zmin,zmax);	\
+  if ( !xtitle.empty() && xtitle != "" )                                     \
+    { pHist->GetXaxis()->SetTitle(xtitle.c_str()); }                         \
+  if ( !ytitle.empty() && ytitle != "" )                                     \
+    { pHist->GetYaxis()->SetTitle(ytitle.c_str()); }                         \
+  if ( !ztitle.empty() && ztitle != "" )                                     \
+    { pHist->GetZaxis()->SetTitle(ztitle.c_str()); }                         \
+  this->registerHist(pHist);                                                 \
+  return pHist;
+
+#define TZF1_( _x_ , _y_ ) 						     \
+  H* pHist = new H(getHistName( _x_ , _y_ ).c_str(),title.c_str(),            \
+                   nbins,xmin,xmax,mbins,ymin,ymax,lbins,zmin,zmax);	\
+  if ( !xtitle.empty() && xtitle != "" )                                     \
+    { pHist->GetXaxis()->SetTitle(xtitle.c_str()); }                         \
+  if ( !ytitle.empty() && ytitle != "" )                                     \
+    { pHist->GetYaxis()->SetTitle(ytitle.c_str()); }                         \
+  if ( !ztitle.empty() && ztitle != "" )                                     \
+    { pHist->GetZaxis()->SetTitle(ztitle.c_str()); }                         \
+  this->registerHist( _x_ , pHist);	  				     \
+  return pHist;
+  
+template<class H>
+H* Services::HistHandler::bookHist(const std::string& name,
+				   const std::string& title,
+				   int nbins,double xmin,double xmax,
+				   const std::string& xtitle,
+				   const std::string& ytitle)
+{ TTF0_( name ) }
+
+template<class H>
+H* Services::HistHandler::bookHist(const std::string& group,
+				   const std::string& name,
+				   const std::string& title,
+				   int nbins,double xmin,double xmax,
+				   const std::string& xtitle,
+				   const std::string& ytitle)
+{ TTF1_( group,name ) }
+
+template<class H>
+H* Services::HistHandler:: bookHist(const std::string& name,
+				    const std::string& title,
+				    int nbins,double xmin,double xmax,
+				    int mbins,double ymin,double ymax,
+				    const std::string& xtitle,
+				    const std::string& ytitle,
+				    const std::string& ztitle)
+{ TDF0_( name ) }
+template<class H>
+H* Services::HistHandler:: bookHist(const std::string& group,
+				    const std::string& name,
+				    const std::string& title,
+				    int nbins,double xmin,double xmax,
+				    int mbins,double ymin,double ymax,
+				    const std::string& xtitle,
+				    const std::string& ytitle,
+				    const std::string& ztitle)
+{ TDF1_( group,name ) }
+
+template<class H>
+H* Services::HistHandler:: bookHist(const std::string& name,
+				    const std::string& title,
+				    int nbins,double xmin,double xmax,
+				    int mbins,double ymin,double ymax,
+				    int lbins,double zmin,double zmax,
+				    const std::string& xtitle,
+				    const std::string& ytitle,
+				    const std::string& ztitle)
+{ TZF0_( name ) }
+template<class H>
+H* Services::HistHandler:: bookHist(const std::string& group,
+				    const std::string& name,
+				    const std::string& title,
+				    int nbins,double xmin,double xmax,
+				    int mbins,double ymin,double ymax,
+				    int lbins,double zmin,double zmax,
+				    const std::string& xtitle,
+				    const std::string& ytitle,
+				    const std::string& ztitle)
+{ TZF1_( group,name ) }
+
+template<class H>
+H* Services::Histogramming::book(const std::string& name,
+				 const std::string& title,
+				 int nbins,double xmin,double xmax,
+				 const std::string& xtitle,
+				 const std::string& ytitle)
+{
+  HistHandler* pHdlr = HistHandler::instance();
+  return pHdlr->bookHist<H>(name,title,nbins,xmin,xmax,xtitle,ytitle);
+}
+
+template<class H>
+H* Services::Histogramming::book(const std::string& group,
+				 const std::string& name,
+				 const std::string& title,
+				 int nbins,double xmin,double xmax,
+				 const std::string& xtitle,
+				 const std::string& ytitle)
+{
+  HistHandler* pHdlr = HistHandler::instance();
+  return pHdlr->bookHist<H>(group,name,title,nbins,xmin,xmax,xtitle,ytitle);
+}
+
+template<class H>
+H* Services::Histogramming::book(const std::string& name,
+				 const std::string& title,
+				 int nbins,double xmin,double xmax,
+				 int mbins,double ymin,double ymax,
+				 const std::string& xtitle,
+				 const std::string& ytitle,
+				 const std::string& ztitle)
+{ 
+  HistHandler* pHdlr = HistHandler::instance();
+  return pHdlr->bookHist<H>(name,title,nbins,xmin,xmax,mbins,ymin,ymax,
+			    xtitle,ytitle,ztitle);
+}
+
+template<class H>
+H* Services::Histogramming:: book(const std::string& group,
+				  const std::string& name,
+				  const std::string& title,
+				  int nbins,double xmin,double xmax,
+				  int mbins,double ymin,double ymax,
+				  const std::string& xtitle,
+				  const std::string& ytitle,
+				  const std::string& ztitle)
+{
+  HistHandler* pHdlr = HistHandler::instance();
+  return pHdlr->bookHist<H>(group,name,title,nbins,xmin,xmax,mbins,ymin,ymax,
+			    xtitle,ytitle,ztitle);
+}
+
+template<class H>
+H* Services::Histogramming::book(const std::string& name,
+				 const std::string& title,
+				 int nbins,double xmin,double xmax,
+				 int mbins,double ymin,double ymax,
+				 int lbins,double zmin,double zmax,
+				 const std::string& xtitle,
+				 const std::string& ytitle,
+				 const std::string& ztitle)
+{ 
+  HistHandler* pHdlr = HistHandler::instance();
+  return pHdlr->bookHist<H>(name,title,nbins,
+			    xmin,xmax,
+			    mbins,ymin,ymax,
+			    lbins,zmin,zmax,
+			    xtitle,ytitle,ztitle);
+}
+
+template<class H>
+H* Services::Histogramming:: book(const std::string& group,
+				  const std::string& name,
+				  const std::string& title,
+				  int nbins,double xmin,double xmax,
+				  int mbins,double ymin,double ymax,
+				  int lbins,double zmin,double zmax,
+				  const std::string& xtitle,
+				  const std::string& ytitle,
+				  const std::string& ztitle)
+{
+  HistHandler* pHdlr = HistHandler::instance();
+  return pHdlr->bookHist<H>(group,name,title,
+			    nbins,xmin,xmax,
+			    mbins,ymin,ymax,
+			    lbins,zmin,zmax,
+			    xtitle,ytitle,ztitle);
+}
+
+template<class T>
+T Services::Utils::extract(const std::string& str)
+{ T value; std::stringstream sstr; sstr << str; sstr >> value; return value; }
+
+template<class T>
+std::string Services::Utils::convert(const T& value)
+{ std::string cStr; std::stringstream sstr; sstr << value; sstr >> cStr; 
+  return cStr; }
+
+template<class T>
+std::string Services::Utils::convert(const T& value,const std::string& fmt)
+{
+  static char buffer[1024];
+  sprintf(buffer,fmt.c_str(),value);
+  return std::string(buffer);
+}
+
+
+template<class T>
+bool Services::Utils::unpackString(const std::string& str,
+				   typename std::vector<T>& vec,
+				   const std::string& copen,
+				   const std::string& cclose,
+				   const std::string& sep)
+{
+  // check if vector
+  if ( !isVector(str) ) 
+    { Print::warning("Services::unpackString(\042%s\042)",
+		     "does not represent a vector (missing \047%s...%s\047) structure\n",
+		     str.c_str(),copen.c_str(),cclose.c_str()); 
+      return false; }
+
+  // extract values (sequence ok because passed isVector check!) 
+  size_t nopen(str.find_first_of(copen));
+  size_t nclose(str.find_last_of(cclose));
+
+  ++nopen;
+  // no data
+  if ( nclose <= nopen ) return true;
+
+  // fill vector of string index ranges
+  std::string dStr(str.substr(nopen,nclose));
+  size_t isep(0);
+  size_t jsep(dStr.find_first_of(sep));
+  // single data word
+  if ( jsep == std::string::npos )
+    { T value(extract<T>(dStr.substr(isep))); vec.push_back(value); 
+      return true; }
+
+  // find index ranges for vector words
+  std::vector<std::pair<size_t,size_t> > irange;
+  while ( jsep != std::string::npos )
+    { 
+      irange.push_back(std::pair<size_t,size_t>(isep,jsep));
+      isep = jsep+1;
+      if ( isep < dStr.length() )
+	{ jsep = dStr.find_first_of(sep,isep); 
+	  if ( jsep == std::string::npos ) jsep = dStr.length(); }
+      else { jsep = std::string::npos; }
+    }
+
+  // unpack string segments
+  std::vector<std::pair<size_t,size_t> >::iterator fStr(irange.begin());
+  std::vector<std::pair<size_t,size_t> >::iterator lStr(irange.end());
+  for ( ; fStr != lStr; ++fStr )
+    { T value(extract<T>(dStr.substr(fStr->first,fStr->second)));
+      vec.push_back(value); } 
+  
+  return true;
+}
+
+

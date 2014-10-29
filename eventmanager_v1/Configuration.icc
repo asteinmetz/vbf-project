@@ -1,0 +1,78 @@
+// -*- c++ -*-
+
+#define PCAP( _x_ ) \
+  if ( _x_ ) { printf("\n"); } else { printf(" [default]\n"); }
+
+template<class C>
+bool Configuration::ConfigData::getConfig(const std::string& key,C& data)
+{
+  // find key in map
+  const map_t& map = configMap();
+  map_t::const_iterator fMap(map.find(key));
+  if ( fMap == map.end() ) return false;
+  // unpack the key and try a few standard types
+  return Retrieve::any_type(fMap->second.first,data);
+}
+//   //
+//   if ( typeid(data) == typeid(bool) )
+//     {
+//       if ( compareStrings(fMap->second.first,"true") ) 
+//  	{ data = true; }
+//       else if ( compareStrings(fMap->second.first,"false") )
+//  	{ data = false; }
+//       else
+// 	{
+//  	  PRINT_ERROR("Configuration::getConfig(%s,...)",
+//  		      "Type <bool> is requested for key \042%2\042 but map data \042%s\042 does not match \042true\042 or \042false\042\n",
+//  		      key.c_str(),key.c_str(),fMap->second.first.c_str());
+//  	  return false;
+//  	}
+//     }     
+//   if ( typeid(data) == typeid(std::string) )
+//     { data = fMap->second; }
+//   else if ( typeid(data) == typeid(int) )
+//     { data = atoi(fMap->second.c_str()); }
+//   else if ( typeid(data) == typeid(long int) )
+//     { data = atol(fMap->second.c_str()); }
+//   else if ( typeid(data) == typeid(long long int) )
+//     { data = atoll(fMap->second.c_str()); }
+//   else if ( typeid(data) == typeid(double) ||
+// 	    typeid(data) == typeid(float) )
+//     { data = atof(fMap->second.c_str()); }
+//   else if ( typeid(data) == typeid(bool) )
+//     {
+//     }
+//   else
+//     {
+//       PRINT_ERROR("Configuration::getConfig(%s,...)",
+// 		  "Type <%s> requested not known. Try POT (except use std::string instead of char)\n",
+// 		  key.c_str(),typeid(data).name());
+//       return false;
+//     }
+//   return true;
+// } 
+
+template<class T>
+bool Configuration::extractTag(const std::string& tagStr,
+                               T& value,
+                               const std::string& delimiter)
+{
+  size_t ndel(tagStr.find(delimiter));
+  if ( ndel == std::string::npos ) return false;
+  std::string valStr(tagStr.substr(ndel+1));
+  if ( valStr.empty() || valStr == "" ) { return false; }
+  try 
+    { value = T(valStr); }
+  catch (...)
+    { 
+      printf("[extractTag(%s,...)] - ERROR - cannot cast type %s from std::string containing \042%2\042\n",
+	     tagStr.c_str(),typeid(value).name(),valStr.c_str());
+      return false;
+    }
+  return true; 
+}
+
+
+template<class C>
+bool Configuration::getConfig(const std::string& key,C& data)
+{ return ConfigData::instance()->getConfig(key,data); }
