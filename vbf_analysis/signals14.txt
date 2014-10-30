@@ -1,0 +1,11 @@
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_0.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_1.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_2.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_3.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_4.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_5.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_6.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_7.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_8.root
+/export/share/data2/lochp/pythia8/VBF_14TeV/outputVBFHeavyH_9.root
+

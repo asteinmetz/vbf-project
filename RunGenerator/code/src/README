@@ -1,0 +1,9 @@
+You'll probably need to set the variable PY8DIR for this to build. This is
+most easily / /least intrusively done like this:
+
+make prod_pythiaJ1 PY8DIR=/path/to/pythia8
+
+fastjet-config and root-config should be in your path at build time.
+
+Set and export PYTHIA8DATA=/path/to/py8/xmldoc to run.
+

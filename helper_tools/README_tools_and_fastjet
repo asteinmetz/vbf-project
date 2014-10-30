@@ -1,0 +1,180 @@
+This is a list of information about the tools that are provided here
+and that are related to FastJet in one way or another.
+
+Some of the code below should be schematic (though trivially adapted)
+and I've tried to split this in objects you can declare outside the
+event loop (instances or pointers) and how to operate within the event
+loop
+
+This is spli in the following sections:
+  . background subtraction-related objects
+  . filter(s)
+  . clustering the hard (noPU) and full (with PU) events and match them
+
+------------------------------------------------------------------------
+Background estimation
+------------------------------------------------------------------------
+
+FastJet 3 provides tools for easier background subtraction. Many tools
+requiring access to "rho" use BackgroundEstimators. The easiest is to
+do things as follows:
+
+  //--------------------------------------------------------------------
+  // required headers [ do not forget to link against -libfastjettools
+  // --- done automatically if you use fastjet-config ]
+  #include <fastjet/tools/JetMedianBackgroundEstimator.hh>
+  #include "SubtractorWithMass.hh"  // for massless particles, use fastjet's Subtractor
+
+  using namespace fastjet;
+
+  //-------------------------------------------------------------------- 
+  // the objects you'd want to initialise before the event loop
+  //   jet_rapmax : the maximal rapidity allowed for the jets
+  //   jet_ptmin  : the minimal pt required for the jets
+
+  // a handy tool to get apply cuts on the jets
+  Selector _sel_jets = SelectorAbsRapMax(jet_rapmax) * SelectorPtMin(jet_ptmin);
+
+  // the type of area we want (many tools require explicit ghosts)
+  AreaDefinition _area_def
+    = AreaDefinition(active_area_explicit_ghosts, 
+                     GhostedAreaSpec(SelectorAbsRapMax(jet_rapmax+1)));
+
+  // the object that does the estimation of rho. The argument provided
+  // are the following:
+
+  //   - which jets enter the estimation (here we use all jets up to
+  //     jet_rapmax and exclude the 2 hardest (not a big effect but
+  //     easily motivated)
+  //   - the jet definition used to break the event into patched
+  //     [Watch out: this is used for rho estimation, not to cluster
+  //     the jets in your event]
+  //   - the area definition (same as above)
+  JetMedianBackgroundEstimator _bge((!SelectorNHardest(2)) * SelectorAbsRapMax(jet_rapmax),
+                                    JetDefinition(kt_algorithm, 0.4), 
+                                    _area_def);
+
+  // once you have this you can apply a correction for the rapidity dependence
+  // [the numbers below are for Pythia8(4C) at 8 TeV
+  BackgroundRescalingYPolynomial _rescaling(1.1685397, 0, -0.0246807, 0, 5.94119e-05);  
+  _bge.set_rescaling_class(&_rescaling);
+
+  // a tool that subtracts the jets
+  SubtractorWithMass _subtractor(&_bge);
+
+  //-------------------------------------------------------------------- 
+  // what you'd do in the event loop
+  // ['particles' is a vector of PseudoJet with the event record]
+  //
+  // tell the background estimator to use the particles in your event
+  _bge.set_particles(particles);
+
+  // subtract PU from a jet
+  PseudoJet subtracted_jet = _subtractor(jet);
+
+  // subtract a bunch (vector) of jets
+  vector<PseudoJet> subtracted_jets(jets);
+
+
+------------------------------------------------------------------------
+Filter
+------------------------------------------------------------------------
+
+For all the "filtering" we have discussed, one can use the default
+Filter provided with FastJet
+
+  //--------------------------------------------------------------------
+  // required headers [ do not forget to link against -libfastjettools
+  // --- done automatically if you use fastjet-config ]
+  #include <fastjet/tools/Filter.hh>
+  #include "SelectorArea.hh"  // for the "rho+n.sigma" filter
+
+  using namespace fastjet;
+
+  //--------------------------------------------------------------------
+  // the objects you'd want to initialise before the event loop
+  
+  // filtering keeping the hardest subjets
+  Filter filter(JetDefinition(cambridge_algorithm, R/2),
+                SelectorNHardest(2));
+
+  // trimming
+  Filter trimmer(JetDefinition(cambridge_algorithm, 0.2),
+                 SelectorPtFraction(0.03));
+
+  // cut at n * sigma * sqrt(A) [assuming we'll use subtraction]
+  Filter area_filter(JetDefinition(cambridge_algorithm, 0.2),
+                     SelectorArea(&_bge, 0.0, 3.0));
+
+  // automatic subtraction in a filter [this subtracts the pileup before
+  // applying the "selection cut" which is what you want]
+  filter.set_subtractor(&_subtractor);
+
+  //--------------------------------------------------------------------
+  // what you'd do in the event loop (for each jet you want to filter)
+  PseudoJet jet = ...;
+  PseudoJet filtered_jet = filter(jet);  // the result behaves as a regular PseudoJet
+
+
+------------------------------------------------------------------------
+Matching "hard" (signal-only) jets with "full" (signal+PU) jets
+------------------------------------------------------------------------
+
+One thing one may want for many studies is to match a
+"reconstructed"/full jet with a signal ("hard") jet without pileup.
+
+One way to do this is to obtain the jets from the event with PU and
+approximate the hard jet by keeping only the particles from the hard
+event in the full jet [this works because anti-kt jets are resilient
+but is a bit sloppy for other algorithms].
+
+Another way is to do a proper matching and the "MatchableSet" object
+provided does that.
+
+  //--------------------------------------------------------------------
+  // required headers
+  #include "matching.hh"         // for ... matching!
+  #include "SelectorHardVertex"  // get the particles from the hard event
+
+  using namespace fastjet;
+
+  //--------------------------------------------------------------------
+  // what you'd do in the event loop
+  //
+  // I assume that 'particles' contains the event record using Peter's
+  // format
+
+  // attach a user index to the particles (used by the matching code)
+  for (unsigned int i=0; i<particles.size(); i++) 
+    particles[i].set_user_index(i);
+
+  // cluster the hard event (probably no need for area support here)
+  ClusterSequence cs_hard((SelectorHardVertex()(particles), jet_def);
+  hard_jets = _sel_jets(cs_hard.inclusive_jets());
+
+  // if there is no hard jet in the event, just skip it
+  if (! hard_jets.size()) continue;
+
+  // cluster the full event (with PU --- including area computation)
+  ClusterSequenceArea cs_full(particles, jet_def, _area_def);
+  full_jets = cs_full.inclusive_jets(); // all the jets, no cuts applied
+
+  // start the matching
+  MatchableSet matching(hard_jets);
+
+  // loop over all the full jet and select those matching a hard one
+  for (unsigned int ijet=0; ijet<full_jets.size(); ijet++){
+    const PseudoJet &full_jet = full_jets[ijet];
+
+    // check if we have a matching (watch out: you'll get a pointer)
+    matching.match_probe(full_jet);
+    const PseudoJet  * hard_jet = matching.matched_jet_ptr();
+    if (! hard_jet) continue;
+
+    // get the subtracted jet
+    PseudoJet subt_jet = _subtractor(full_jet);
+
+    // then do whatever treatment pleases you...
+    // .....
+
+  }

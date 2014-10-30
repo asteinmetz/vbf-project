@@ -1,0 +1,51 @@
+------------------------------------------------------------------------
+Plan for the proceedings
+------------------------------------------------------------------------
+
+ - Generic intro (framework, events, .,,)
+
+ - check that Pythia8&others reproduces reasonably the ATLAS
+   substructure measurements (ATLAS-CONF-2012-044)  [Andy]
+
+ - High-PU, low-pt jets [GS]
+ 
+ - PU jets v. real jets at high PU [Peter]
+
+ - VBF at high PU [Nicola]
+
+ - H+Z [GS,Paolo]
+
+ - ttbar (JHTopTagger+groom | tau32+groom) [Nicola]
+
+
+------------------------------------------------------------------------
+Framework:
+------------------------------------------------------------------------
+
+ - event generation [Andy, Maria-Vittoria, Paolo, Nicola]
+
+ - put a server for the events [Peter]
+
+ - software maintainance [Andy, Peter, GS]
+
+ - see also ATLAS-CONF-2012-066 for 7 TeV data with grooming, BDRS,
+   ... up tu NPV=~15
+
+
+------------------------------------------------------------------------
+Notes & comments:
+------------------------------------------------------------------------
+
+ - semi-experimantal realism: put a 500 MeV cut on _each_ particle
+
+
+------------------------------------------------------------------------
+E-mail addresses:
+------------------------------------------------------------------------
+
+ Gregory Soyez <soyez@lpthe.jussieu.fr>
+ Peter Loch <loch@physics.arizona.edu>
+ Andy Buckley <andy.buckley@cern.ch>>
+ Paolo Francavilla <paolo.francavilla@cern.ch>
+ Nicola Orlando <nicola.orlando@le.infn.it>
+ Maria Vittoria Garzelli <garzelli@to.infn.it>

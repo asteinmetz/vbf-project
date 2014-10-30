@@ -1,0 +1,33 @@
+CXX := g++
+PY8DIR := ..
+
+PY8CXXFLAGS = -I$(PY8DIR) -fPIC
+PY8LDFLAGS = -L$(PY8DIR)/lib -L$(PY8DIR)/lib/archive -lpythia8 -llhapdfdummy
+ROOTCXXFLAGS = $(shell root-config --cflags)
+ROOTLDFLAGS = $(shell root-config --libs)
+FASTJETCXXFLAGS = $(shell fastjet-config --cxxflags)
+FASTJETLDFLAGS = $(shell fastjet-config --libs)
+
+CXXFLAGS = -ansi -Wall -W -g -O3 $(ROOTCXXFLAGS) $(FASTJETCXXFLAGS)
+LDFLAGS = $(ROOTLDFLAGS) $(FASTJETLDFLAGS)
+
+.PHONY = all clean
+
+all:
+	@echo "Usage: for NN = example number: make mainNN"
+
+clean:
+	rm -f *.exe
+	rm -f *~; rm -f \#*; rm -f core*
+
+
+# Create an executable for one of the normal test programs
+main00 prod_pythia prod_pythiaJ0 \
+prod_pythiaJ1 prod_pythiaJ2 prod_pythiaJ3 prod_pythiaJ4 \
+prod_pythiaJ5 prod_pythiaJ6 prod_pythiaJ7 prod_pythiaJ8 \
+prod_pythiaT1 prod_pythiaT2 prod_pythiaT3 prod_pythiaT4 \
+prod_pythiaT5 prod_pythiaT6 prod_pythiaT7 prod_pythiaT8 \
+prod_pythiaG1 prod_pythiaG2 prod_pythiaG3 prod_pythiaG4 prod_pythiaG5 \
+prod_pythiaMinBias prod_pythiaSoftQCDAll fl_pythia \
+main21 main22 main23 main24 main25 main26 main27 runpy8:
+	$(CXX) $(CXXFLAGS) $(PY8CXXFLAGS) $@.cc -o $@.exe $(LDFLAGS) $(PY8LDFLAGS)

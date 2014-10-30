@@ -1,0 +1,22 @@
+Rapidity rescaling for background estimation:
+---------------------------------------------
+
+We get it from minbias data, looking at the pt (per unit area) in bins
+of rapidity. And we fit teh following shape (up to |y|=5)
+  
+   a + b y^2 + c y^4
+
+
+We get
+
+  sqrts     a          b           c
+    8    0.774042  -0.0170207  1.58454e-05 
+   13    0.931077  -0.0196652  4.73386e-05
+
+
+Note that one can alternatively normalise this so that the average is
+1 in which case one has
+
+  sqrts     a          b           c
+    8    1.2054737  -0.0265076  2.46772e-05
+   13    1.1685397  -0.0246807  5.94119e-05
