@@ -57,9 +57,12 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   else
     { PRINT_INFO("Vbf_Analysis::Vbf_Analysis(...)","Default m_cut %i\n",m_cut); }
 
-  // set up HistGroups
+  // set up HistGroups XXXXXXXX
   //g_eventin = HistGroupEvent("EventIn");
   //g_eventfiltered = HistGroupEvent("EventFiltered");
+
+  //g_partall = HistGroupParticle("AllParticles");
+  //g_partpup = HistGroupParticle("PUParticles");
 }
 
 Vbf_Analysis::~Vbf_Analysis()
@@ -67,7 +70,7 @@ Vbf_Analysis::~Vbf_Analysis()
 
 bool Vbf_Analysis::analyze(Event& pEvt)
 { 
-  // incoming events
+  // incoming events XXXXXXX
   //g_eventin->fill(pEvt);
 
   // allocate all internal lists
@@ -79,6 +82,10 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   pjSignal = pEvt.pseudoJets(Vertex::SIGNAL);
   pjAll = pEvt.pseudoJets();
   pjPileup = pEvt.pseudoJets(Vertex::PILEUP);
+
+  // eaxmple needs to be coded (HistGroupParticle) XXXXXXXXX
+  //g_partall->fill(pjAll);
+  //g_partpup->fill(pfPileup);
 
   // background estimator and event rho
   fastjet::GridMedianBackgroundEstimator bge(5.0,0.5);
