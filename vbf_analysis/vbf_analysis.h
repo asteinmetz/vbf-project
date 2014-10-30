@@ -4,7 +4,8 @@
 
 #include "Configuration.h"
 #include "HistGroup.h"
-#include "HistGroupEvent.h" // for example!
+#include "HistGroupEvent.h"
+#include "HistGroupParticle.h"
 #include "Event.h"
 #include "DataFrame.h"
 
@@ -36,9 +37,9 @@ protected:
   TH1D* h_jets_phi_pup;
   TH1D* h_jets_pt_pup;
 
-  TH1D* h_eta;
-  TH1D* h_phi;
-  TH1D* h_pt;
+  //TH1D* h_eta;
+  //TH1D* h_phi;
+  //TH1D* h_pt;
 
   TH1D* h_jets_eta;
   TH1D* h_jets_phi;
@@ -76,7 +77,10 @@ protected:
   //TH2D* d_rho_test;
 
   HistGroupEvent g_eventin;
-  HistGroupEvent g_eventfiltered;
+
+  HistGroupParticle g_partsig;
+  HistGroupParticle g_partall;
+  HistGroupParticle g_partpup;
 
   // list of particles to be excluded from jet finding
   std::vector<int> m_exclusions;

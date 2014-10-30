@@ -1,6 +1,7 @@
 #include "PrintDef.h"
 #include "TFile.h"
 #include "HistGroupParticle.h"
+#include "HistGroupEvent.h"
 #include "Services.h"
 #include "Selectors.h"
 #include "Configuration.h"
@@ -28,6 +29,10 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
     //  , h_eta(0)
     //  , h_phi(0)
     //  , h_pt(0)
+  , g_eventin("EventIn")       // this instantiates the objects righ away -> FAST!
+  , g_partsig("SigParticles")
+  , g_partall("AllParticles")
+  , g_partpup("PupParticles")
   , m_jet_radius(0.4)
   , m_lptcut(10.0)
   , m_jptcut(20.0)
@@ -57,13 +62,12 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   else
     { PRINT_INFO("Vbf_Analysis::Vbf_Analysis(...)","Default m_cut %i\n",m_cut); }
 
-  // set up HistGroups
-  //g_eventin = HistGroupEvent("EventIn");
-  //g_eventfiltered = HistGroupEvent("EventFiltered");
-
-  g_partsig = HistGroupParticle("SigParticles");
-  g_partall = HistGroupParticle("AllParticles");
-  g_partpup = HistGroupParticle("PupParticles");
+  // // set up HistGroups
+  // g_eventin = HistGroupEvent("EventIn");
+  // //g_eventfiltered = HistGroupEvent("EventFiltered");
+  // g_partsig = HistGroupParticle("SigParticles");
+  // g_partall = HistGroupParticle("AllParticles");
+  // g_partpup = HistGroupParticle("PupParticles");
 }
 
 Vbf_Analysis::~Vbf_Analysis()
@@ -72,7 +76,7 @@ Vbf_Analysis::~Vbf_Analysis()
 bool Vbf_Analysis::analyze(Event& pEvt)
 { 
   // incoming events
-  //g_eventin->fill(pEvt);
+  g_eventin.fill(pEvt);
 
   // allocate all internal lists
   std::vector<fastjet::PseudoJet> pjSignal;
@@ -85,9 +89,9 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   pjPileup = pEvt.pseudoJets(Vertex::PILEUP);
 
   // HistGroupParticle fills
-  g_partsig->fill(pjSignal);
-  g_partall->fill(pjAll);
-  g_partpup->fill(pjPileup);
+  g_partsig.fill(pjSignal);
+  g_partall.fill(pjAll);
+  g_partpup.fill(pjPileup);
 
   // background estimator and event rho
   fastjet::GridMedianBackgroundEstimator bge(5.0,0.5);
@@ -99,8 +103,8 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   d_rho->Fill((double)pEvt.nVertices(),rho);
 
   // loop on list of input particles - Replaced by HistGroupParticle
-  //std::vector<fastjet::PseudoJet>::iterator fPart(pjAll.begin());
-  //std::vector<fastjet::PseudoJet>::iterator lPart(pjAll.end());
+  std::vector<fastjet::PseudoJet>::iterator fPart(pjAll.begin());
+  std::vector<fastjet::PseudoJet>::iterator lPart(pjAll.end());
   //for ( ; fPart != lPart; ++fPart )
   //  {
   //    h_eta->Fill(fPart->pseudorapidity());

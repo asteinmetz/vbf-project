@@ -1,7 +1,8 @@
 CXX := g++
 
 PROGSRCS = vbf.C
-COMMONSRCS = vbf_analysis.cxx
+COMMONSRCS = HistGroupParticle.cxx vbf_analysis.cxx
+
 COMMONOBJS = $(patsubst %.C,%.o,$(patsubst %.cxx,%.o,$(COMMONSRCS)))
 
 ROOTCXXFLAGS = $(shell root-config --cflags)
