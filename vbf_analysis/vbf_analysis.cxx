@@ -62,12 +62,11 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   else
     { PRINT_INFO("Vbf_Analysis::Vbf_Analysis(...)","Default m_cut %i\n",m_cut); }
 
-  // // set up HistGroups
-  // g_eventin = HistGroupEvent("EventIn");
-  // //g_eventfiltered = HistGroupEvent("EventFiltered");
-  // g_partsig = HistGroupParticle("SigParticles");
-  // g_partall = HistGroupParticle("AllParticles");
-  // g_partpup = HistGroupParticle("PupParticles");
+  // book all histograms in the all groups
+  g_eventin.book();
+  g_partsig.book();
+  g_partall.book();
+  g_partpup.book();
 }
 
 Vbf_Analysis::~Vbf_Analysis()
@@ -347,10 +346,10 @@ bool Vbf_Analysis::book()
   //					      "Pt","Pt of all particles",
   //					      nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
   //
-  //  h_jets_eta = Services::Histogramming::book<TH1D>(this->name(),
-  //						   "EtaJet","Eta of all jets",				       
-  //						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
-  //
+  h_jets_eta = Services::Histogramming::book<TH1D>(this->name(),
+  						   "EtaJet","Eta of all jets",				       
+  						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
+  
   h_jets_phi = Services::Histogramming::book<TH1D>(this->name(),
 						   "PhiJet","Phi of all jets",
 						   phiBins,phiMin,phiMax,"#phi","dN/d#phi");
