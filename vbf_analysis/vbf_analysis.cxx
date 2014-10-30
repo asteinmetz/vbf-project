@@ -1,6 +1,6 @@
 #include "PrintDef.h"
 #include "TFile.h"
-#include "HistGroupEvent.h"
+#include "HistGroupParticle.h"
 #include "Services.h"
 #include "Selectors.h"
 #include "Configuration.h"
@@ -25,9 +25,9 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
 			   DataFrame* pileupServer)
 
   : UserAnalysisBase(name,signalServer,pileupServer)
-  , h_eta(0)
-  , h_phi(0)
-  , h_pt(0)
+    //  , h_eta(0)
+    //  , h_phi(0)
+    //  , h_pt(0)
   , m_jet_radius(0.4)
   , m_lptcut(10.0)
   , m_jptcut(20.0)
@@ -57,12 +57,13 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   else
     { PRINT_INFO("Vbf_Analysis::Vbf_Analysis(...)","Default m_cut %i\n",m_cut); }
 
-  // set up HistGroups XXXXXXXX
+  // set up HistGroups
   //g_eventin = HistGroupEvent("EventIn");
   //g_eventfiltered = HistGroupEvent("EventFiltered");
 
-  //g_partall = HistGroupParticle("AllParticles");
-  //g_partpup = HistGroupParticle("PUParticles");
+  g_partsig = HistGroupParticle("SigParticles");
+  g_partall = HistGroupParticle("AllParticles");
+  g_partpup = HistGroupParticle("PupParticles");
 }
 
 Vbf_Analysis::~Vbf_Analysis()
@@ -70,7 +71,7 @@ Vbf_Analysis::~Vbf_Analysis()
 
 bool Vbf_Analysis::analyze(Event& pEvt)
 { 
-  // incoming events XXXXXXX
+  // incoming events
   //g_eventin->fill(pEvt);
 
   // allocate all internal lists
@@ -83,9 +84,10 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   pjAll = pEvt.pseudoJets();
   pjPileup = pEvt.pseudoJets(Vertex::PILEUP);
 
-  // eaxmple needs to be coded (HistGroupParticle) XXXXXXXXX
-  //g_partall->fill(pjAll);
-  //g_partpup->fill(pfPileup);
+  // HistGroupParticle fills
+  g_partsig->fill(pjSignal);
+  g_partall->fill(pjAll);
+  g_partpup->fill(pjPileup);
 
   // background estimator and event rho
   fastjet::GridMedianBackgroundEstimator bge(5.0,0.5);
@@ -94,17 +96,17 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   fastjet::Subtractor subtractor(&bge);
   trimmer.set_subtractor(&subtractor);
   double rho = bge.rho();
-  d_rho->Fill(pEvt.nVertices(),rho);
+  d_rho->Fill((double)pEvt.nVertices(),rho);
 
-  // loop on list of input particles
-  std::vector<fastjet::PseudoJet>::iterator fPart(pjAll.begin());
-  std::vector<fastjet::PseudoJet>::iterator lPart(pjAll.end());
-  for ( ; fPart != lPart; ++fPart )
-    {
-      h_eta->Fill(fPart->pseudorapidity());
-      h_phi->Fill(fPart->phi_std());
-      h_pt->Fill(fPart->perp());
-    }
+  // loop on list of input particles - Replaced by HistGroupParticle
+  //std::vector<fastjet::PseudoJet>::iterator fPart(pjAll.begin());
+  //std::vector<fastjet::PseudoJet>::iterator lPart(pjAll.end());
+  //for ( ; fPart != lPart; ++fPart )
+  //  {
+  //    h_eta->Fill(fPart->pseudorapidity());
+  //    h_phi->Fill(fPart->phi_std());
+  //    h_pt->Fill(fPart->perp());
+  //  }
 
   // Remove Final Higgs Decay Products
   std::vector<fastjet::PseudoJet> vbfSignal;
@@ -287,7 +289,6 @@ bool Vbf_Analysis::book()
 	     this->name().c_str());
   bool bookedAny(false);
 
-
   int netaBins = 120;
   double etaMin = -6.;
   double etaMax =  6.;
@@ -332,20 +333,20 @@ bool Vbf_Analysis::book()
 						   "PtJetpup","Pt of pileup jets",
 						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
 
-  h_eta = Services::Histogramming::book<TH1D>(this->name(),
-					      "Eta","Eta of all particles",
-				      netaBins,etaMin,etaMax,"#eta","dN/d#eta");
-  h_phi = Services::Histogramming::book<TH1D>(this->name(),
-					      "Phi","Phi of all particles",
-					      phiBins,phiMin,phiMax,"#phi","dN/d#phi");
-  h_pt =  Services::Histogramming::book<TH1D>(this->name(),
-					      "Pt","Pt of all particles",
-					      nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
-
-  h_jets_eta = Services::Histogramming::book<TH1D>(this->name(),
-						   "EtaJet","Eta of all jets",				       
-						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
-
+  //  h_eta = Services::Histogramming::book<TH1D>(this->name(),
+  //					      "Eta","Eta of all particles",
+  //				      netaBins,etaMin,etaMax,"#eta","dN/d#eta");
+  //  h_phi = Services::Histogramming::book<TH1D>(this->name(),
+  //					      "Phi","Phi of all particles",
+  //					      phiBins,phiMin,phiMax,"#phi","dN/d#phi");
+  //  h_pt =  Services::Histogramming::book<TH1D>(this->name(),
+  //					      "Pt","Pt of all particles",
+  //					      nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
+  //
+  //  h_jets_eta = Services::Histogramming::book<TH1D>(this->name(),
+  //						   "EtaJet","Eta of all jets",				       
+  //						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
+  //
   h_jets_phi = Services::Histogramming::book<TH1D>(this->name(),
 						   "PhiJet","Phi of all jets",
 						   phiBins,phiMin,phiMax,"#phi","dN/d#phi");
