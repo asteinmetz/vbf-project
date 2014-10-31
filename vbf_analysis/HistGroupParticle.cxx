@@ -1,0 +1,53 @@
+
+#include "Services.h"
+#include "Event.h"
+#include "fastjet/JetDefinition.hh"
+
+#include "HistGroupParticleCfg.h"
+#include "HistGroupParticle.h"
+
+#include "TH1D.h"
+#include "TH2D.h"
+#include "TProfile.h"
+#include "TProfile2D.h"
+
+#define BOOK_TH1 Services::Histogramming::book<TH1D>
+#define BOOK_TH2 Services::Histogramming::book<TH2D>
+#define BOOK_TP1 Services::Histogramming::book<TProfile>
+#define BOOK_TP2 Services::Histogramming::book<TProfile2D>
+
+#define PRINT_INFO Services::Print::info
+#define PRINT_WARN Services::Print::warning
+#define PRINT_ERROR Services::Print::error
+
+using namespace HistGroupParticleCfg;
+
+HistGroupParticle::HistGroupParticle(const std::string& name)
+  : HistGroupBase(name)
+  , h_eta((TH1D*)0)
+  , h_phi((TH1D*)0)
+  , h_pt((TH1D*)0)
+{ }
+
+HistGroupParticle::~HistGroupParticle()
+{ }
+
+void HistGroupParticle::book()
+{
+  // particle histograms
+  h_eta = BOOK_TH1(this->name(),"Eta","Eta of particles",netaBins,etaMin,etaMax,"#eta","dN/d#eta");
+  h_phi = BOOK_TH1(this->name(),"Phi","Phi of particles",phiBins,phiMin,phiMax,"#phi","dN/d#phi");
+  h_pt =  BOOK_TH1(this->name(),"Pt","p_{T} of particles",nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
+}
+
+void HistGroupParticle::fill(const std::vector<fastjet::PseudoJet>& rJet)
+{ 
+  std::vector<fastjet::PseudoJet>::const_iterator fPart(rJet.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lPart(rJet.end());
+  for ( ; fPart != lPart; ++fPart )
+    {
+      h_eta->Fill(fPart->pseudorapidity());
+      h_phi->Fill(fPart->phi_std());
+      h_pt->Fill(fPart->perp());
+    }
+}
