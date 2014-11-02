@@ -16,6 +16,8 @@
 #include "fastjet/tools/Subtractor.hh"
 #include "fastjet/tools/Filter.hh"
 
+#include "TowerGrid.h"
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -27,6 +29,9 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
 			   DataFrame* pileupServer)
 
   : UserAnalysisBase(name,signalServer,pileupServer)
+  , m_towerGridAll(100,-5.,5.)
+  , m_towerGridSig(100,-5.,5.)
+  , m_towerGridPup(100,-5.,5.)
     //  , h_eta(0)
     //  , h_phi(0)
     //  , h_pt(0)
@@ -36,6 +41,9 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   , g_partsig("SigParticles")
   , g_partall("AllParticles")
   , g_partpup("PupParticles")
+  , g_towergridall("AllTowers")
+  , g_towergridsig("SigTowers")
+  , g_towergridpup("PupTowers")
   , g_jet("AllJets")
   , g_jet_sub("TrimJets")
   , g_pup("Pileup")
@@ -75,6 +83,9 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   g_partsig.book();
   g_partall.book();
   g_partpup.book();
+  g_towergridall.book();
+  g_towergridsig.book();
+  g_towergridpup.book();
   g_jet.book();
   g_jet_sub.book();
   g_pup.book();
@@ -87,6 +98,11 @@ Vbf_Analysis::~Vbf_Analysis()
 
 bool Vbf_Analysis::analyze(Event& pEvt)
 { 
+  // reset tower grid
+  m_towerGridAll.reset();
+  m_towerGridSig.reset();
+  m_towerGridPup.reset();
+
   // incoming events
   //  g_eventin.fill(pEvt);
 
@@ -104,6 +120,36 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   g_partsig.fill(pjSignal);
   g_partall.fill(pjAll);
   g_partpup.fill(pjPileup);
+
+  // fill towers from particles (Note: In future, export to HistGroupTower)
+  std::vector<fastjet::PseudoJet>::const_iterator fAll(pjAll.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lAll(pjAll.end());
+  for ( ; fAll != lAll; ++fAll )
+    { m_towerGridAll.add(fAll->pseudorapidity(),fAll->phi_std(),fAll->e()); }
+  std::vector<fastjet::PseudoJet>::const_iterator fSig(pjSignal.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lSig(pjSignal.end());
+  for ( ; fSig != lSig; ++fSig )
+    { m_towerGridSig.add(fSig->pseudorapidity(),fSig->phi_std(),fSig->e()); }
+  std::vector<fastjet::PseudoJet>::const_iterator fPup(pjPileup.begin());
+  std::vector<fastjet::PseudoJet>::const_iterator lPup(pjPileup.end());
+  for ( ; fPup != lPup; ++fPup )
+    { m_towerGridPup.add(fPup->pseudorapidity(),fPup->phi_std(),fPup->e()); }
+
+  // get new jets from towers
+  std::vector<fastjet::PseudoJet> towerAll;
+  std::vector<fastjet::PseudoJet> towerSig;
+  std::vector<fastjet::PseudoJet> towerPup;
+  if ( !m_towerGridAll.fillPseudoJets(towerAll) )
+    { /* print an error message because there are no tower jets! */ }
+  if ( !m_towerGridSig.fillPseudoJets(towerSig) )
+    { /* print an error message because there are no tower jets! */ }
+  if ( !m_towerGridPup.fillPseudoJets(towerPup) )
+    { /* print an error message because there are no tower jets! */ }
+
+  // HisGroupParticle fills for all towers (No jet finding!)
+  g_towergridall.fill(towerAll);
+  g_towergridsig.fill(towerSig);
+  g_towergridpup.fill(towerPup);
 
   // background estimator and event rho
   fastjet::GridMedianBackgroundEstimator bge(5.0,0.5);

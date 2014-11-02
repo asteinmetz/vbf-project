@@ -1,10 +1,10 @@
-CXX := g++
+CXX := $(GCC)
 
 PROGSRCS = analysis.C
 COMMONSRCS = Event.cxx RandomEngine.cxx Selectors.cxx Services.cxx\
   Configuration.cxx HistGroup.cxx HistGroupEvent.cxx ExtraSelectors.cxx\
   DataFrame.cxx UserAnalysisBase.cxx TestFilterAnalysis.cxx HZAnalysis.cxx\
-  AllAnalyses.cxx HistGroupContainer.cxx SimpleBTagger.cxx
+  AllAnalyses.cxx HistGroupContainer.cxx SimpleBTagger.cxx TowerGrid.cxx ObjectSelectors.cxx
 COMMONOBJS = $(patsubst %.C,%.o,$(patsubst %.cxx,%.o,$(COMMONSRCS)))
 
 ROOTCXXFLAGS = $(shell root-config --cflags)

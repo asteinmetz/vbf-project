@@ -10,6 +10,8 @@
 #include "Event.h"
 #include "DataFrame.h"
 
+#include "TowerGrid.h"
+
 // -- commonly used histogram types for derived classes -- 
 #include "TH1D.h"
 #include "TH2D.h"
@@ -33,6 +35,10 @@ public:
 private:
 
 protected:
+
+  TowerGrid m_towerGridAll;
+  TowerGrid m_towerGridSig;
+  TowerGrid m_towerGridPup;
 
   //TH1D* h_jets_eta_pup;
   //TH1D* h_jets_phi_pup;
@@ -79,6 +85,9 @@ protected:
   HistGroupParticle g_partsig;
   HistGroupParticle g_partall;
   HistGroupParticle g_partpup;
+  HistGroupParticle g_towergridall;
+  HistGroupParticle g_towergridsig;
+  HistGroupParticle g_towergridpup;
   HistGroupParticle g_jet;
   HistGroupParticle g_jet_sub;
   HistGroupParticle g_pup;
