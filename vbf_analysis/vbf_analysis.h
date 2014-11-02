@@ -34,17 +34,17 @@ private:
 
 protected:
 
-  TH1D* h_jets_eta_pup;
-  TH1D* h_jets_phi_pup;
-  TH1D* h_jets_pt_pup;
+  //TH1D* h_jets_eta_pup;
+  //TH1D* h_jets_phi_pup;
+  //TH1D* h_jets_pt_pup;
 
   //TH1D* h_eta;
   //TH1D* h_phi;
   //TH1D* h_pt;
 
-  TH1D* h_jets_eta;
-  TH1D* h_jets_phi;
-  TH1D* h_jets_pt;
+  //TH1D* h_jets_eta;
+  //TH1D* h_jets_phi;
+  //TH1D* h_jets_pt;
 
   //TH1D* h_njets;
   //TH1D* h_njets_sub;
@@ -76,14 +76,14 @@ protected:
 
   TH2D* d_rho;
 
-  HistGroupEvent g_eventin;
-
   HistGroupParticle g_partsig;
   HistGroupParticle g_partall;
   HistGroupParticle g_partpup;
+  HistGroupParticle g_jet;
+  HistGroupParticle g_jet_sub;
+  HistGroupParticle g_pup;
   HistGroupCount g_njets;
   HistGroupCount g_njets_sub;
-
 
   // list of particles to be excluded from jet finding
   std::vector<int> m_exclusions;

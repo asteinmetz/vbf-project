@@ -36,6 +36,9 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   , g_partsig("SigParticles")
   , g_partall("AllParticles")
   , g_partpup("PupParticles")
+  , g_jet("AllJets")
+  , g_jet_sub("TrimJets")
+  , g_pup("Pileup")
   , g_njets("CountJets")
   , g_njets_sub("CountSubJets")
   , m_jet_radius(0.4)
@@ -72,6 +75,9 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   g_partsig.book();
   g_partall.book();
   g_partpup.book();
+  g_jet.book();
+  g_jet_sub.book();
+  g_pup.book();
   g_njets.book();
   g_njets_sub.book();
 }
@@ -94,7 +100,7 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   pjAll = pEvt.pseudoJets();
   pjPileup = pEvt.pseudoJets(Vertex::PILEUP);
 
-  // HistGroupParticle fills
+  // HistGroupParticle fills for all particles
   g_partsig.fill(pjSignal);
   g_partall.fill(pjAll);
   g_partpup.fill(pjPileup);
@@ -208,24 +214,27 @@ bool Vbf_Analysis::analyze(Event& pEvt)
 
 
 
-  // loop jets
-  std::vector<fastjet::PseudoJet>::iterator fJet(aktJets.begin());
-  std::vector<fastjet::PseudoJet>::iterator lJet(aktJets.end());
-  for ( ; fJet != lJet; ++fJet )
-    {
-      h_jets_eta->Fill(fJet->pseudorapidity());
-      h_jets_phi->Fill(fJet->phi_std());
-      h_jets_pt->Fill(fJet->perp());
-    }
-
-  std::vector<fastjet::PseudoJet>::iterator fpup(pupJets.begin());
-  std::vector<fastjet::PseudoJet>::iterator lpup(pupJets.end());
-  for ( ; fpup != lpup; ++fpup )
-    {
-      h_jets_eta_pup->Fill(fpup->pseudorapidity());
-      h_jets_phi_pup->Fill(fpup->phi_std());
-      h_jets_pt_pup->Fill(fpup->perp());
-    }
+  // loop jets - Replaced by HistGroupParticle
+  g_jet.fill(aktJets);
+  g_jet_sub.fill(aktJets_sub);
+  g_pup.fill(pupJets);
+  //  std::vector<fastjet::PseudoJet>::iterator fJet(aktJets.begin());
+  //  std::vector<fastjet::PseudoJet>::iterator lJet(aktJets.end());
+  //  for ( ; fJet != lJet; ++fJet )
+  //    {
+  //      h_jets_eta->Fill(fJet->pseudorapidity());
+  //      h_jets_phi->Fill(fJet->phi_std());
+  //      h_jets_pt->Fill(fJet->perp());
+  //    }
+  //
+  //  std::vector<fastjet::PseudoJet>::iterator fpup(pupJets.begin());
+  //  std::vector<fastjet::PseudoJet>::iterator lpup(pupJets.end());
+  //  for ( ; fpup != lpup; ++fpup )
+  //    {
+  //      h_jets_eta_pup->Fill(fpup->pseudorapidity());
+  //      h_jets_phi_pup->Fill(fpup->phi_std());
+  //      h_jets_pt_pup->Fill(fpup->perp());
+  //    }
 
   // sort the jets by pT
   if ( njets >= 2. )
@@ -336,17 +345,18 @@ bool Vbf_Analysis::book()
   double pidMin = -25.5;
   double pidMax = 25.5;
 
-  h_jets_eta_pup = Services::Histogramming::book<TH1D>(this->name(),
-						   "EtaJetpup","Eta of pileup jets",				       
-						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
-
-  h_jets_phi_pup = Services::Histogramming::book<TH1D>(this->name(),
-						   "PhiJetpup","Phi of pileup jets",
-						   phiBins,phiMin,phiMax,"#phi","dN/d#phi");
-  h_jets_pt_pup =  Services::Histogramming::book<TH1D>(this->name(),
-						   "PtJetpup","Pt of pileup jets",
-						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
-
+  //  h_jets_eta_pup = Services::Histogramming::book<TH1D>(this->name(),
+  //						   "EtaJetpup","Eta of pileup jets",			
+  //	       
+  //						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
+  //
+  //  h_jets_phi_pup = Services::Histogramming::book<TH1D>(this->name(),
+  //						   "PhiJetpup","Phi of pileup jets",
+  //						   phiBins,phiMin,phiMax,"#phi","dN/d#phi");
+  //  h_jets_pt_pup =  Services::Histogramming::book<TH1D>(this->name(),
+  //						   "PtJetpup","Pt of pileup jets",
+  //						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
+  //
   //  h_eta = Services::Histogramming::book<TH1D>(this->name(),
   //					      "Eta","Eta of all particles",
   //				      netaBins,etaMin,etaMax,"#eta","dN/d#eta");
@@ -357,17 +367,18 @@ bool Vbf_Analysis::book()
   //					      "Pt","Pt of all particles",
   //					      nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
   //
-  h_jets_eta = Services::Histogramming::book<TH1D>(this->name(),
-  						   "EtaJet","Eta of all jets",				       
-  						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
-  
-  h_jets_phi = Services::Histogramming::book<TH1D>(this->name(),
-						   "PhiJet","Phi of all jets",
-						   phiBins,phiMin,phiMax,"#phi","dN/d#phi");
-  h_jets_pt =  Services::Histogramming::book<TH1D>(this->name(),
-						   "PtJet","Pt of all jets",
-						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
-
+  //  h_jets_eta = Services::Histogramming::book<TH1D>(this->name(),
+  //  						   "EtaJet","Eta of all jets",				  
+  //     
+  //  						   netaBins,etaMin,etaMax,"#eta","dN/d#eta");
+  //  
+  //  h_jets_phi = Services::Histogramming::book<TH1D>(this->name(),
+  //						   "PhiJet","Phi of all jets",
+  //						   phiBins,phiMin,phiMax,"#phi","dN/d#phi");
+  //  h_jets_pt =  Services::Histogramming::book<TH1D>(this->name(),
+  //						   "PtJet","Pt of all jets",
+  //						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
+  //
   //  h_njets =  Services::Histogramming::book<TH1D>(this->name(),
   //						   "nJet","Number of jets per event",
   //						   njBins,njMin,njMax,"N_{jets}","dN/dN_{jets}");
@@ -379,102 +390,29 @@ bool Vbf_Analysis::book()
   //						   100,0,2,"N_{jets}","dN/dN_{jets}");
   //
   // new plots
-
-  d_rho =  Services::Histogramming::book<TH2D>(this->name(),
-					       "rho","#rho versus pileup events",
-					       100,0,200,100,0,50,"Pileup Events","#rho");
-  //  d_rho_test =  Services::Histogramming::book<TH2D>(this->name(),
-  //					       "rho test","#rho test versus pileup events",
-  //					       100,0,200,100,0,50,"Pileup Events","#rho test");
-
-  h_comb_pt =  Services::Histogramming::book<TH1D>(this->name(),
-						   "comb_pt","Combined pt",
-						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
-  h_comb_lead_pt =  Services::Histogramming::book<TH1D>(this->name(),
-							"comb_lead_pt","Leading pt",
-							nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
-  h_comb_sub_pt =  Services::Histogramming::book<TH1D>(this->name(),
-						       "comb_sub_pt","Sub Leading pt",	
-						       nptBins,ptMin,ptMax, "p_{T} [GeV]","dN/dpt");
-  h_comb_eta =  Services::Histogramming::book<TH1D>(this->name(),
-						    "comb_eta","Combine eta",				   
-						    netaBins,etaMin,etaMax,"#eta of combined jets","dN/d#eta");
-  
-  h_comb_lead_eta =  Services::Histogramming::book<TH1D>(this->name(),
-							 "comb_lead_eta","Leading eta",
-							 netaBins,etaMin,etaMax,"Lead #eta","dN/d#eta");
-  h_comb_sub_eta =  Services::Histogramming::book<TH1D>(this->name(),
-							"comb_sub_eta","Sub leading eta",		     
-							netaBins,etaMin,etaMax,"Sub #eta","dN/d#eta");
-  
+  d_rho =  Services::Histogramming::book<TH2D>(this->name(),"rho","#rho versus pileup events",100,0,200,100,0,50,"Pileup Events","#rho");
+  h_comb_pt =  Services::Histogramming::book<TH1D>(this->name(),"comb_pt","Combined pt",nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
+  h_comb_lead_pt =  Services::Histogramming::book<TH1D>(this->name(),"comb_lead_pt","Leading pt",nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
+  h_comb_sub_pt =  Services::Histogramming::book<TH1D>(this->name(),"comb_sub_pt","Sub Leading pt",nptBins,ptMin,ptMax, "p_{T} [GeV]","dN/dpt");
+  h_comb_eta =  Services::Histogramming::book<TH1D>(this->name(),"comb_eta","Combine eta",netaBins,etaMin,etaMax,"#eta of combined jets","dN/d#eta");
+  h_comb_lead_eta =  Services::Histogramming::book<TH1D>(this->name(),"comb_lead_eta","Leading eta",netaBins,etaMin,etaMax,"Lead #eta","dN/d#eta");
+  h_comb_sub_eta =  Services::Histogramming::book<TH1D>(this->name(),"comb_sub_eta","Sub leading eta",netaBins,etaMin,etaMax,"Sub #eta","dN/d#eta");
   // My Graphs
-  
-  d_lead_eta_diff_eta = Services::Histogramming::book<TH2D>(this->name(),
-							    "lead_eta_diff_eta","Lead Eta versus Difference Eta",
-							    netaBins,etaMin,etaMax,netaBins,detaMin,detaMax,
-							    "Lead #eta","#Delta #eta");
-  h_lead_pt_minus_sub_pt = Services::Histogramming::book<TH1D>(this->name(),
-							       "lead_pt_minus_sub_pt","Lead P_{T} minus Sub P_{T}",
-							       nptBins,ptMin,ptMax,
-							       "Lead P_{T} - Sub P_{T} [GeV]","Counts");
-  h_distance = Services::Histogramming::book<TH1D>(this->name(),
-						   "distance","Distance in #eta #phi Space",
-						   ndisBins,0,10,
-						   "Distance","Counts");
-
-  h_pidsum = Services::Histogramming::book<TH1D>(this->name(),
-						 "pidsum","PID Sum",
-						 npidBins,pidMin,pidMax,
-						 "Pidsum","Counts");
-
-  h_higgs_mass = Services::Histogramming::book<TH1D>(this->name(),
-						     "higgs_mass","Higgs Mass",
-						     nmBins,mMin,mMax,
-						     "Higgs Mass [GeV]","Counts");
-  d_higgs_mass_pidsum = Services::Histogramming::book<TH2D>(this->name(),
-							    "higgs_mass_pidsum","PIDSUM versus Higgs Mass",
-							    nmBins,mMin,mMax,npidBins,pidMin,pidMax,
-							    "Higgs Mass [GeV]","PIDSUM");
-  h_ndecay = Services::Histogramming::book<TH1D>(this->name(),
-						 "ndecay","Number of Higgs Decay Products",
-						 ndecayBins,decayMin,decayMax,
-						 "Number of Decays","Counts");
-
-  d_higgs_mass_ndecay = Services::Histogramming::book<TH2D>(this->name(),
-							    "higgs_mass_ndecay","Number of Decay Products versus Higgs Mass",
-							    nmBins,mMin,mMax,ndecayBins,decayMin,decayMax,
-							    "Higgs Mass [GeV]","Decay Counts");
-  d_pidsum_ndecay = Services::Histogramming::book<TH2D>(this->name(),
-							"pidsum_ndecay","Number of Decays versus PIDSUM",
-							npidBins,pidMin,pidMax,ndecayBins,decayMin,decayMax,
-							"PIDSUM","ndecay");
-
-  h_eta_cut = Services::Histogramming::book<TH1D>(this->name(),
-						     "eta_cut","Companion Jets to Jets Under 3.0 #eta",
-						    netaBins,etaMin,etaMax,
-						    "Companion Jet #eta","Counts");
-
+  d_lead_eta_diff_eta = Services::Histogramming::book<TH2D>(this->name(),"lead_eta_diff_eta","Lead Eta versus Difference Eta",netaBins,etaMin,etaMax,netaBins,detaMin,detaMax,"Lead #eta","#Delta #eta");
+  h_lead_pt_minus_sub_pt = Services::Histogramming::book<TH1D>(this->name(),"lead_pt_minus_sub_pt","Lead P_{T} minus Sub P_{T}",nptBins,ptMin,ptMax,"Lead P_{T} - Sub P_{T} [GeV]","Counts");
+  h_distance = Services::Histogramming::book<TH1D>(this->name(),"distance","Distance in #eta #phi Space",ndisBins,0,10,"Distance","Counts");
+  h_pidsum = Services::Histogramming::book<TH1D>(this->name(),"pidsum","PID Sum",npidBins,pidMin,pidMax,"Pidsum","Counts");
+  h_higgs_mass = Services::Histogramming::book<TH1D>(this->name(),"higgs_mass","Higgs Mass",nmBins,mMin,mMax,"Higgs Mass [GeV]","Counts");
+  d_higgs_mass_pidsum = Services::Histogramming::book<TH2D>(this->name(),"higgs_mass_pidsum","PIDSUM versus Higgs Mass",nmBins,mMin,mMax,npidBins,pidMin,pidMax,"Higgs Mass [GeV]","PIDSUM");
+  h_ndecay = Services::Histogramming::book<TH1D>(this->name(),"ndecay","Number of Higgs Decay Products",ndecayBins,decayMin,decayMax,"Number of Decays","Counts");
+  d_higgs_mass_ndecay = Services::Histogramming::book<TH2D>(this->name(),"higgs_mass_ndecay","Number of Decay Products versus Higgs Mass",nmBins,mMin,mMax,ndecayBins,decayMin,decayMax,"Higgs Mass [GeV]","Decay Counts");
+  d_pidsum_ndecay = Services::Histogramming::book<TH2D>(this->name(),"pidsum_ndecay","Number of Decays versus PIDSUM",npidBins,pidMin,pidMax,ndecayBins,decayMin,decayMax,"PIDSUM","ndecay");
+  h_eta_cut = Services::Histogramming::book<TH1D>(this->name(),"eta_cut","Companion Jets to Jets Under 3.0 #eta",netaBins,etaMin,etaMax,"Companion Jet #eta","Counts");
   // Rejected Signal Graphs
-
-  h_higgs_lpt = Services::Histogramming::book<TH1D>(this->name(),
-						     "higgs_lpt","p_{T} of Higgs Decay Leptons",
-						    nptBins,ptMin,ptMax,
-						    "p_{T} [GeV]","Counts");
-  
-  d_higgs_ndecay_lpt = Services::Histogramming::book<TH2D>(this->name(),							   
-							   "higgs_ndecay_lpt","Number of Lepton Decays versus p_{T} of Decays",
-							   ndecayBins,decayMin,decayMax,nptBins,ptMin,ptMax,
-							   "Number of Decays","p_{T} of Decays");
-
-  d_deta_dphi = Services::Histogramming::book<TH2D>(this->name(),
-						    "deta_dphi","#Delta #phi versus #Delta #eta",
-						    netaBins,(etaMin-6),(etaMax+6),phiBins,phiMin,phiMax,
-						    "#Delta #eta","#Delta #phi");
-
-  d_lead_sub = Services::Histogramming::book<TH2D>(this->name(),
-						   "lead_sub","Lead #eta versus Sub #eta",
-						   netaBins,etaMin,etaMax,netaBins,etaMin,etaMax,
-						   "Lead #eta","Sub #eta");
+  h_higgs_lpt = Services::Histogramming::book<TH1D>(this->name(),"higgs_lpt","p_{T} of Higgs Decay Leptons",nptBins,ptMin,ptMax,"p_{T} [GeV]","Counts");
+  d_higgs_ndecay_lpt = Services::Histogramming::book<TH2D>(this->name(),"higgs_ndecay_lpt","Number of Lepton Decays versus p_{T} of Decays",ndecayBins,decayMin,decayMax,nptBins,ptMin,ptMax,"Number of Decays","p_{T} of Decays");
+  d_deta_dphi = Services::Histogramming::book<TH2D>(this->name(),"deta_dphi","#Delta #phi versus #Delta #eta",netaBins,(etaMin-6),(etaMax+6),phiBins,phiMin,phiMax,"#Delta #eta","#Delta #phi");
+  d_lead_sub = Services::Histogramming::book<TH2D>(this->name(),"lead_sub","Lead #eta versus Sub #eta",netaBins,etaMin,etaMax,netaBins,etaMin,etaMax,"Lead #eta","Sub #eta");
 
  return bookedAny;
 }
