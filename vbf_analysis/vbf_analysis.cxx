@@ -1,6 +1,7 @@
 #include "PrintDef.h"
 #include "TFile.h"
 #include "HistGroupParticle.h"
+#include "HistGroupCount.h"
 #include "HistGroupEvent.h"
 #include "Services.h"
 #include "Selectors.h"
@@ -29,10 +30,14 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
     //  , h_eta(0)
     //  , h_phi(0)
     //  , h_pt(0)
-  , g_eventin("EventIn")       // this instantiates the objects righ away -> FAST!
+    // this instantiates the objects righ away -> FAST!
+    // initiates HistGroups
+    //  , g_eventin("EventIn")
   , g_partsig("SigParticles")
   , g_partall("AllParticles")
   , g_partpup("PupParticles")
+  , g_njets("CountJets")
+  , g_njets_sub("CountSubJets")
   , m_jet_radius(0.4)
   , m_lptcut(10.0)
   , m_jptcut(20.0)
@@ -63,10 +68,12 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
     { PRINT_INFO("Vbf_Analysis::Vbf_Analysis(...)","Default m_cut %i\n",m_cut); }
 
   // book all histograms in the all groups
-  g_eventin.book();
+  //  g_eventin.book();
   g_partsig.book();
   g_partall.book();
   g_partpup.book();
+  g_njets.book();
+  g_njets_sub.book();
 }
 
 Vbf_Analysis::~Vbf_Analysis()
@@ -75,7 +82,7 @@ Vbf_Analysis::~Vbf_Analysis()
 bool Vbf_Analysis::analyze(Event& pEvt)
 { 
   // incoming events
-  g_eventin.fill(pEvt);
+  //  g_eventin.fill(pEvt);
 
   // allocate all internal lists
   std::vector<fastjet::PseudoJet> pjSignal;
@@ -187,15 +194,19 @@ bool Vbf_Analysis::analyze(Event& pEvt)
 	}
     }
 
-  //Pickup Number of jets
+  //Pickup Number of jets - Replaced by HistGroupCount
   double njets=(double)aktJets.size();
-  double njets_sub=(double)aktJets_sub.size();
-  h_njets->Fill(njets);
-  h_njets_sub->Fill(njets_sub);
-  if (njets_sub != 0)
-    {
-      h_njets_ratio->Fill(njets/njets_sub);  
-    }
+  //double njets_sub=(double)aktJets_sub.size();
+  g_njets.fill(aktJets);
+  g_njets_sub.fill(aktJets_sub);
+  //  h_njets->Fill(njets);
+  //  h_njets_sub->Fill(njets_sub);
+  //  if (njets_sub != 0)
+  //    {
+  //      h_njets_ratio->Fill(njets/njets_sub);  
+  //    }
+
+
 
   // loop jets
   std::vector<fastjet::PseudoJet>::iterator fJet(aktJets.begin());
@@ -357,16 +368,16 @@ bool Vbf_Analysis::book()
 						   "PtJet","Pt of all jets",
 						   nptBins,ptMin,ptMax,"p_{T} [GeV]","dN/dpt");
 
-  h_njets =  Services::Histogramming::book<TH1D>(this->name(),
-						   "nJet","Number of jets per event",
-						   njBins,njMin,njMax,"N_{jets}","dN/dN_{jets}");
-  h_njets_sub =  Services::Histogramming::book<TH1D>(this->name(),
-						   "nJet_sub","Number of jets_sub per event",
-						   njBins,njMin,njMax,"N_{jets_sub}","dN/dN_{jets_sub}");
-  h_njets_ratio =  Services::Histogramming::book<TH1D>(this->name(),
-						   "nJet_ratio","trim ratio jets per event",
-						   100,0,2,"N_{jets}","dN/dN_{jets}");
-
+  //  h_njets =  Services::Histogramming::book<TH1D>(this->name(),
+  //						   "nJet","Number of jets per event",
+  //						   njBins,njMin,njMax,"N_{jets}","dN/dN_{jets}");
+  //  h_njets_sub =  Services::Histogramming::book<TH1D>(this->name(),
+  //						   "nJet_sub","Number of jets_sub per event",
+  //						   njBins,njMin,njMax,"N_{jets_sub}","dN/dN_{jets_sub}");
+  //  h_njets_ratio =  Services::Histogramming::book<TH1D>(this->name(),
+  //						   "nJet_ratio","trim ratio jets per event",
+  //						   100,0,2,"N_{jets}","dN/dN_{jets}");
+  //
   // new plots
 
   d_rho =  Services::Histogramming::book<TH2D>(this->name(),

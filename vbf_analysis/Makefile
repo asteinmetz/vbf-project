@@ -1,7 +1,7 @@
 CXX := g++
 
 PROGSRCS = vbf.C
-COMMONSRCS = HistGroupParticle.cxx vbf_analysis.cxx
+COMMONSRCS = HistGroupParticle.cxx HistGroupCount.cxx vbf_analysis.cxx
 
 COMMONOBJS = $(patsubst %.C,%.o,$(patsubst %.cxx,%.o,$(COMMONSRCS)))
 

@@ -6,6 +6,7 @@
 #include "HistGroup.h"
 #include "HistGroupEvent.h"
 #include "HistGroupParticle.h"
+#include "HistGroupCount.h"
 #include "Event.h"
 #include "DataFrame.h"
 
@@ -45,9 +46,9 @@ protected:
   TH1D* h_jets_phi;
   TH1D* h_jets_pt;
 
-  TH1D* h_njets;
-  TH1D* h_njets_sub;
-  TH1D* h_njets_ratio;
+  //TH1D* h_njets;
+  //TH1D* h_njets_sub;
+  //TH1D* h_njets_ratio;
 
   TH1D* h_comb_pt;
   TH1D* h_comb_lead_pt;
@@ -74,13 +75,15 @@ protected:
   TH2D* d_lead_sub;
 
   TH2D* d_rho;
-  //TH2D* d_rho_test;
 
   HistGroupEvent g_eventin;
 
   HistGroupParticle g_partsig;
   HistGroupParticle g_partall;
   HistGroupParticle g_partpup;
+  HistGroupCount g_njets;
+  HistGroupCount g_njets_sub;
+
 
   // list of particles to be excluded from jet finding
   std::vector<int> m_exclusions;
