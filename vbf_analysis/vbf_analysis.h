@@ -36,6 +36,9 @@ private:
 
 protected:
 
+  int m_eventCtr;
+  int m_eventFreq;
+
   TowerGrid m_towerGridAll;
   TowerGrid m_towerGridSig;
   TowerGrid m_towerGridPup;
@@ -63,22 +66,22 @@ protected:
   TH1D* h_comb_lead_eta;
   TH1D* h_comb_sub_eta;
 
-  TH2D* d_lead_eta_diff_eta;
-  TH1D* h_lead_pt_minus_sub_pt;
-  TH1D* h_distance;
+  //TH2D* d_lead_eta_diff_eta;
+  //TH1D* h_lead_pt_minus_sub_pt;
+  //TH1D* h_distance;
 
-  TH1D* h_pidsum;
+  //TH1D* h_pidsum;
   TH1D* h_higgs_mass;
-  TH2D* d_higgs_mass_pidsum;
-  TH1D* h_ndecay;
-  TH2D* d_higgs_mass_ndecay;
-  TH2D* d_pidsum_ndecay;
+  //TH2D* d_higgs_mass_pidsum;
+  //TH1D* h_ndecay;
+  //TH2D* d_higgs_mass_ndecay;
+  //TH2D* d_pidsum_ndecay;
   TH1D* h_eta_cut;
 
   TH1D* h_higgs_lpt;
   TH2D* d_higgs_ndecay_lpt;
-  TH2D* d_deta_dphi;
-  TH2D* d_lead_sub;
+  //TH2D* d_deta_dphi;
+  //TH2D* d_lead_sub;
 
   TH2D* d_rho;
 
@@ -89,6 +92,7 @@ protected:
   HistGroupParticle g_towergridsig;
   HistGroupParticle g_towergridpup;
   HistGroupParticle g_jet;
+  HistGroupParticle g_jet_pre;
   HistGroupParticle g_jet_sub;
   HistGroupParticle g_pup;
   HistGroupCount g_njets;

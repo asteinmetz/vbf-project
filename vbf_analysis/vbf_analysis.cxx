@@ -1,5 +1,7 @@
 #include "PrintDef.h"
 #include "TFile.h"
+#include "TString.h"
+
 #include "HistGroupParticle.h"
 #include "HistGroupCount.h"
 #include "HistGroupEvent.h"
@@ -29,6 +31,8 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
 			   DataFrame* pileupServer)
 
   : UserAnalysisBase(name,signalServer,pileupServer)
+  , m_eventCtr(0)
+  , m_eventFreq(200)
   , m_towerGridAll(100,-5.,5.)
   , m_towerGridSig(100,-5.,5.)
   , m_towerGridPup(100,-5.,5.)
@@ -44,9 +48,10 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   , g_towergridall("AllTowers")
   , g_towergridsig("SigTowers")
   , g_towergridpup("PupTowers")
-  , g_jet("AllJets")
-  , g_jet_sub("TrimJets")
-  , g_pup("Pileup")
+  , g_jet("AllJets_Final")
+  , g_jet_pre("AllJets_Pretrimmed")
+  , g_jet_sub("AllJets_Trimmed")
+  , g_pup("PupJets_cut")
   , g_njets("CountJets")
   , g_njets_sub("CountSubJets")
   , m_jet_radius(0.4)
@@ -87,6 +92,7 @@ Vbf_Analysis::Vbf_Analysis(const std::string& name,
   g_towergridsig.book();
   g_towergridpup.book();
   g_jet.book();
+  g_jet_pre.book();
   g_jet_sub.book();
   g_pup.book();
   g_njets.book();
@@ -98,6 +104,9 @@ Vbf_Analysis::~Vbf_Analysis()
 
 bool Vbf_Analysis::analyze(Event& pEvt)
 { 
+  // increment event counter
+  ++m_eventCtr;
+
   // reset tower grid
   m_towerGridAll.reset();
   m_towerGridSig.reset();
@@ -150,6 +159,20 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   g_towergridall.fill(towerAll);
   g_towergridsig.fill(towerSig);
   g_towergridpup.fill(towerPup);
+
+  // single event shots
+  if ( ( m_eventCtr % m_eventFreq ) == 0 )
+    {
+      PRINT_INFO(this->name(),"Entered single event tower display for event %010i\n",m_eventCtr);
+      std::string nTowerAll(TString::Format("TowerAll_%010i",m_eventCtr).Data());        // returns "const char*"
+      std::string tTowerAll(TString::Format("All Towers Event %010i",m_eventCtr).Data());
+      std::string nTowerSig(TString::Format("TowerSig_%010i",m_eventCtr).Data());
+      std::string tTowerSig(TString::Format("Signal Towers Event %010i",m_eventCtr).Data());
+      TH2D* hh = m_towerGridAll.distribution(nTowerAll,tTowerAll);
+      m_towerGridSig.distribution(nTowerSig,tTowerSig);
+      if ( hh != 0 ) { PRINT_INFO(this->name(),"Event %10i: created histogram \042%s\042\n",m_eventCtr,hh->GetName()); }
+      else { PRINT_WARN(this->name(),"Event %10i: failed to create histogram \042%s\042\n",m_eventCtr,nTowerAll.c_str()); }
+    } 
 
   // background estimator and event rho
   fastjet::GridMedianBackgroundEstimator bge(5.0,0.5);
@@ -230,24 +253,24 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   //int s_trim = 1;
   //if ( s_trim == 1 )
   //{
+  g_jet_pre.fill(aktJets_sub);
   aktJets_sub = trimmer(aktJets_sub); // with trimming
   //}
   //else if ( s_trim == 0 )
   //{
   //aktJets_sub = subtractor(aktJets_sub); // without trimming
   //}
+  // get jets with PT > cut (again after trimming!)
   std::vector<fastjet::PseudoJet>::iterator fsub(aktJets_sub.begin());
   std::vector<fastjet::PseudoJet>::iterator lsub(aktJets_sub.end());
   for ( ; fsub != lsub; ++fsub )
     {
       if (fsub->perp() >= m_jptcut)
-	{
-	  aktJets.push_back(*fsub);
-	}
+	{ aktJets.push_back(*fsub); }
     }
 
   //Pickup Number of jets - Replaced by HistGroupCount
-  double njets=(double)aktJets.size();
+  //double njets=(double)aktJets.size();
   //double njets_sub=(double)aktJets_sub.size();
   g_njets.fill(aktJets);
   g_njets_sub.fill(aktJets_sub);
@@ -283,6 +306,7 @@ bool Vbf_Analysis::analyze(Event& pEvt)
   //    }
 
   // sort the jets by pT
+  double njets=(double)aktJets.size();
   if ( njets >= 2. )
     {
       // accepted events
@@ -309,30 +333,30 @@ bool Vbf_Analysis::analyze(Event& pEvt)
  
      // My Graphs
       // lead_eta versus lead_eta - sub_eta
-      d_lead_eta_diff_eta->Fill(z0jet.pseudorapidity(),z0jet.pseudorapidity()-z1jet.pseudorapidity());
+      // d_lead_eta_diff_eta->Fill(z0jet.pseudorapidity(),z0jet.pseudorapidity()-z1jet.pseudorapidity());
       // lead_pt versus sub_pt
-      h_lead_pt_minus_sub_pt->Fill(z0jet.perp()-z1jet.perp());
+      // h_lead_pt_minus_sub_pt->Fill(z0jet.perp()-z1jet.perp());
       // Jet Distance on phi-eta plane
-      h_distance->Fill(z0jet.delta_R(z1jet));
+      // h_distance->Fill(z0jet.delta_R(z1jet));
       
       // Sum of Particle IDs from Higgs Decay, expect to be zero.
-      h_pidsum->Fill((double)pidsum);
+      // h_pidsum->Fill((double)pidsum);
       // Histogram of Higgs Mass, reconstructed.
       h_higgs_mass->Fill(Higgs.m());
       // Mass against the PIDSUM
-      d_higgs_mass_pidsum->Fill(Higgs.m(),(double)pidsum);
+      // d_higgs_mass_pidsum->Fill(Higgs.m(),(double)pidsum);
       // Number of Higgs Decay Products
-      h_ndecay->Fill((double)ndecay);
+      // h_ndecay->Fill((double)ndecay);
       // Mass against the number of decay products
-      d_higgs_mass_ndecay->Fill(Higgs.m(),(double)ndecay);
+      // d_higgs_mass_ndecay->Fill(Higgs.m(),(double)ndecay);
       // PIDSUM versus Ndecay
-      d_pidsum_ndecay->Fill((double)pidsum,(double)ndecay);
+      // d_pidsum_ndecay->Fill((double)pidsum,(double)ndecay);
       
       // delta eta versus delta phi
-      d_deta_dphi->Fill(z0jet.pseudorapidity()-z1jet.pseudorapidity(),z0jet.delta_phi_to(z1jet));
+      // d_deta_dphi->Fill(z0jet.pseudorapidity()-z1jet.pseudorapidity(),z0jet.delta_phi_to(z1jet));
       
       // lead eta versus sub lead eta
-      d_lead_sub->Fill(z0jet.pseudorapidity(),z1jet.pseudorapidity());
+      // d_lead_sub->Fill(z0jet.pseudorapidity(),z1jet.pseudorapidity());
 	  
       std::vector<fastjet::PseudoJet>::iterator fRej(rejsignal.begin());
       std::vector<fastjet::PseudoJet>::iterator lRej(rejsignal.end());
@@ -444,21 +468,21 @@ bool Vbf_Analysis::book()
   h_comb_lead_eta =  Services::Histogramming::book<TH1D>(this->name(),"comb_lead_eta","Leading eta",netaBins,etaMin,etaMax,"Lead #eta","dN/d#eta");
   h_comb_sub_eta =  Services::Histogramming::book<TH1D>(this->name(),"comb_sub_eta","Sub leading eta",netaBins,etaMin,etaMax,"Sub #eta","dN/d#eta");
   // My Graphs
-  d_lead_eta_diff_eta = Services::Histogramming::book<TH2D>(this->name(),"lead_eta_diff_eta","Lead Eta versus Difference Eta",netaBins,etaMin,etaMax,netaBins,detaMin,detaMax,"Lead #eta","#Delta #eta");
-  h_lead_pt_minus_sub_pt = Services::Histogramming::book<TH1D>(this->name(),"lead_pt_minus_sub_pt","Lead P_{T} minus Sub P_{T}",nptBins,ptMin,ptMax,"Lead P_{T} - Sub P_{T} [GeV]","Counts");
-  h_distance = Services::Histogramming::book<TH1D>(this->name(),"distance","Distance in #eta #phi Space",ndisBins,0,10,"Distance","Counts");
-  h_pidsum = Services::Histogramming::book<TH1D>(this->name(),"pidsum","PID Sum",npidBins,pidMin,pidMax,"Pidsum","Counts");
+  //d_lead_eta_diff_eta = Services::Histogramming::book<TH2D>(this->name(),"lead_eta_diff_eta","Lead Eta versus Difference Eta",netaBins,etaMin,etaMax,netaBins,detaMin,detaMax,"Lead #eta","#Delta #eta");
+  //h_lead_pt_minus_sub_pt = Services::Histogramming::book<TH1D>(this->name(),"lead_pt_minus_sub_pt","Lead P_{T} minus Sub P_{T}",nptBins,ptMin,ptMax,"Lead P_{T} - Sub P_{T} [GeV]","Counts");
+  //h_distance = Services::Histogramming::book<TH1D>(this->name(),"distance","Distance in #eta #phi Space",ndisBins,0,10,"Distance","Counts");
+  //h_pidsum = Services::Histogramming::book<TH1D>(this->name(),"pidsum","PID Sum",npidBins,pidMin,pidMax,"Pidsum","Counts");
   h_higgs_mass = Services::Histogramming::book<TH1D>(this->name(),"higgs_mass","Higgs Mass",nmBins,mMin,mMax,"Higgs Mass [GeV]","Counts");
-  d_higgs_mass_pidsum = Services::Histogramming::book<TH2D>(this->name(),"higgs_mass_pidsum","PIDSUM versus Higgs Mass",nmBins,mMin,mMax,npidBins,pidMin,pidMax,"Higgs Mass [GeV]","PIDSUM");
-  h_ndecay = Services::Histogramming::book<TH1D>(this->name(),"ndecay","Number of Higgs Decay Products",ndecayBins,decayMin,decayMax,"Number of Decays","Counts");
-  d_higgs_mass_ndecay = Services::Histogramming::book<TH2D>(this->name(),"higgs_mass_ndecay","Number of Decay Products versus Higgs Mass",nmBins,mMin,mMax,ndecayBins,decayMin,decayMax,"Higgs Mass [GeV]","Decay Counts");
-  d_pidsum_ndecay = Services::Histogramming::book<TH2D>(this->name(),"pidsum_ndecay","Number of Decays versus PIDSUM",npidBins,pidMin,pidMax,ndecayBins,decayMin,decayMax,"PIDSUM","ndecay");
+  //d_higgs_mass_pidsum = Services::Histogramming::book<TH2D>(this->name(),"higgs_mass_pidsum","PIDSUM versus Higgs Mass",nmBins,mMin,mMax,npidBins,pidMin,pidMax,"Higgs Mass [GeV]","PIDSUM");
+  //h_ndecay = Services::Histogramming::book<TH1D>(this->name(),"ndecay","Number of Higgs Decay Products",ndecayBins,decayMin,decayMax,"Number of Decays","Counts");
+  //d_higgs_mass_ndecay = Services::Histogramming::book<TH2D>(this->name(),"higgs_mass_ndecay","Number of Decay Products versus Higgs Mass",nmBins,mMin,mMax,ndecayBins,decayMin,decayMax,"Higgs Mass [GeV]","Decay Counts");
+  //d_pidsum_ndecay = Services::Histogramming::book<TH2D>(this->name(),"pidsum_ndecay","Number of Decays versus PIDSUM",npidBins,pidMin,pidMax,ndecayBins,decayMin,decayMax,"PIDSUM","ndecay");
   h_eta_cut = Services::Histogramming::book<TH1D>(this->name(),"eta_cut","Companion Jets to Jets Under 3.0 #eta",netaBins,etaMin,etaMax,"Companion Jet #eta","Counts");
   // Rejected Signal Graphs
   h_higgs_lpt = Services::Histogramming::book<TH1D>(this->name(),"higgs_lpt","p_{T} of Higgs Decay Leptons",nptBins,ptMin,ptMax,"p_{T} [GeV]","Counts");
   d_higgs_ndecay_lpt = Services::Histogramming::book<TH2D>(this->name(),"higgs_ndecay_lpt","Number of Lepton Decays versus p_{T} of Decays",ndecayBins,decayMin,decayMax,nptBins,ptMin,ptMax,"Number of Decays","p_{T} of Decays");
-  d_deta_dphi = Services::Histogramming::book<TH2D>(this->name(),"deta_dphi","#Delta #phi versus #Delta #eta",netaBins,(etaMin-6),(etaMax+6),phiBins,phiMin,phiMax,"#Delta #eta","#Delta #phi");
-  d_lead_sub = Services::Histogramming::book<TH2D>(this->name(),"lead_sub","Lead #eta versus Sub #eta",netaBins,etaMin,etaMax,netaBins,etaMin,etaMax,"Lead #eta","Sub #eta");
+  //d_deta_dphi = Services::Histogramming::book<TH2D>(this->name(),"deta_dphi","#Delta #phi versus #Delta #eta",netaBins,(etaMin-6),(etaMax+6),phiBins,phiMin,phiMax,"#Delta #eta","#Delta #phi");
+  //d_lead_sub = Services::Histogramming::book<TH2D>(this->name(),"lead_sub","Lead #eta versus Sub #eta",netaBins,etaMin,etaMax,netaBins,etaMin,etaMax,"Lead #eta","Sub #eta");
 
  return bookedAny;
 }
